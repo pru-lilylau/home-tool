@@ -3,147 +3,192 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>香港家常菜食譜 · Resep Rumahan Hong Kong</title>
+<title>香港家常菜食譜 · Resep Rumahan Hong Kong｜Lily Lau 免費資源</title>
+<meta name="description" content="香港家常菜食譜，中文同印尼文對照，每道菜4-5人份，附材料清單同步驟。由 Lily Lau 免費提供俾大家使用。">
+<link rel="icon" href="assets/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#F7F2E7;
-    --paper-2:#EFE7D6;
-    --card:#FFFDF8;
-    --ink:#1F3A3D;
-    --ink-2:#3D5A5E;
-    --stamp:#B23A2E;
-    --stamp-2:#8E2E24;
-    --sage:#7C8F79;
-    --gold:#B8935A;
-    --line:#D9CFB9;
-    --shadow: 0 2px 10px rgba(31,58,61,0.08);
+    --cream:#F5EDE0;
+    --coral:#C9956B;
+    --coral-deep:#B8845A;
+    --mint:#D6E8D5;
+    --mint-deep:#2A5A2E;
+    --butter:#FAEEDA;
+    --butter-deep:#633806;
+    --lavender:#E6F1FB;
+    --lavender-deep:#0C447C;
+    --ink:#3D2B1A;
+    --ink-soft:#6B4E35;
+    --white:#FFFCF8;
+    --shadow: 0 8px 24px rgba(61,43,26,0.08);
+    --shadow-hover: 0 12px 32px rgba(61,43,26,0.14);
+    --radius: 28px;
   }
   *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
   body{
     margin:0;
     font-family:'Noto Sans TC',sans-serif;
-    background:
-      radial-gradient(circle at 1px 1px, rgba(31,58,61,0.05) 1px, transparent 0) 0 0/16px 16px,
-      var(--paper);
+    background:var(--cream);
     color:var(--ink);
-    padding:24px 16px 60px;
+    line-height:1.7;
+    padding:0 0 40px;
   }
-  .wrap{max-width:1080px;margin:0 auto;}
-  header.top{
-    border-bottom:3px double var(--ink);
-    padding-bottom:14px;margin-bottom:16px;
-  }
-  header.top h1{
-    font-family:'Noto Serif TC',serif;font-weight:900;font-size:26px;margin:0 0 4px;letter-spacing:1px;
-  }
-  header.top h1 .en{display:block;font-size:14px;font-weight:500;color:var(--ink-2);letter-spacing:.5px;margin-top:2px;}
-  header.top .tagline{font-size:12.5px;color:var(--ink-2);line-height:1.7;margin:8px 0 0;}
+  h1,h2{font-family:'Noto Sans TC',sans-serif;font-weight:900;letter-spacing:.5px;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px;}
 
-  .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;align-items:stretch;}
-  .random-btn{
-    background:linear-gradient(135deg,var(--stamp),var(--stamp-2));
-    color:#fff;border:none;border-radius:10px;padding:12px 18px;cursor:pointer;
-    font-family:'Noto Serif TC',serif;font-weight:700;font-size:15px;
-    box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;gap:2px;
-    line-height:1.3;transition:transform .1s ease;flex:0 0 auto;
+  .eyebrow{
+    display:inline-block;background:var(--white);padding:8px 20px;border-radius:999px;
+    font-size:13px;font-weight:700;color:var(--coral-deep);box-shadow:var(--shadow);
+    margin-bottom:18px;text-decoration:none;
   }
-  .random-btn span{font-size:11px;font-weight:400;font-family:'Noto Sans TC',sans-serif;opacity:.92;}
-  .random-btn:active{transform:scale(0.97);}
+
+  header.top{text-align:center;padding:40px 0 24px;}
+  header.top h1{font-size:clamp(26px,5vw,38px);margin:0 0 8px;color:var(--ink);}
+  header.top h1 .en{display:block;font-size:14px;font-weight:500;color:var(--ink-soft);letter-spacing:.5px;margin-top:6px;}
+  header.top .tagline{font-size:13px;color:var(--ink-soft);line-height:1.8;margin:10px auto 0;max-width:620px;}
+
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;align-items:stretch;}
+  .random-btn{
+    background:var(--ink);color:var(--white);border:none;border-radius:999px;padding:14px 26px;cursor:pointer;
+    font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:15px;
+    box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;gap:2px;
+    line-height:1.3;transition:transform .2s ease, box-shadow .2s ease;flex:0 0 auto;
+  }
+  .random-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover);}
+  .random-btn span{font-size:11px;font-weight:400;opacity:.85;}
   #searchInput{
-    flex:1;min-width:160px;border:1px solid var(--line);border-radius:10px;
-    padding:10px 14px;font-size:14px;background:var(--card);color:var(--ink);
+    flex:1;min-width:160px;border:2px solid #F0EAE0;border-radius:999px;
+    padding:12px 20px;font-size:14px;background:var(--white);color:var(--ink);
     font-family:'Noto Sans TC',sans-serif;
   }
-  #searchInput:focus{outline:2px solid var(--gold);}
+  #searchInput:focus{outline:none;border-color:var(--coral-deep);}
 
-  .cat-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;}
+  .cat-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
   .cat-tab{
-    background:var(--paper-2);color:var(--ink-2);border:1px solid var(--line);
-    border-radius:20px;padding:7px 14px;cursor:pointer;font-size:13px;font-weight:500;
-    display:flex;align-items:center;gap:5px;transition:all .15s ease;
+    background:var(--white);color:var(--ink-soft);border:2px solid #F0EAE0;
+    border-radius:999px;padding:8px 16px;cursor:pointer;font-size:13px;font-weight:700;
+    display:flex;align-items:center;gap:5px;transition:all .15s ease;box-shadow:var(--shadow);
   }
-  .cat-tab .id{font-size:10.5px;opacity:.75;}
-  .cat-tab.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .cat-tab .id{font-size:10.5px;opacity:.7;font-weight:500;}
+  .cat-tab.active{background:var(--ink);color:var(--white);border-color:var(--ink);}
 
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px;}
   .card{
-    background:var(--card);border:1px solid var(--line);border-radius:12px;
-    box-shadow:var(--shadow);padding:16px;cursor:pointer;transition:transform .12s ease, box-shadow .12s ease;
+    background:var(--white);border:1px solid #F2ECE1;border-radius:22px;
+    box-shadow:var(--shadow);padding:18px;cursor:pointer;transition:transform .2s ease, box-shadow .2s ease;
     display:flex;flex-direction:column;gap:6px;
   }
-  .card:hover{transform:translateY(-3px);box-shadow:0 6px 16px rgba(31,58,61,0.14);}
+  .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover);}
   .card .emoji{font-size:34px;line-height:1;}
-  .card .zh-name{font-family:'Noto Serif TC',serif;font-weight:700;font-size:16px;color:var(--ink);}
-  .card .id-name{font-size:12px;color:var(--ink-2);font-style:italic;}
-  .card .badge-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:2px;}
-  .card .badge{
-    font-size:10.5px;background:var(--paper-2);color:var(--ink-2);
-    border-radius:20px;padding:3px 10px;
-  }
-  .card .badge.servings{background:rgba(124,143,121,0.18);color:var(--sage);}
-  .empty-msg{grid-column:1/-1;text-align:center;color:var(--ink-2);padding:40px 0;font-size:14px;}
+  .card .zh-name{font-weight:700;font-size:16px;color:var(--ink);}
+  .card .id-name{font-size:12px;color:var(--ink-soft);font-style:italic;}
+  .card .badge-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px;}
+  .badge{font-size:10.5px;font-weight:700;border-radius:999px;padding:4px 12px;}
+  .badge.servings{background:var(--cream);color:var(--ink-soft);font-weight:600;}
+  .badge.cat-meat{background:var(--coral);color:#fff;}
+  .badge.cat-seafood{background:var(--lavender);color:var(--lavender-deep);}
+  .badge.cat-veg{background:var(--mint);color:var(--mint-deep);}
+  .badge.cat-soup{background:var(--butter);color:var(--butter-deep);}
+  .badge.cat-rice{background:var(--coral-deep);color:#fff;}
+  .badge.cat-egg{background:var(--ink);color:#fff;}
+  .empty-msg{grid-column:1/-1;text-align:center;color:var(--ink-soft);padding:40px 0;font-size:14px;}
 
   .modal-overlay{
-    display:none;position:fixed;inset:0;background:rgba(31,58,61,0.45);
+    display:none;position:fixed;inset:0;background:rgba(61,43,26,0.45);
     align-items:flex-start;justify-content:center;padding:30px 14px;overflow-y:auto;z-index:50;
   }
   .modal-overlay.show{display:flex;}
   .modal{
-    background:var(--card);border-radius:14px;max-width:620px;width:100%;
-    box-shadow:0 12px 40px rgba(0,0,0,0.25);position:relative;padding:26px 22px 30px;
+    background:var(--white);border-radius:var(--radius);max-width:620px;width:100%;
+    box-shadow:0 20px 50px rgba(0,0,0,0.25);position:relative;padding:30px 26px 34px;
     animation:pop .15s ease;
   }
   @keyframes pop{from{transform:scale(.96);opacity:0;}to{transform:scale(1);opacity:1;}}
   .modal .close-btn{
-    position:absolute;top:14px;right:16px;background:none;border:none;font-size:20px;
-    color:var(--ink-2);cursor:pointer;line-height:1;
+    position:absolute;top:18px;right:20px;background:var(--cream);border:none;font-size:18px;
+    width:32px;height:32px;border-radius:50%;color:var(--ink-soft);cursor:pointer;line-height:1;
   }
-  .modal .close-btn:hover{color:var(--stamp);}
-  .modal-head{display:flex;align-items:center;gap:14px;border-bottom:2px double var(--line);padding-bottom:14px;margin-bottom:16px;}
+  .modal .close-btn:hover{background:var(--coral);color:#fff;}
+  .modal-head{display:flex;align-items:center;gap:14px;border-bottom:2px solid var(--cream);padding-bottom:16px;margin-bottom:18px;}
   .modal-head .emoji{font-size:44px;}
-  .modal-head .zh-name{font-family:'Noto Serif TC',serif;font-weight:900;font-size:21px;color:var(--ink);}
-  .modal-head .id-name{font-size:13.5px;color:var(--ink-2);font-style:italic;margin-top:2px;}
-  .modal-head .badge-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;}
-  .modal-head .badge{font-size:10.5px;background:var(--paper-2);color:var(--ink-2);border-radius:20px;padding:3px 10px;}
-  .modal-head .badge.servings{background:rgba(124,143,121,0.18);color:var(--sage);}
+  .modal-head .zh-name{font-weight:900;font-size:21px;color:var(--ink);}
+  .modal-head .id-name{font-size:13.5px;color:var(--ink-soft);font-style:italic;margin-top:2px;}
+  .modal-head .badge-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;}
   .section-title{
-    font-family:'Noto Serif TC',serif;font-weight:700;font-size:14.5px;color:var(--stamp);
-    margin:18px 0 8px;letter-spacing:1px;display:flex;align-items:center;gap:6px;
+    font-weight:700;font-size:13px;color:var(--coral-deep);
+    margin:20px 0 10px;letter-spacing:1.5px;text-transform:uppercase;display:flex;align-items:center;gap:6px;
   }
   .ing-table{width:100%;border-collapse:collapse;font-size:13px;}
-  .ing-table tr{border-bottom:1px solid var(--line);}
+  .ing-table tr{border-bottom:1px solid var(--cream);}
   .ing-table tr:last-child{border-bottom:none;}
-  .ing-table td{padding:6px 4px;vertical-align:top;}
+  .ing-table td{padding:7px 4px;vertical-align:top;}
   .ing-table td.name{width:56%;}
   .ing-table td.name .zh{font-weight:500;}
-  .ing-table td.name .id{display:block;font-size:11.5px;color:var(--ink-2);font-style:italic;}
-  .ing-table td.qty{text-align:right;color:var(--ink-2);font-size:12px;white-space:nowrap;}
+  .ing-table td.name .id{display:block;font-size:11.5px;color:var(--ink-soft);font-style:italic;}
+  .ing-table td.qty{text-align:right;color:var(--ink-soft);font-size:12px;white-space:nowrap;}
   .ing-table td.qty .id{display:block;font-style:italic;opacity:.85;}
 
   .steps{list-style:none;margin:0;padding:0;counter-reset:step;}
   .steps li{
-    counter-increment:step;padding:10px 0 10px 30px;position:relative;
-    border-bottom:1px dashed var(--line);font-size:13.5px;line-height:1.6;
+    counter-increment:step;padding:10px 0 10px 32px;position:relative;
+    border-bottom:1px dashed var(--cream);font-size:13.5px;line-height:1.6;
   }
   .steps li:last-child{border-bottom:none;}
   .steps li::before{
     content:counter(step);position:absolute;left:0;top:9px;
-    width:20px;height:20px;border-radius:50%;background:var(--sage);color:#fff;
+    width:22px;height:22px;border-radius:50%;background:var(--mint-deep);color:#fff;
     font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;
   }
-  .steps li .id{display:block;color:var(--ink-2);font-style:italic;font-size:12.5px;margin-top:3px;}
+  .steps li .id{display:block;color:var(--ink-soft);font-style:italic;font-size:12.5px;margin-top:3px;}
+
+  #guide{
+    position:fixed;right:18px;bottom:18px;z-index:60;width:60px;height:60px;border-radius:50%;
+    background:#25D366;box-shadow:var(--shadow-hover);display:flex;align-items:center;justify-content:center;
+    text-decoration:none;border:3px solid var(--white);animation:float 3.4s ease-in-out infinite;
+    transition:transform .2s ease;
+  }
+  #guide:hover{transform:scale(1.08);}
+  @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+  @media (prefers-reduced-motion: reduce){#guide{animation:none;}html{scroll-behavior:auto;}}
+
+  footer{padding:40px 0 8px;text-align:center;}
+  .final-cta{background:var(--ink);border-radius:var(--radius);padding:44px 24px;color:#fff;margin:0 0 28px;}
+  .final-cta h2{color:#fff;margin:0 0 10px;font-size:clamp(20px,4vw,28px);}
+  .final-cta p{opacity:.92;max-width:460px;margin:0 auto 24px;font-size:14px;}
+  .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .cta-btn{
+    display:inline-flex;align-items:center;gap:10px;background:var(--coral);color:#fff;
+    padding:14px 28px;border-radius:999px;font-weight:700;font-size:14.5px;text-decoration:none;
+    box-shadow:var(--shadow);transition:transform .2s ease, box-shadow .2s ease;border:none;cursor:pointer;
+  }
+  .cta-btn:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover);}
+  .cta-btn.ghost{background:rgba(255,255,255,0.95);color:var(--ink);}
+  .about-strip{display:flex;align-items:center;justify-content:center;gap:14px;margin:0 0 20px;flex-wrap:wrap;}
+  .about-photo{width:56px;height:56px;border-radius:50%;overflow:hidden;flex-shrink:0;box-shadow:var(--shadow);}
+  .about-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+  .about-text{text-align:left;font-size:12.5px;color:var(--ink-soft);max-width:360px;}
+  .about-text b{color:var(--ink);}
+  .disclaimer{font-size:11.5px;color:var(--ink-soft);max-width:560px;margin:0 auto;padding:0 20px;opacity:.85;}
 
   @media (max-width:480px){
-    header.top h1{font-size:22px;}
-    .random-btn{font-size:14px;padding:10px 14px;}
+    header.top h1{font-size:24px;}
+    .random-btn{font-size:14px;padding:12px 20px;}
   }
 </style>
 </head>
 <body>
+
+<a id="guide" href="https://wa.me/85260133108?text=Hi Lily，我啱啱睇緊你個香港家常菜食譜網頁，想同你打個招呼！" target="_blank" rel="noopener" title="WhatsApp查詢">
+  <svg viewBox="0 0 24 24" width="28" height="28" fill="#fff"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0012.04 2zm5.8 14.14c-.24.68-1.4 1.31-1.93 1.35-.5.05-1.02.15-3.32-.72-2.79-1.06-4.61-3.88-4.75-4.06-.14-.18-1.14-1.52-1.14-2.9 0-1.38.72-2.06.98-2.34.25-.28.55-.35.73-.35.18 0 .37.002.53.01.17.008.4-.065.62.47.24.58.81 2 .88 2.15.07.15.12.32.02.5-.1.18-.15.29-.29.45-.14.16-.3.36-.43.48-.14.13-.29.28-.13.55.16.27.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.23 1.38.27.14.43.12.59-.07.16-.19.68-.79.86-1.06.18-.27.36-.22.6-.13.24.09 1.53.72 1.79.85.26.13.43.19.5.3.07.11.07.62-.17 1.3z"/></svg>
+</a>
+
 <div class="wrap">
   <header class="top">
+    <a class="eyebrow" href="https://pru-lilylau.github.io/landing-page/" target="_blank" rel="noopener">🎁 Lily Lau 免費資源</a>
     <h1>香港家常菜食譜<span class="en">Resep Masakan Rumahan Hong Kong</span></h1>
     <p class="tagline">
       中文同印尼文對照，方便揀餸同煮食，每道菜份量為4-5人食用 · 揀一味，今日就煮呢個！<br>
@@ -164,6 +209,25 @@
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal" id="modalContent"></div>
 </div>
+
+<footer>
+  <div class="wrap">
+    <div class="final-cta">
+      <h2>想睇多啲免費家庭資源？</h2>
+      <p>Lily Lau 仲有更多免費保障資源同1分鐘保障缺口計算機，歡迎睇睇</p>
+      <div class="cta-row">
+        <a class="cta-btn" href="https://pru-lilylau.github.io/landing-page/" target="_blank" rel="noopener">🔗 免費資源庫</a>
+        <a class="cta-btn ghost" href="https://wa.me/85260133108" target="_blank" rel="noopener">WhatsApp查詢</a>
+        <a class="cta-btn ghost" href="https://www.instagram.com/pru_lilylau" target="_blank" rel="noopener">追蹤 @pru_lilylau</a>
+      </div>
+    </div>
+    <div class="about-strip">
+      <div class="about-photo"><img src="assets/avatar.jpg" alt="Lily Lau"></div>
+      <div class="about-text"><b>Hi，我係 Lily</b> — 香港持牌會計師 × 保誠保險顧問 × 兩個仔嘅媽媽，呢個食譜由我整理俾大家免費使用。</div>
+    </div>
+    <p class="disclaimer">呢個食譜網頁純屬免費家庭資源，歡迎分享俾有需要嘅家庭。</p>
+  </div>
+</footer>
 
 <script>
 const CATEGORIES = [
@@ -893,7 +957,7 @@ function renderGrid(){
       <div class="zh-name">${r.zh}</div>
       <div class="id-name">${r.id}</div>
       <div class="badge-row">
-        <div class="badge">${ci.zh} · ${ci.id}</div>
+        <div class="badge cat-${r.cat}">${ci.zh} &middot; ${ci.id}</div>
         <div class="badge servings">${SERVINGS.zh}</div>
       </div>
     </div>`;
@@ -915,7 +979,7 @@ function openModal(idx){
         <div class="zh-name">${r.zh}</div>
         <div class="id-name">${r.id}</div>
         <div class="badge-row">
-          <div class="badge">${ci.zh} · ${ci.id}</div>
+          <div class="badge cat-${r.cat}">${ci.zh} &middot; ${ci.id}</div>
           <div class="badge servings">${SERVINGS.zh} · ${SERVINGS.id}</div>
         </div>
       </div>
