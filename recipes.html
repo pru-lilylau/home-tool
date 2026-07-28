@@ -67,6 +67,7 @@
   }
   #searchInput:focus{outline:none;border-color:var(--coral-deep);}
 
+  .filter-label{font-size:11.5px;font-weight:700;color:var(--ink-soft);letter-spacing:1px;text-transform:uppercase;margin:0 0 8px;}
   .cat-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
   .cat-tab{
     background:var(--white);color:var(--ink-soft);border:2px solid #F0EAE0;
@@ -89,12 +90,14 @@
   .card .badge-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px;}
   .badge{font-size:10.5px;font-weight:700;border-radius:999px;padding:4px 12px;}
   .badge.servings{background:var(--cream);color:var(--ink-soft);font-weight:600;}
-  .badge.cat-meat{background:var(--coral);color:#fff;}
+  .badge.cat-chicken{background:var(--butter);color:var(--butter-deep);}
+  .badge.cat-pork{background:var(--coral);color:#fff;}
+  .badge.cat-beef{background:var(--coral-deep);color:#fff;}
   .badge.cat-seafood{background:var(--lavender);color:var(--lavender-deep);}
   .badge.cat-veg{background:var(--mint);color:var(--mint-deep);}
-  .badge.cat-soup{background:var(--butter);color:var(--butter-deep);}
-  .badge.cat-rice{background:var(--coral-deep);color:#fff;}
-  .badge.cat-egg{background:var(--ink);color:#fff;}
+  .badge.cat-soup{background:var(--butter-deep);color:#fff;}
+  .badge.cat-rice{background:var(--ink);color:#fff;}
+  .badge.cat-egg{background:var(--mint-deep);color:#fff;}
   .empty-msg{grid-column:1/-1;text-align:center;color:var(--ink-soft);padding:40px 0;font-size:14px;}
 
   .modal-overlay{
@@ -188,7 +191,7 @@
 
 <div class="wrap">
   <header class="top">
-    <a class="eyebrow" href="https://pru-lilylau.github.io/landing-page/" target="_blank" rel="noopener">🎁 Lily Lau 免費資源</a>
+    <a class="eyebrow" href="https://pru-lilylau.github.io/landing-page/" target="_blank" rel="noopener">🎁 免費資源</a>
     <h1>香港家常菜食譜<span class="en">🇮🇩 Resep Masakan Rumahan Hong Kong</span><span class="en">🇵🇭 Mga Recipe ng Lutong Bahay mula Hong Kong</span></h1>
     <p class="tagline">
       中文、印尼文同菲律賓文對照，方便揀餸同煮食，每道菜份量為4-5人食用 · 揀一味，今日就煮呢個！<br>
@@ -202,6 +205,10 @@
     <input id="searchInput" type="text" placeholder="搜尋菜式名稱 · 🇮🇩 Cari resep · 🇵🇭 Maghanap ng recipe">
   </div>
 
+  <div class="filter-label">份量 · 🇮🇩 Porsi · 🇵🇭 Bilang ng Tao</div>
+  <div class="cat-tabs" id="servingTabs"></div>
+
+  <div class="filter-label">類型 · 🇮🇩 Kategori · 🇵🇭 Kategorya</div>
   <div class="cat-tabs" id="catTabs"></div>
 
   <div class="grid" id="recipeGrid"></div>
@@ -232,7 +239,9 @@
 <script>
 const CATEGORIES = [
   {key:'all',     zh:'全部',     id:'Semua',            fil:'Lahat',              emoji:'🍽️'},
-  {key:'meat',    zh:'肉類',     id:'Daging',           fil:'Karne',              emoji:'🥩'},
+  {key:'chicken', zh:'雞肉',     id:'Ayam',             fil:'Manok',              emoji:'🐔'},
+  {key:'pork',    zh:'豬肉',     id:'Babi',             fil:'Baboy',              emoji:'🥩'},
+  {key:'beef',    zh:'牛肉',     id:'Sapi',             fil:'Baka',               emoji:'🐄'},
   {key:'seafood', zh:'海鮮',     id:'Makanan Laut',     fil:'Pagkaing-dagat',     emoji:'🦐'},
   {key:'veg',     zh:'蔬菜',     id:'Sayuran',          fil:'Gulay',              emoji:'🥬'},
   {key:'soup',    zh:'湯品',     id:'Sup',              fil:'Sabaw',              emoji:'🍲'},
@@ -240,13 +249,72 @@ const CATEGORIES = [
   {key:'egg',     zh:'蛋豆腐',   id:'Telur & Tahu',     fil:'Itlog at Tokwa',     emoji:'🍳'},
 ];
 
-const SERVINGS = {zh:'4-5人份', id:'Untuk 4-5 orang', fil:'Para sa 4-5 tao'};
+// 份量 Porsi / Serving size options. Ingredient quantities are researched/written for ~4.5 pax
+// (BASE_SERVING) and scaled at render time for whichever bucket is selected.
+const BASE_SERVING = 4.5;
+const SERVING_OPTIONS = [
+  {key:'s1', zh:'1-2人', zhBadge:'1-2人份', id:'1-2 orang', fil:'1-2 tao', mid:1.5},
+  {key:'s2', zh:'3-4人', zhBadge:'3-4人份', id:'3-4 orang', fil:'3-4 tao', mid:3.5},
+  {key:'s3', zh:'5人+',  zhBadge:'5人+',    id:'5+ orang', fil:'5+ tao',  mid:6},
+];
+let currentServing = 's2';
+
+function servingInfo(key){ return SERVING_OPTIONS.find(s=>s.key===key); }
+
+// Scale one ingredient-quantity string (e.g. "600克", "1,5 sdm", "半個", "1/2 buah", "12隻(約700克)").
+// lang selects number-format conventions: zh/fil use '.', id uses ','.
+function scaleNum(value, ratio){
+  let x = value * ratio;
+  let r;
+  if(x < 10) r = Math.round(x*2)/2;
+  else if(x < 50) r = Math.round(x);
+  else if(x < 200) r = Math.round(x/5)*5;
+  else r = Math.round(x/25)*25;
+  if(r < 0.5) r = 0.5;
+  return r;
+}
+function formatNum(n, sep){
+  let s = Number.isInteger(n) ? String(n) : n.toFixed(1);
+  if(sep===',') s = s.replace('.', ',');
+  return s;
+}
+function scaleQty(str, ratio, lang){
+  if(ratio===1) return str;
+  const sep = lang==='id' ? ',' : '.';
+
+  if(lang==='zh' && str.startsWith('半')){
+    const rest = str.slice(1);
+    const scaled = scaleNum(0.5, ratio);
+    return (scaled===0.5 ? '半' : formatNum(scaled,sep)) + rest;
+  }
+  const halfMatch = str.match(/^1\/2(\s)/);
+  if(halfMatch){
+    const rest = str.slice(halfMatch[0].length);
+    const scaled = scaleNum(0.5, ratio);
+    return (scaled===0.5 ? '1/2 ' : formatNum(scaled,sep)+' ') + rest;
+  }
+
+  const rangeRegex = lang==='id' ? /(\d+(?:,\d+)?)-(\d+(?:,\d+)?)/ : /(\d+(?:\.\d+)?)-(\d+(?:\.\d+)?)/;
+  const rangeMatch = str.match(rangeRegex);
+  if(rangeMatch){
+    const a = scaleNum(parseFloat(rangeMatch[1].replace(',','.')), ratio);
+    const b = scaleNum(parseFloat(rangeMatch[2].replace(',','.')), ratio);
+    const repl = a===b ? formatNum(a,sep) : formatNum(a,sep)+'-'+formatNum(b,sep);
+    return str.replace(rangeRegex, repl);
+  }
+
+  const numRegex = lang==='id' ? /\d+(?:,\d+)?/g : /\d+(?:\.\d+)?/g;
+  return str.replace(numRegex, (m)=>{
+    const val = parseFloat(lang==='id' ? m.replace(',','.') : m);
+    return formatNum(scaleNum(val, ratio), sep);
+  });
+}
 
 // ing: [中文名, 印尼文名, 菲律賓文名, 中文份量, 印尼文份量, 菲律賓文份量]
 // steps: [中文步驟, 印尼文步驟, 菲律賓文步驟]
 const RECIPES = [
 // ===== 肉類 Daging / Karne =====
-{cat:'meat', emoji:'🥩', zh:'蒜蓉蒸排骨', id:'Iga Babi Kukus Bawang Putih', fil:'Pinasingawang Tadyang ng Baboy sa Bawang',
+{cat:'pork', emoji:'🥩', zh:'蒜蓉蒸排骨', id:'Iga Babi Kukus Bawang Putih', fil:'Pinasingawang Tadyang ng Baboy sa Bawang',
   ing:[
     ['排骨','Iga babi, potong kecil','Tadyang ng baboy, hiwain ng maliit','600克','600 gram','600 gramo'],
     ['蒜頭(剁碎)','Bawang putih, cincang halus','Bawang, tinadtad','8瓣','8 siung','8 piraso'],
@@ -263,7 +331,7 @@ const RECIPES = [
     ['排骨平鋪碟上，隔水大火蒸15分鐘。','Ratakan iga di piring, kukus dengan api besar selama 15 menit.','Ilatag ang tadyang sa plato, pasingawan sa mataas na apoy ng 15 minuto.'],
     ['灑上紅椒絲同蔥花即可享用。','Taburi irisan cabai merah dan daun bawang, sajikan.','Budburan ng hiniwang sili pula at sibuyas na dahon, ihain.'],
   ]},
-{cat:'meat', emoji:'🍖', zh:'京都骨（酸甜排骨）', id:'Iga Asam Manis Gaya Kyoto', fil:'Iga sa Matamis at Maasim na Sarsa (Kyoto Style)',
+{cat:'pork', emoji:'🍖', zh:'京都骨（酸甜排骨）', id:'Iga Asam Manis Gaya Kyoto', fil:'Iga sa Matamis at Maasim na Sarsa (Kyoto Style)',
   ing:[
     ['豬肋排','Iga babi','Tadyang ng baboy','600克','600 gram','600 gramo'],
     ['生粉(沾裹用)','Tepung maizena (untuk lapisan)','Gawgaw (pambalot)','4湯匙','4 sdm','4 kutsara'],
@@ -280,7 +348,7 @@ const RECIPES = [
     ['茄汁、喼汁、白醋、糖煮成醬汁。','Masak saus tomat, saus Worcestershire, cuka, dan gula hingga mengental.','Pakuluin ang ketchup, Worcestershire sauce, suka, at asukal hanggang lumapot.'],
     ['排骨回鑊拌勻醬汁即可上碟。','Masukkan kembali iga, aduk rata dengan saus, sajikan.','Ibalik ang tadyang sa sarsa, haluing mabuti, ihain.'],
   ]},
-{cat:'meat', emoji:'🍅', zh:'番茄薯仔炆牛腩', id:'Sengkel Sapi Semur Tomat & Kentang', fil:'Nilagang Brisket ng Baka sa Kamatis at Patatas',
+{cat:'beef', emoji:'🍅', zh:'番茄薯仔炆牛腩', id:'Sengkel Sapi Semur Tomat & Kentang', fil:'Nilagang Brisket ng Baka sa Kamatis at Patatas',
   ing:[
     ['牛腩(切件)','Sengkel sapi, potong dadu','Brisket ng baka, hiwain','700克','700 gram','700 gramo'],
     ['番茄','Tomat, potong wedges','Kamatis, hiwain','4個','4 buah','4 piraso'],
@@ -301,7 +369,7 @@ const RECIPES = [
     ['大火煮滾後轉細火炆1小時45分鐘。','Didihkan lalu kecilkan api, semur selama 1 jam 45 menit.','Pakuluin, pagkatapos hinaan ang apoy, lutuin ng 1 oras at 45 minuto.'],
     ['加入薯仔再炆20-25分鐘至軟身。','Masukkan kentang, semur lagi 20-25 menit hingga empuk.','Idagdag ang patatas, lutuin pa ng 20-25 minuto hanggang lumambot.'],
   ]},
-{cat:'meat', emoji:'🍯', zh:'蜜汁叉燒', id:'Char Siu Madu', fil:'Char Siu na may Pulot',
+{cat:'pork', emoji:'🍯', zh:'蜜汁叉燒', id:'Char Siu Madu', fil:'Char Siu na may Pulot',
   ing:[
     ['豬頸肉/梅頭肉','Daging leher babi','Leeg ng baboy','700克','700 gram','700 gramo'],
     ['叉燒醬','Saus char siu','Sarsa ng char siu','4湯匙','4 sdm','4 kutsara'],
@@ -317,7 +385,7 @@ const RECIPES = [
     ['反面再焗20分鐘，其間掃返醃汁。','Balik daging, panggang lagi 20 menit sambil olesi sisa marinasi.','Baliktarin ang karne, ipanggang pa ng 20 minuto habang hinahaplusan ng natirang marinade.'],
     ['最後掃上蜜糖，焗多5分鐘至表面焦香。','Olesi madu, panggang 5 menit lagi hingga permukaan karamel.','Sa huli, haplusan ng pulot-pukyutan, ipanggang pa ng 5 minuto hanggang mag-caramelize ang ibabaw.'],
   ]},
-{cat:'meat', emoji:'🥒', zh:'涼瓜炒牛肉', id:'Tumis Daging Sapi dengan Pare', fil:'Ginisang Baka na may Ampalaya',
+{cat:'beef', emoji:'🥒', zh:'涼瓜炒牛肉', id:'Tumis Daging Sapi dengan Pare', fil:'Ginisang Baka na may Ampalaya',
   ing:[
     ['牛肉(切片)','Daging sapi, iris tipis','Karne ng baka, hiwain ng manipis','350克','350 gram','350 gramo'],
     ['涼瓜/苦瓜','Pare, iris','Ampalaya, hiwain','2條','2 buah','2 piraso'],
@@ -335,7 +403,7 @@ const RECIPES = [
     ['同一鑊落涼瓜炒香，加糖調味。','Di wajan yang sama, tumis pare hingga harum, tambahkan gula.','Sa parehong kawali, igisa ang ampalaya hanggang mabango, lagyan ng asukal.'],
     ['牛肉回鑊快炒兜勻即成。','Masukkan kembali daging sapi, aduk rata sebentar, sajikan.','Ibalik ang karne, igisa nang mabilis, ihain.'],
   ]},
-{cat:'meat', emoji:'🥃', zh:'柱侯醬燜雞翼', id:'Sayap Ayam Semur Saus Chu Hou', fil:'Nilagang Pakpak ng Manok sa Chu Hou',
+{cat:'chicken', emoji:'🥃', zh:'柱侯醬燜雞翼', id:'Sayap Ayam Semur Saus Chu Hou', fil:'Nilagang Pakpak ng Manok sa Chu Hou',
   ing:[
     ['雞中翼','Sayap ayam (bagian tengah)','Pakpak ng manok (gitnang bahagi)','12隻(約700克)','12 buah (sekitar 700 gram)','12 piraso (mga 700 gramo)'],
     ['柱侯醬','Saus chu hou','Sarsa Chu Hou','3湯匙','3 sdm','3 kutsara'],
@@ -354,7 +422,7 @@ const RECIPES = [
     ['加青椒煮至軟身。','Masukkan paprika hijau, masak hingga empuk.','Idagdag ang berdeng paminto, lutuin hanggang lumambot.'],
     ['下蔥段炒勻，收汁即成。','Masukkan daun bawang, aduk rata, masak hingga saus mengental, sajikan.','Idagdag ang sibuyas na dahon, haluin, lutuin hanggang lumapot ang sarsa, ihain.'],
   ]},
-{cat:'meat', emoji:'🧈', zh:'黑椒牛柳', id:'Has Sapi Saus Lada Hitam', fil:'Lomo ng Baka sa Paminta Itim',
+{cat:'beef', emoji:'🧈', zh:'黑椒牛柳', id:'Has Sapi Saus Lada Hitam', fil:'Lomo ng Baka sa Paminta Itim',
   ing:[
     ['牛柳(切條)','Daging sapi has, potong memanjang','Lomo ng baka, hiwain nang mahaba','450克','450 gram','450 gramo'],
     ['洋蔥(切件)','Bawang bombay, potong','Sibuyas, hiwain','1個','1 buah','1 piraso'],
@@ -372,7 +440,7 @@ const RECIPES = [
     ['同鑊加洋蔥炒香。','Di wajan yang sama, tumis bawang bombay hingga harum.','Sa parehong kawali, igisa ang sibuyas hanggang mabango.'],
     ['牛柳回鑊，加黑椒碎、蠔油、糖炒勻即成。','Masukkan kembali daging sapi, tambahkan lada hitam, saus tiram, dan gula, aduk rata, sajikan.','Ibalik ang karne, lagyan ng durog na paminta, sarsa tiram, at asukal, haluin, ihain.'],
   ]},
-{cat:'meat', emoji:'🌶️', zh:'韓式辣醬豬頸肉', id:'Leher Babi Bakar Saus Gochujang Korea', fil:'Inihaw na Leeg ng Baboy sa Gochujang',
+{cat:'pork', emoji:'🌶️', zh:'韓式辣醬豬頸肉', id:'Leher Babi Bakar Saus Gochujang Korea', fil:'Inihaw na Leeg ng Baboy sa Gochujang',
   ing:[
     ['豬頸肉(切片)','Daging leher babi, iris','Leeg ng baboy, hiwain','500克','500 gram','500 gramo'],
     ['韓式辣醬(苦椒醬)','Saus gochujang Korea','Sarsa gochujang','3湯匙','3 sdm','3 kutsara'],
@@ -388,7 +456,7 @@ const RECIPES = [
     ['熱油將豬頸肉煎至兩面金黃熟透。','Panaskan minyak, goreng daging hingga kedua sisi keemasan dan matang.','Init-in ang mantika, iprito ang karne hanggang maging ginto ang magkabilang gilid at maluto.'],
     ['灑上芝麻即成。','Taburi wijen, sajikan.','Budburan ng linga, ihain.'],
   ]},
-{cat:'meat', emoji:'🥥', zh:'椰汁香茅咖喱雞', id:'Kari Ayam Santan & Serai', fil:'Curry na Manok sa Gata at Tanglad',
+{cat:'chicken', emoji:'🥥', zh:'椰汁香茅咖喱雞', id:'Kari Ayam Santan & Serai', fil:'Curry na Manok sa Gata at Tanglad',
   ing:[
     ['雞件(切塊)','Ayam, potong','Manok, hiwain','700克','700 gram','700 gramo'],
     ['香茅(拍扁切段)','Serai, memarkan & potong','Tanglad, dikdikin at hiwain','2條','2 batang','2 tangkay'],
@@ -897,6 +965,18 @@ function renderCatTabs(){
   });
 }
 
+function renderServingTabs(){
+  const el = document.getElementById('servingTabs');
+  el.innerHTML = SERVING_OPTIONS.map(s=>`
+    <div class="cat-tab serving-tab ${s.key===currentServing?'active':''}" data-serving="${s.key}">
+      👪 ${s.zh} <span class="id">🇮🇩 ${s.id} · 🇵🇭 ${s.fil}</span>
+    </div>
+  `).join('');
+  el.querySelectorAll('.serving-tab').forEach(t=>{
+    t.addEventListener('click', ()=>{ currentServing = t.dataset.serving; renderServingTabs(); renderGrid(); });
+  });
+}
+
 function getFiltered(){
   const q = document.getElementById('searchInput').value.trim().toLowerCase();
   return RECIPES.filter(r=>{
@@ -913,6 +993,7 @@ function renderGrid(){
     grid.innerHTML = `<div class="empty-msg">冇搵到相關菜式 · 🇮🇩 Tidak ditemukan resep yang cocok · 🇵🇭 Walang nahanap na recipe</div>`;
     return;
   }
+  const so = servingInfo(currentServing);
   grid.innerHTML = list.map((r)=>{
     const idx = RECIPES.indexOf(r);
     const ci = catInfo(r.cat);
@@ -924,7 +1005,7 @@ function renderGrid(){
       <div class="id-name">🇵🇭 ${r.fil}</div>
       <div class="badge-row">
         <div class="badge cat-${r.cat}">${ci.zh} &middot; ${ci.id}</div>
-        <div class="badge servings">${SERVINGS.zh}</div>
+        <div class="badge servings">${so.zhBadge}</div>
       </div>
     </div>`;
   }).join('');
@@ -936,6 +1017,8 @@ function renderGrid(){
 function openModal(idx){
   const r = RECIPES[idx];
   const ci = catInfo(r.cat);
+  const so = servingInfo(currentServing);
+  const ratio = so.mid / BASE_SERVING;
   const modal = document.getElementById('modalContent');
   modal.innerHTML = `
     <button class="close-btn" id="closeModalBtn">&times;</button>
@@ -947,7 +1030,7 @@ function openModal(idx){
         <div class="id-name">🇵🇭 ${r.fil}</div>
         <div class="badge-row">
           <div class="badge cat-${r.cat}">${ci.zh} &middot; ${ci.id}</div>
-          <div class="badge servings">${SERVINGS.zh} &middot; 🇮🇩 ${SERVINGS.id} &middot; 🇵🇭 ${SERVINGS.fil}</div>
+          <div class="badge servings">${so.zhBadge} &middot; 🇮🇩 ${so.id} &middot; 🇵🇭 ${so.fil}</div>
         </div>
       </div>
     </div>
@@ -956,7 +1039,7 @@ function openModal(idx){
       ${r.ing.map(([zh,id,fil,qzh,qid,qfil])=>`
         <tr>
           <td class="name"><span class="zh">${zh}</span><span class="id">🇮🇩 ${id}</span><span class="id">🇵🇭 ${fil}</span></td>
-          <td class="qty"><span class="zh">${qzh}</span><span class="id">🇮🇩 ${qid}</span><span class="id">🇵🇭 ${qfil}</span></td>
+          <td class="qty"><span class="zh">${scaleQty(qzh,ratio,'zh')}</span><span class="id">🇮🇩 ${scaleQty(qid,ratio,'id')}</span><span class="id">🇵🇭 ${scaleQty(qfil,ratio,'fil')}</span></td>
         </tr>`).join('')}
     </table>
     <div class="section-title">🔥 做法 · Cara Memasak · Paraan ng Pagluluto</div>
@@ -989,6 +1072,7 @@ document.getElementById('randomBtn').addEventListener('click', ()=>{
 });
 
 renderCatTabs();
+renderServingTabs();
 renderGrid();
 </script>
 </body>
