@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>香港家常菜食譜 · Resep Rumahan Hong Kong｜Lily Lau 免費資源</title>
-<meta name="description" content="香港家常菜食譜，中文同印尼文對照，每道菜4-5人份，附材料清單同步驟。由 Lily Lau 免費提供俾大家使用。">
+<meta name="description" content="香港家常菜食譜，中文、印尼文同菲律賓文對照，每道菜4-5人份，附材料清單同步驟。由 Lily Lau 免費提供俾大家使用。">
 <link rel="icon" href="assets/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,9 +49,17 @@
   header.top{text-align:center;padding:40px 0 24px;}
   header.top h1{font-size:clamp(26px,5vw,38px);margin:0 0 8px;color:var(--ink);}
   header.top h1 .en{display:block;font-size:14px;font-weight:500;color:var(--ink-soft);letter-spacing:.5px;margin-top:6px;}
-  header.top .tagline{font-size:13px;color:var(--ink-soft);line-height:1.8;margin:10px auto 0;max-width:620px;}
+  header.top .tagline{font-size:13px;color:var(--ink-soft);line-height:1.8;margin:10px auto 0;max-width:640px;}
 
-  .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;align-items:stretch;}
+  .purpose-note{
+    background:#F7EFE0;border-left:4px solid var(--butter-deep);border-radius:12px;
+    padding:16px 20px;margin:20px 0 4px;font-size:13px;color:var(--ink);text-align:left;
+  }
+  .purpose-note p{margin:0 0 8px;}
+  .purpose-note p:last-child{margin-bottom:0;}
+  .purpose-note p.sec{color:var(--ink-soft);font-size:12.5px;font-style:italic;}
+
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 16px;align-items:stretch;}
   .random-btn{
     background:var(--ink);color:var(--white);border:none;border-radius:999px;padding:14px 26px;cursor:pointer;
     font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:15px;
@@ -189,16 +197,23 @@
 <div class="wrap">
   <header class="top">
     <a class="eyebrow" href="https://pru-lilylau.github.io/landing-page/" target="_blank" rel="noopener">🎁 Lily Lau 免費資源</a>
-    <h1>香港家常菜食譜<span class="en">Resep Masakan Rumahan Hong Kong</span></h1>
+    <h1>香港家常菜食譜<span class="en">🇮🇩 Resep Masakan Rumahan Hong Kong</span><span class="en">🇵🇭 Mga Recipe ng Lutong Bahay mula Hong Kong</span></h1>
     <p class="tagline">
-      中文同印尼文對照，方便揀餸同煮食，每道菜份量為4-5人食用 · 揀一味，今日就煮呢個！<br>
-      Bahasa Kanton &amp; Indonesia berdampingan, setiap resep untuk porsi 4-5 orang · Pilih satu resep, masak ini hari ini!
+      中文、印尼文同菲律賓文對照，方便揀餸同煮食，每道菜份量為4-5人食用 · 揀一味，今日就煮呢個！<br>
+      🇮🇩 Bahasa Kanton, Indonesia, dan Filipino berdampingan, setiap resep untuk porsi 4-5 orang · Pilih satu resep, masak ini hari ini!<br>
+      🇵🇭 Magkasamang Cantonese, Indonesian, at Filipino, bawat recipe ay para sa 4-5 katao · Pumili ng isa, lutuin ito ngayon!
     </p>
+
+    <div class="purpose-note">
+      <p>💬 我屋企請咗工人姐姐，佢成日問我「今日煮咩好」，我自己都諗到頭痛。上網搵嘅食譜通常有英文，但未必有印尼文或菲律賓文對照，份量又通常淨係得1-2人份，唔啱我哋一家人食。所以我索性自己整咗呢個對照食譜，份量都改到啱4-5人食，等姐姐可以自己揀、自己煮，我都唔使日日諗「今日食乜」。</p>
+      <p class="sec">🇮🇩 Saya punya asisten rumah tangga, dan dia sering bertanya "mau masak apa hari ini" sampai saya sendiri pusing memikirkannya. Resep di internet biasanya ada versi Inggris, tapi jarang ada terjemahan Indonesia atau Filipino, dan porsinya biasanya hanya untuk 1-2 orang. Jadi saya membuat sendiri resep ini dengan porsi untuk 4-5 orang, supaya asisten bisa memilih dan memasak sendiri.</p>
+      <p class="sec">🇵🇭 May katulong kami sa bahay, at madalas niya akong tanungin kung "ano ang lulutuin ngayon" hanggang sa ako mismo ay naguguluhan na rin. Ang mga recipe sa internet ay kadalasang may bersyong Ingles, pero bihira ang may salin sa Indonesian o Filipino, at ang serving ay karaniwang para lang sa 1-2 tao. Kaya ginawa ko ang sarili kong recipe na ito, naka-adjust na sa 4-5 katao, para makapili at makapagluto na mismo ang aming katulong.</p>
+    </div>
   </header>
 
   <div class="toolbar">
-    <button id="randomBtn" class="random-btn">🎲 今日食乜？<span>Mau masak apa hari ini?</span></button>
-    <input id="searchInput" type="text" placeholder="搜尋菜式名稱... / Cari nama resep...">
+    <button id="randomBtn" class="random-btn">🎲 今日食乜？<span>🇮🇩 Mau masak apa hari ini? · 🇵🇭 Ano ang lulutuin ngayon?</span></button>
+    <input id="searchInput" type="text" placeholder="搜尋菜式名稱 · 🇮🇩 Cari resep · 🇵🇭 Maghanap ng recipe">
   </div>
 
   <div class="cat-tabs" id="catTabs"></div>
@@ -217,13 +232,12 @@
       <p>Lily Lau 仲有更多免費保障資源同1分鐘保障缺口計算機，歡迎睇睇</p>
       <div class="cta-row">
         <a class="cta-btn" href="https://pru-lilylau.github.io/landing-page/" target="_blank" rel="noopener">🔗 免費資源庫</a>
-        <a class="cta-btn ghost" href="https://wa.me/85260133108" target="_blank" rel="noopener">WhatsApp查詢</a>
         <a class="cta-btn ghost" href="https://www.instagram.com/pru_lilylau" target="_blank" rel="noopener">追蹤 @pru_lilylau</a>
       </div>
     </div>
     <div class="about-strip">
       <div class="about-photo"><img src="assets/avatar.jpg" alt="Lily Lau"></div>
-      <div class="about-text"><b>Hi，我係 Lily</b> — 香港持牌會計師 × 保誠保險顧問 × 兩個仔嘅媽媽，呢個食譜由我整理俾大家免費使用。</div>
+      <div class="about-text"><b>Hi，我係 Lily</b> — 香港持牌會計師 × 保誠保險顧問，呢個食譜由我整理俾大家免費使用。</div>
     </div>
     <p class="disclaimer">呢個食譜網頁純屬免費家庭資源，歡迎分享俾有需要嘅家庭。</p>
   </div>
@@ -231,688 +245,653 @@
 
 <script>
 const CATEGORIES = [
-  {key:'all',     zh:'全部',     id:'Semua',            emoji:'🍽️'},
-  {key:'meat',    zh:'肉類',     id:'Daging',           emoji:'🥩'},
-  {key:'seafood', zh:'海鮮',     id:'Makanan Laut',     emoji:'🦐'},
-  {key:'veg',     zh:'蔬菜',     id:'Sayuran',          emoji:'🥬'},
-  {key:'soup',    zh:'湯品',     id:'Sup',              emoji:'🍲'},
-  {key:'rice',    zh:'飯麵',     id:'Nasi & Mi',        emoji:'🍚'},
-  {key:'egg',     zh:'蛋豆腐',   id:'Telur & Tahu',     emoji:'🍳'},
+  {key:'all',     zh:'全部',     id:'Semua',            fil:'Lahat',              emoji:'🍽️'},
+  {key:'meat',    zh:'肉類',     id:'Daging',           fil:'Karne',              emoji:'🥩'},
+  {key:'seafood', zh:'海鮮',     id:'Makanan Laut',     fil:'Pagkaing-dagat',     emoji:'🦐'},
+  {key:'veg',     zh:'蔬菜',     id:'Sayuran',          fil:'Gulay',              emoji:'🥬'},
+  {key:'soup',    zh:'湯品',     id:'Sup',              fil:'Sabaw',              emoji:'🍲'},
+  {key:'rice',    zh:'飯麵',     id:'Nasi & Mi',        fil:'Kanin at Pansit',    emoji:'🍚'},
+  {key:'egg',     zh:'蛋豆腐',   id:'Telur & Tahu',     fil:'Itlog at Tokwa',     emoji:'🍳'},
 ];
 
-const SERVINGS = {zh:'4-5人份', id:'Untuk 4-5 orang'};
+const SERVINGS = {zh:'4-5人份', id:'Untuk 4-5 orang', fil:'Para sa 4-5 tao'};
 
-// ing: [中文名, 印尼文名, 中文份量, 印尼文份量]
-// steps: [中文步驟, 印尼文步驟]
+// ing: [中文名, 印尼文名, 菲律賓文名, 中文份量, 印尼文份量, 菲律賓文份量]
+// steps: [中文步驟, 印尼文步驟, 菲律賓文步驟]
 const RECIPES = [
-// ===== 肉類 Daging =====
-{cat:'meat', emoji:'🥩', zh:'蒜蓉蒸排骨', id:'Iga Babi Kukus Bawang Putih',
+// ===== 肉類 Daging / Karne =====
+{cat:'meat', emoji:'🥩', zh:'蒜蓉蒸排骨', id:'Iga Babi Kukus Bawang Putih', fil:'Pinasingawang Tadyang ng Baboy sa Bawang',
   ing:[
-    ['排骨','Iga babi, potong kecil','600克','600 gram'],
-    ['蒜頭(剁碎)','Bawang putih, cincang halus','8瓣','8 siung'],
-    ['豆豉','Tauco hitam (fermented black bean)','1.5湯匙','1,5 sdm'],
-    ['紅椒(切絲)','Cabai merah, iris','1隻','1 buah'],
-    ['生抽','Kecap asin (light soy sauce)','1.5湯匙','1,5 sdm'],
-    ['糖','Gula','1茶匙','1 sdt'],
-    ['生粉','Tepung maizena','1.5茶匙','1,5 sdt'],
-    ['油','Minyak','1.5湯匙','1,5 sdm'],
+    ['排骨','Iga babi, potong kecil','Tadyang ng baboy, hiwain ng maliit','600克','600 gram','600 gramo'],
+    ['蒜頭(剁碎)','Bawang putih, cincang halus','Bawang, tinadtad','8瓣','8 siung','8 piraso'],
+    ['豆豉','Tauco hitam (fermented black bean)','Tausi (pinatuyong itim na balatong)','1.5湯匙','1,5 sdm','1.5 kutsara'],
+    ['紅椒(切絲)','Cabai merah, iris','Sili pula, hiniwa','1隻','1 buah','1 piraso'],
+    ['生抽','Kecap asin (light soy sauce)','Toyo (magaan)','1.5湯匙','1,5 sdm','1.5 kutsara'],
+    ['糖','Gula','Asukal','1茶匙','1 sdt','1 kutsarita'],
+    ['生粉','Tepung maizena','Gawgaw','1.5茶匙','1,5 sdt','1.5 kutsarita'],
+    ['油','Minyak','Mantika','1.5湯匙','1,5 sdm','1.5 kutsara'],
   ],
   steps:[
-    ['排骨用生抽、糖、生粉、油拌勻，醃15分鐘。','Lumuri iga dengan kecap asin, gula, tepung maizena, dan minyak, diamkan 15 menit.'],
-    ['爆香蒜蓉同豆豉，加入排骨拌勻。','Tumis bawang putih cincang dan tauco hitam hingga harum, campur rata dengan iga.'],
-    ['排骨平鋪碟上，隔水大火蒸15分鐘。','Ratakan iga di piring, kukus dengan api besar selama 15 menit.'],
-    ['灑上紅椒絲同蔥花即可享用。','Taburi irisan cabai merah dan daun bawang, sajikan.'],
+    ['排骨用生抽、糖、生粉、油拌勻，醃15分鐘。','Lumuri iga dengan kecap asin, gula, tepung maizena, dan minyak, diamkan 15 menit.','Haluin ang tadyang sa toyo, asukal, gawgaw, at mantika, ipahinga ng 15 minuto.'],
+    ['爆香蒜蓉同豆豉，加入排骨拌勻。','Tumis bawang putih cincang dan tauco hitam hingga harum, campur rata dengan iga.','Igisa ang tinadtad na bawang at tausi hanggang mabango, ihalo sa tadyang.'],
+    ['排骨平鋪碟上，隔水大火蒸15分鐘。','Ratakan iga di piring, kukus dengan api besar selama 15 menit.','Ilatag ang tadyang sa plato, pasingawan sa mataas na apoy ng 15 minuto.'],
+    ['灑上紅椒絲同蔥花即可享用。','Taburi irisan cabai merah dan daun bawang, sajikan.','Budburan ng hiniwang sili pula at sibuyas na dahon, ihain.'],
   ]},
-{cat:'meat', emoji:'🍖', zh:'京都骨（酸甜排骨）', id:'Iga Asam Manis Gaya Kyoto',
+{cat:'meat', emoji:'🍖', zh:'京都骨（酸甜排骨）', id:'Iga Asam Manis Gaya Kyoto', fil:'Iga sa Matamis at Maasim na Sarsa (Kyoto Style)',
   ing:[
-    ['豬肋排','Iga babi','600克','600 gram'],
-    ['生粉(沾裹用)','Tepung maizena (untuk lapisan)','4湯匙','4 sdm'],
-    ['雞蛋','Telur','2隻','2 butir'],
-    ['茄汁','Saus tomat','4湯匙','4 sdm'],
-    ['喼汁','Saus Worcestershire','1.5湯匙','1,5 sdm'],
-    ['白醋','Cuka putih','3湯匙','3 sdm'],
-    ['糖','Gula','3湯匙','3 sdm'],
-    ['鹽','Garam','少許','secukupnya'],
+    ['豬肋排','Iga babi','Tadyang ng baboy','600克','600 gram','600 gramo'],
+    ['生粉(沾裹用)','Tepung maizena (untuk lapisan)','Gawgaw (pambalot)','4湯匙','4 sdm','4 kutsara'],
+    ['雞蛋','Telur','Itlog','2隻','2 butir','2 piraso'],
+    ['茄汁','Saus tomat','Ketchup','4湯匙','4 sdm','4 kutsara'],
+    ['喼汁','Saus Worcestershire','Worcestershire sauce','1.5湯匙','1,5 sdm','1.5 kutsara'],
+    ['白醋','Cuka putih','Puting suka','3湯匙','3 sdm','3 kutsara'],
+    ['糖','Gula','Asukal','3湯匙','3 sdm','3 kutsara'],
+    ['鹽','Garam','Asin','少許','secukupnya','kaunti lang'],
   ],
   steps:[
-    ['排骨用鹽略醃，沾蛋液再沾滿生粉。','Lumuri iga dengan sedikit garam, celupkan ke telur lalu balut tepung maizena.'],
-    ['落油鑊分批炸至金黃酥脆，盛起。','Goreng dalam minyak panas secara bertahap hingga keemasan dan renyah, angkat.'],
-    ['茄汁、喼汁、白醋、糖煮成醬汁。','Masak saus tomat, saus Worcestershire, cuka, dan gula hingga mengental.'],
-    ['排骨回鑊拌勻醬汁即可上碟。','Masukkan kembali iga, aduk rata dengan saus, sajikan.'],
+    ['排骨用鹽略醃，沾蛋液再沾滿生粉。','Lumuri iga dengan sedikit garam, celupkan ke telur lalu balut tepung maizena.','Lagyan ng kaunting asin ang tadyang, isawsaw sa itlog, pagkatapos i-coat ng gawgaw.'],
+    ['落油鑊分批炸至金黃酥脆，盛起。','Goreng dalam minyak panas secara bertahap hingga keemasan dan renyah, angkat.','Iprito nang paunti-unti sa mainit na mantika hanggang maging ginto at malutong.'],
+    ['茄汁、喼汁、白醋、糖煮成醬汁。','Masak saus tomat, saus Worcestershire, cuka, dan gula hingga mengental.','Pakuluin ang ketchup, Worcestershire sauce, suka, at asukal hanggang lumapot.'],
+    ['排骨回鑊拌勻醬汁即可上碟。','Masukkan kembali iga, aduk rata dengan saus, sajikan.','Ibalik ang tadyang sa sarsa, haluing mabuti, ihain.'],
   ]},
-{cat:'meat', emoji:'🍅', zh:'番茄薯仔炆牛腩', id:'Sengkel Sapi Semur Tomat & Kentang',
+{cat:'meat', emoji:'🍅', zh:'番茄薯仔炆牛腩', id:'Sengkel Sapi Semur Tomat & Kentang', fil:'Nilagang Brisket ng Baka sa Kamatis at Patatas',
   ing:[
-    ['牛腩(切件)','Sengkel sapi, potong dadu','700克','700 gram'],
-    ['番茄','Tomat, potong wedges','4個','4 buah'],
-    ['薯仔','Kentang, potong dadu','3個','3 buah'],
-    ['洋蔥(切件)','Bawang bombay, potong','半個','1/2 buah'],
-    ['薑(切片)','Jahe, iris','4片','4 iris'],
-    ['八角','Bunga lawang','1粒','1 buah'],
-    ['月桂葉','Daun salam/bay leaf','2塊','2 lembar'],
-    ['生抽','Kecap asin','2.5湯匙','2,5 sdm'],
-    ['老抽','Kecap hitam kental (dark soy)','1.5茶匙','1,5 sdt'],
-    ['番茄醬','Saus tomat','3湯匙','3 sdm'],
-    ['水','Air (hingga menutupi bahan)','適量','secukupnya'],
+    ['牛腩(切件)','Sengkel sapi, potong dadu','Brisket ng baka, hiwain','700克','700 gram','700 gramo'],
+    ['番茄','Tomat, potong wedges','Kamatis, hiwain','4個','4 buah','4 piraso'],
+    ['薯仔','Kentang, potong dadu','Patatas, hiwain','3個','3 buah','3 piraso'],
+    ['洋蔥(切件)','Bawang bombay, potong','Sibuyas, hiwain','半個','1/2 buah','1/2 piraso'],
+    ['薑(切片)','Jahe, iris','Luya, hiwain','4片','4 iris','4 hiwa'],
+    ['八角','Bunga lawang','Sangke (star anise)','1粒','1 buah','1 piraso'],
+    ['月桂葉','Daun salam/bay leaf','Dahon ng laurel','2塊','2 lembar','2 dahon'],
+    ['生抽','Kecap asin','Toyo','2.5湯匙','2,5 sdm','2.5 kutsara'],
+    ['老抽','Kecap hitam kental (dark soy)','Toyong itim (matapang)','1.5茶匙','1,5 sdt','1.5 kutsarita'],
+    ['番茄醬','Saus tomat','Ketchup','3湯匙','3 sdm','3 kutsara'],
+    ['水','Air (hingga menutupi bahan)','Tubig (hanggang matakpan ang sangkap)','適量','secukupnya','sapat na dami'],
   ],
   steps:[
-    ['牛腩汆水去血水，洗淨。','Rebus sebentar sengkel sapi untuk membuang darah, tiriskan dan cuci.'],
-    ['爆香薑片、八角同月桂葉，加洋蔥炒軟，下牛腩略炒。','Tumis jahe, bunga lawang, dan daun salam hingga harum, masukkan bawang bombay hingga layu, lalu masukkan sengkel sapi, aduk sebentar.'],
-    ['加番茄、番茄醬、生抽、老抽同水，蓋過材料。','Tambahkan tomat, saus tomat, kecap asin, kecap hitam, dan air hingga menutupi bahan.'],
-    ['大火煮滾後轉細火炆1小時45分鐘。','Didihkan lalu kecilkan api, semur selama 1 jam 45 menit.'],
-    ['加入薯仔再炆20-25分鐘至軟身。','Masukkan kentang, semur lagi 20-25 menit hingga empuk.'],
+    ['牛腩汆水去血水，洗淨。','Rebus sebentar sengkel sapi untuk membuang darah, tiriskan dan cuci.','Pakuluan ng kaunti ang brisket para maalis ang dugo, banlawan at hugasan.'],
+    ['爆香薑片、八角同月桂葉，加洋蔥炒軟，下牛腩略炒。','Tumis jahe, bunga lawang, dan daun salam hingga harum, masukkan bawang bombay hingga layu, lalu masukkan sengkel sapi, aduk sebentar.','Igisa ang luya, sangke, at dahon ng laurel hanggang mabango, isunod ang sibuyas hanggang lumambot, pagkatapos ihalo ang brisket, igisa nang sandali.'],
+    ['加番茄、番茄醬、生抽、老抽同水，蓋過材料。','Tambahkan tomat, saus tomat, kecap asin, kecap hitam, dan air hingga menutupi bahan.','Idagdag ang kamatis, ketchup, toyo, toyong itim, at tubig hanggang matakpan ang mga sangkap.'],
+    ['大火煮滾後轉細火炆1小時45分鐘。','Didihkan lalu kecilkan api, semur selama 1 jam 45 menit.','Pakuluin, pagkatapos hinaan ang apoy, lutuin ng 1 oras at 45 minuto.'],
+    ['加入薯仔再炆20-25分鐘至軟身。','Masukkan kentang, semur lagi 20-25 menit hingga empuk.','Idagdag ang patatas, lutuin pa ng 20-25 minuto hanggang lumambot.'],
   ]},
-{cat:'meat', emoji:'🍯', zh:'蜜汁叉燒', id:'Char Siu Madu',
+{cat:'meat', emoji:'🍯', zh:'蜜汁叉燒', id:'Char Siu Madu', fil:'Char Siu na may Pulot',
   ing:[
-    ['豬頸肉/梅頭肉','Daging leher babi','700克','700 gram'],
-    ['叉燒醬','Saus char siu','4湯匙','4 sdm'],
-    ['蜜糖(掃面用)','Madu (untuk olesan akhir)','3湯匙','3 sdm'],
-    ['生抽','Kecap asin','1.5湯匙','1,5 sdm'],
-    ['糖','Gula','1.5湯匙','1,5 sdm'],
-    ['五香粉','Bubuk lima rempah','少許','secukupnya'],
-    ['蒜蓉','Bawang putih cincang','1.5茶匙','1,5 sdt'],
+    ['豬頸肉/梅頭肉','Daging leher babi','Leeg ng baboy','700克','700 gram','700 gramo'],
+    ['叉燒醬','Saus char siu','Sarsa ng char siu','4湯匙','4 sdm','4 kutsara'],
+    ['蜜糖(掃面用)','Madu (untuk olesan akhir)','Pulot-pukyutan (panghaplos sa dulo)','3湯匙','3 sdm','3 kutsara'],
+    ['生抽','Kecap asin','Toyo','1.5湯匙','1,5 sdm','1.5 kutsara'],
+    ['糖','Gula','Asukal','1.5湯匙','1,5 sdm','1.5 kutsara'],
+    ['五香粉','Bubuk lima rempah','Five-spice powder','少許','secukupnya','kaunti lang'],
+    ['蒜蓉','Bawang putih cincang','Tinadtad na bawang','1.5茶匙','1,5 sdt','1.5 kutsarita'],
   ],
   steps:[
-    ['豬肉用叉燒醬、生抽、糖、五香粉、蒜蓉醃最少4小時或隔夜。','Lumuri daging dengan saus char siu, kecap asin, gula, bubuk lima rempah, dan bawang putih; marinasi minimal 4 jam atau semalaman.'],
-    ['焗爐預熱200度，焗肉25分鐘。','Panaskan oven 200°C, panggang daging selama 25 menit.'],
-    ['反面再焗20分鐘，其間掃返醃汁。','Balik daging, panggang lagi 20 menit sambil olesi sisa marinasi.'],
-    ['最後掃上蜜糖，焗多5分鐘至表面焦香。','Olesi madu, panggang 5 menit lagi hingga permukaan karamel.'],
+    ['豬肉用叉燒醬、生抽、糖、五香粉、蒜蓉醃最少4小時或隔夜。','Lumuri daging dengan saus char siu, kecap asin, gula, bubuk lima rempah, dan bawang putih; marinasi minimal 4 jam atau semalaman.','Ihalo ang karne sa sarsa ng char siu, toyo, asukal, five-spice powder, at bawang; i-marinate ng hindi bababa sa 4 oras o magdamag.'],
+    ['焗爐預熱200度，焗肉25分鐘。','Panaskan oven 200°C, panggang daging selama 25 menit.','Init-in ang oven sa 200°C, ipanggang ang karne ng 25 minuto.'],
+    ['反面再焗20分鐘，其間掃返醃汁。','Balik daging, panggang lagi 20 menit sambil olesi sisa marinasi.','Baliktarin ang karne, ipanggang pa ng 20 minuto habang hinahaplusan ng natirang marinade.'],
+    ['最後掃上蜜糖，焗多5分鐘至表面焦香。','Olesi madu, panggang 5 menit lagi hingga permukaan karamel.','Sa huli, haplusan ng pulot-pukyutan, ipanggang pa ng 5 minuto hanggang mag-caramelize ang ibabaw.'],
   ]},
-{cat:'meat', emoji:'🥒', zh:'涼瓜炒牛肉', id:'Tumis Daging Sapi dengan Pare',
+{cat:'meat', emoji:'🥒', zh:'涼瓜炒牛肉', id:'Tumis Daging Sapi dengan Pare', fil:'Ginisang Baka na may Ampalaya',
   ing:[
-    ['牛肉(切片)','Daging sapi, iris tipis','350克','350 gram'],
-    ['涼瓜/苦瓜','Pare, iris','2條','2 buah'],
-    ['蒜頭','Bawang putih','3瓣','3 siung'],
-    ['豆豉','Tauco hitam','1.5茶匙','1,5 sdt'],
-    ['生抽','Kecap asin','1.5湯匙','1,5 sdm'],
-    ['生粉','Tepung maizena','1.5茶匙','1,5 sdt'],
-    ['糖','Gula','1茶匙','1 sdt'],
-    ['油','Minyak','3湯匙','3 sdm'],
+    ['牛肉(切片)','Daging sapi, iris tipis','Karne ng baka, hiwain ng manipis','350克','350 gram','350 gramo'],
+    ['涼瓜/苦瓜','Pare, iris','Ampalaya, hiwain','2條','2 buah','2 piraso'],
+    ['蒜頭','Bawang putih','Bawang','3瓣','3 siung','3 piraso'],
+    ['豆豉','Tauco hitam','Tausi','1.5茶匙','1,5 sdt','1.5 kutsarita'],
+    ['生抽','Kecap asin','Toyo','1.5湯匙','1,5 sdm','1.5 kutsara'],
+    ['生粉','Tepung maizena','Gawgaw','1.5茶匙','1,5 sdt','1.5 kutsarita'],
+    ['糖','Gula','Asukal','1茶匙','1 sdt','1 kutsarita'],
+    ['油','Minyak','Mantika','3湯匙','3 sdm','3 kutsara'],
   ],
   steps:[
-    ['牛肉用生抽、生粉拌勻，醃10分鐘。','Lumuri daging sapi dengan kecap asin dan tepung maizena, diamkan 10 menit.'],
-    ['涼瓜切片後汆水去苦味。','Iris pare, rebus sebentar untuk mengurangi rasa pahit.'],
-    ['爆香蒜頭同豆豉，落牛肉大火炒至變色，盛起。','Tumis bawang putih dan tauco hitam, masukkan daging sapi, tumis cepat hingga berubah warna, angkat.'],
-    ['同一鑊落涼瓜炒香，加糖調味。','Di wajan yang sama, tumis pare hingga harum, tambahkan gula.'],
-    ['牛肉回鑊快炒兜勻即成。','Masukkan kembali daging sapi, aduk rata sebentar, sajikan.'],
+    ['牛肉用生抽、生粉拌勻，醃10分鐘。','Lumuri daging sapi dengan kecap asin dan tepung maizena, diamkan 10 menit.','Haluin ang karne sa toyo at gawgaw, ipahinga ng 10 minuto.'],
+    ['涼瓜切片後汆水去苦味。','Iris pare, rebus sebentar untuk mengurangi rasa pahit.','Hiwain ang ampalaya, pakuluan ng kaunti para mabawasan ang pait.'],
+    ['爆香蒜頭同豆豉，落牛肉大火炒至變色，盛起。','Tumis bawang putih dan tauco hitam, masukkan daging sapi, tumis cepat hingga berubah warna, angkat.','Igisa ang bawang at tausi, ihalo ang karne, igisa nang mabilis sa mataas na apoy hanggang magbago ng kulay, alisin muna.'],
+    ['同一鑊落涼瓜炒香，加糖調味。','Di wajan yang sama, tumis pare hingga harum, tambahkan gula.','Sa parehong kawali, igisa ang ampalaya hanggang mabango, lagyan ng asukal.'],
+    ['牛肉回鑊快炒兜勻即成。','Masukkan kembali daging sapi, aduk rata sebentar, sajikan.','Ibalik ang karne, igisa nang mabilis, ihain.'],
   ]},
-{cat:'meat', emoji:'🥃', zh:'柱侯醬燜雞翼', id:'Sayap Ayam Semur Saus Chu Hou',
+{cat:'meat', emoji:'🥃', zh:'柱侯醬燜雞翼', id:'Sayap Ayam Semur Saus Chu Hou', fil:'Nilagang Pakpak ng Manok sa Chu Hou',
   ing:[
-    ['雞中翼','Sayap ayam (bagian tengah)','12隻(約700克)','12 buah (sekitar 700 gram)'],
-    ['柱侯醬','Saus chu hou','3湯匙','3 sdm'],
-    ['乾蔥(切片)','Bawang merah, iris','4粒','4 butir'],
-    ['蒜片','Bawang putih, iris','3瓣','3 siung'],
-    ['青椒(切件)','Paprika hijau, potong','1隻','1 buah'],
-    ['蔥(切段)','Daun bawang, potong','2條','2 batang'],
-    ['糖','Gula','1茶匙','1 sdt'],
-    ['水','Air','300毫升','300 ml'],
-    ['油','Minyak','2湯匙','2 sdm'],
+    ['雞中翼','Sayap ayam (bagian tengah)','Pakpak ng manok (gitnang bahagi)','12隻(約700克)','12 buah (sekitar 700 gram)','12 piraso (mga 700 gramo)'],
+    ['柱侯醬','Saus chu hou','Sarsa Chu Hou','3湯匙','3 sdm','3 kutsara'],
+    ['乾蔥(切片)','Bawang merah, iris','Sibuyas na pula, hiwain','4粒','4 butir','4 piraso'],
+    ['蒜片','Bawang putih, iris','Bawang, hiwain','3瓣','3 siung','3 piraso'],
+    ['青椒(切件)','Paprika hijau, potong','Berdeng paminto, hiwain','1隻','1 buah','1 piraso'],
+    ['蔥(切段)','Daun bawang, potong','Sibuyas na dahon, hiwain','2條','2 batang','2 tangkay'],
+    ['糖','Gula','Asukal','1茶匙','1 sdt','1 kutsarita'],
+    ['水','Air','Tubig','300毫升','300 ml','300 ml'],
+    ['油','Minyak','Mantika','2湯匙','2 sdm','2 kutsara'],
   ],
   steps:[
-    ['熱油爆香乾蔥、蒜片。','Panaskan minyak, tumis bawang merah dan bawang putih hingga harum.'],
-    ['加入柱侯醬炒香。','Masukkan saus chu hou, tumis hingga harum.'],
-    ['下雞翼炒至轉色，加水同糖，蓋煮15分鐘。','Masukkan sayap ayam, aduk hingga berubah warna, tambahkan air dan gula, tutup dan masak 15 menit.'],
-    ['加青椒煮至軟身。','Masukkan paprika hijau, masak hingga empuk.'],
-    ['下蔥段炒勻，收汁即成。','Masukkan daun bawang, aduk rata, masak hingga saus mengental, sajikan.'],
+    ['熱油爆香乾蔥、蒜片。','Panaskan minyak, tumis bawang merah dan bawang putih hingga harum.','Init-in ang mantika, igisa ang sibuyas na pula at bawang hanggang mabango.'],
+    ['加入柱侯醬炒香。','Masukkan saus chu hou, tumis hingga harum.','Idagdag ang sarsa Chu Hou, igisa hanggang mabango.'],
+    ['下雞翼炒至轉色，加水同糖，蓋煮15分鐘。','Masukkan sayap ayam, aduk hingga berubah warna, tambahkan air dan gula, tutup dan masak 15 menit.','Idagdag ang pakpak ng manok, haluin hanggang magbago ng kulay, lagyan ng tubig at asukal, takpan at lutuin ng 15 minuto.'],
+    ['加青椒煮至軟身。','Masukkan paprika hijau, masak hingga empuk.','Idagdag ang berdeng paminto, lutuin hanggang lumambot.'],
+    ['下蔥段炒勻，收汁即成。','Masukkan daun bawang, aduk rata, masak hingga saus mengental, sajikan.','Idagdag ang sibuyas na dahon, haluin, lutuin hanggang lumapot ang sarsa, ihain.'],
   ]},
-{cat:'meat', emoji:'🧈', zh:'黑椒牛柳', id:'Has Sapi Saus Lada Hitam',
+{cat:'meat', emoji:'🧈', zh:'黑椒牛柳', id:'Has Sapi Saus Lada Hitam', fil:'Lomo ng Baka sa Paminta Itim',
   ing:[
-    ['牛柳(切條)','Daging sapi has, potong memanjang','450克','450 gram'],
-    ['洋蔥(切件)','Bawang bombay, potong','1個','1 buah'],
-    ['蒜蓉','Bawang putih cincang','3瓣','3 siung'],
-    ['黑椒碎','Lada hitam bubuk kasar','1.5湯匙','1,5 sdm'],
-    ['生抽','Kecap asin','1湯匙','1 sdm'],
-    ['蠔油','Saus tiram','1湯匙','1 sdm'],
-    ['生粉','Tepung maizena','1湯匙','1 sdm'],
-    ['糖','Gula','半茶匙','1/2 sdt'],
-    ['油','Minyak','2湯匙','2 sdm'],
+    ['牛柳(切條)','Daging sapi has, potong memanjang','Lomo ng baka, hiwain nang mahaba','450克','450 gram','450 gramo'],
+    ['洋蔥(切件)','Bawang bombay, potong','Sibuyas, hiwain','1個','1 buah','1 piraso'],
+    ['蒜蓉','Bawang putih cincang','Tinadtad na bawang','3瓣','3 siung','3 piraso'],
+    ['黑椒碎','Lada hitam bubuk kasar','Durog na paminta itim','1.5湯匙','1,5 sdm','1.5 kutsara'],
+    ['生抽','Kecap asin','Toyo','1湯匙','1 sdm','1 kutsara'],
+    ['蠔油','Saus tiram','Sarsa tiram (oyster sauce)','1湯匙','1 sdm','1 kutsara'],
+    ['生粉','Tepung maizena','Gawgaw','1湯匙','1 sdm','1 kutsara'],
+    ['糖','Gula','Asukal','半茶匙','1/2 sdt','1/2 kutsarita'],
+    ['油','Minyak','Mantika','2湯匙','2 sdm','2 kutsara'],
   ],
   steps:[
-    ['牛柳用生抽、生粉拌勻，醃15分鐘。','Lumuri daging sapi dengan kecap asin dan tepung maizena, diamkan 15 menit.'],
-    ['熱油爆香蒜蓉，下牛柳大火炒至轉色，盛起。','Tumis bawang putih hingga harum, masukkan daging sapi, tumis cepat hingga berubah warna, angkat.'],
-    ['同鑊加洋蔥炒香。','Di wajan yang sama, tumis bawang bombay hingga harum.'],
-    ['牛柳回鑊，加黑椒碎、蠔油、糖炒勻即成。','Masukkan kembali daging sapi, tambahkan lada hitam, saus tiram, dan gula, aduk rata, sajikan.'],
+    ['牛柳用生抽、生粉拌勻，醃15分鐘。','Lumuri daging sapi dengan kecap asin dan tepung maizena, diamkan 15 menit.','Haluin ang karne sa toyo at gawgaw, ipahinga ng 15 minuto.'],
+    ['熱油爆香蒜蓉，下牛柳大火炒至轉色，盛起。','Tumis bawang putih hingga harum, masukkan daging sapi, tumis cepat hingga berubah warna, angkat.','Init-in ang mantika, igisa ang bawang, idagdag ang karne, igisa nang mabilis sa mataas na apoy hanggang magbago ng kulay, alisin muna.'],
+    ['同鑊加洋蔥炒香。','Di wajan yang sama, tumis bawang bombay hingga harum.','Sa parehong kawali, igisa ang sibuyas hanggang mabango.'],
+    ['牛柳回鑊，加黑椒碎、蠔油、糖炒勻即成。','Masukkan kembali daging sapi, tambahkan lada hitam, saus tiram, dan gula, aduk rata, sajikan.','Ibalik ang karne, lagyan ng durog na paminta, sarsa tiram, at asukal, haluin, ihain.'],
   ]},
-{cat:'meat', emoji:'🌶️', zh:'韓式辣醬豬頸肉', id:'Leher Babi Bakar Saus Gochujang Korea',
+{cat:'meat', emoji:'🌶️', zh:'韓式辣醬豬頸肉', id:'Leher Babi Bakar Saus Gochujang Korea', fil:'Inihaw na Leeg ng Baboy sa Gochujang',
   ing:[
-    ['豬頸肉(切片)','Daging leher babi, iris','500克','500 gram'],
-    ['韓式辣醬(苦椒醬)','Saus gochujang Korea','3湯匙','3 sdm'],
-    ['蒜蓉','Bawang putih cincang','2瓣','2 siung'],
-    ['生抽','Kecap asin','1湯匙','1 sdm'],
-    ['糖','Gula','1湯匙','1 sdm'],
-    ['麻油','Minyak wijen','1茶匙','1 sdt'],
-    ['芝麻(裝飾)','Wijen (taburan)','少許','secukupnya'],
-    ['油','Minyak','1湯匙','1 sdm'],
+    ['豬頸肉(切片)','Daging leher babi, iris','Leeg ng baboy, hiwain','500克','500 gram','500 gramo'],
+    ['韓式辣醬(苦椒醬)','Saus gochujang Korea','Sarsa gochujang','3湯匙','3 sdm','3 kutsara'],
+    ['蒜蓉','Bawang putih cincang','Tinadtad na bawang','2瓣','2 siung','2 piraso'],
+    ['生抽','Kecap asin','Toyo','1湯匙','1 sdm','1 kutsara'],
+    ['糖','Gula','Asukal','1湯匙','1 sdm','1 kutsara'],
+    ['麻油','Minyak wijen','Langis ng linga','1茶匙','1 sdt','1 kutsarita'],
+    ['芝麻(裝飾)','Wijen (taburan)','Linga (pambudbod)','少許','secukupnya','kaunti lang'],
+    ['油','Minyak','Mantika','1湯匙','1 sdm','1 kutsara'],
   ],
   steps:[
-    ['韓式辣醬、蒜蓉、生抽、糖、麻油調成醬汁，加入豬頸肉醃30分鐘。','Campurkan saus gochujang, bawang putih, kecap asin, gula, dan minyak wijen, lumuri daging leher babi, marinasi 30 menit.'],
-    ['熱油將豬頸肉煎至兩面金黃熟透。','Panaskan minyak, goreng daging hingga kedua sisi keemasan dan matang.'],
-    ['灑上芝麻即成。','Taburi wijen, sajikan.'],
+    ['韓式辣醬、蒜蓉、生抽、糖、麻油調成醬汁，加入豬頸肉醃30分鐘。','Campurkan saus gochujang, bawang putih, kecap asin, gula, dan minyak wijen, lumuri daging leher babi, marinasi 30 menit.','Ihalo ang gochujang, bawang, toyo, asukal, at langis ng linga, ilagay sa karne, i-marinate ng 30 minuto.'],
+    ['熱油將豬頸肉煎至兩面金黃熟透。','Panaskan minyak, goreng daging hingga kedua sisi keemasan dan matang.','Init-in ang mantika, iprito ang karne hanggang maging ginto ang magkabilang gilid at maluto.'],
+    ['灑上芝麻即成。','Taburi wijen, sajikan.','Budburan ng linga, ihain.'],
   ]},
-{cat:'meat', emoji:'🥥', zh:'椰汁香茅咖喱雞', id:'Kari Ayam Santan & Serai',
+{cat:'meat', emoji:'🥥', zh:'椰汁香茅咖喱雞', id:'Kari Ayam Santan & Serai', fil:'Curry na Manok sa Gata at Tanglad',
   ing:[
-    ['雞件(切塊)','Ayam, potong','700克','700 gram'],
-    ['香茅(拍扁切段)','Serai, memarkan & potong','2條','2 batang'],
-    ['薑(切片)','Jahe, iris','3片','3 iris'],
-    ['洋蔥(切件)','Bawang bombay, potong','1個','1 buah'],
-    ['薯仔(切件)','Kentang, potong','2個','2 buah'],
-    ['咖喱粉','Bubuk kari','2湯匙','2 sdm'],
-    ['椰漿','Santan','400毫升','400 ml'],
-    ['水','Air','200毫升','200 ml'],
-    ['鹽','Garam','適量','secukupnya'],
-    ['油','Minyak','2湯匙','2 sdm'],
+    ['雞件(切塊)','Ayam, potong','Manok, hiwain','700克','700 gram','700 gramo'],
+    ['香茅(拍扁切段)','Serai, memarkan & potong','Tanglad, dikdikin at hiwain','2條','2 batang','2 tangkay'],
+    ['薑(切片)','Jahe, iris','Luya, hiwain','3片','3 iris','3 hiwa'],
+    ['洋蔥(切件)','Bawang bombay, potong','Sibuyas, hiwain','1個','1 buah','1 piraso'],
+    ['薯仔(切件)','Kentang, potong','Patatas, hiwain','2個','2 buah','2 piraso'],
+    ['咖喱粉','Bubuk kari','Pulbos na curry','2湯匙','2 sdm','2 kutsara'],
+    ['椰漿','Santan','Gata','400毫升','400 ml','400 ml'],
+    ['水','Air','Tubig','200毫升','200 ml','200 ml'],
+    ['鹽','Garam','Asin','適量','secukupnya','sapat na dami'],
+    ['油','Minyak','Mantika','2湯匙','2 sdm','2 kutsara'],
   ],
   steps:[
-    ['香茅拍扁切段，同薑片一齊爆香。','Memarkan serai, potong-potong, tumis dengan jahe hingga harum.'],
-    ['加洋蔥炒軟，下雞件煎香。','Masukkan bawang bombay, tumis hingga layu, masukkan ayam, goreng hingga harum.'],
-    ['加咖喱粉炒勻，下薯仔同水，蓋煮15分鐘。','Tambahkan bubuk kari, aduk rata, masukkan kentang dan air, tutup dan masak 15 menit.'],
-    ['加椰漿煮滾，轉細火煮10分鐘至濃稠，加鹽調味。','Tuang santan, didihkan, kecilkan api, masak 10 menit hingga mengental, tambahkan garam.'],
-  ]},
-
-// ===== 海鮮 Makanan Laut =====
-{cat:'seafood', emoji:'🐟', zh:'豉汁蒸鯇魚', id:'Ikan Kukus Saus Tauco Hitam',
-  ing:[
-    ['鯇魚/魚柳','Ikan / fillet ikan','1條(約650克)','1 ekor (sekitar 650 gram)'],
-    ['豆豉','Tauco hitam','1.5湯匙','1,5 sdm'],
-    ['蒜蓉','Bawang putih cincang','3瓣','3 siung'],
-    ['紅椒(切絲)','Cabai merah, iris','1隻','1 buah'],
-    ['蔥(切絲)','Daun bawang, iris','3條','3 batang'],
-    ['生抽','Kecap asin','1.5湯匙','1,5 sdm'],
-    ['油','Minyak','2.5湯匙','2,5 sdm'],
-  ],
-  steps:[
-    ['魚洗淨抹乾，放上碟。','Cuci bersih ikan, keringkan, letakkan di piring.'],
-    ['蒜蓉、豆豉爆香，鋪喺魚身上。','Tumis bawang putih dan tauco hitam hingga harum, taburkan di atas ikan.'],
-    ['隔水大火蒸10-12分鐘至熟。','Kukus dengan api besar selama 10-12 menit hingga matang.'],
-    ['淋上生抽，燒熱油淋上蔥絲、紅椒即成。','Siram kecap asin, tuang minyak panas di atas daun bawang dan cabai merah, sajikan.'],
-  ]},
-{cat:'seafood', emoji:'🍤', zh:'蒜蓉蒸蝦', id:'Udang Kukus Bawang Putih',
-  ing:[
-    ['蝦(去腸)','Udang, buang kotoran','500克','500 gram'],
-    ['蒜蓉','Bawang putih cincang','6瓣','6 siung'],
-    ['粉絲(浸軟)','Soun / bihun kaca, rendam lunak','1.5把','1,5 genggam'],
-    ['蔥花','Daun bawang, cincang','適量','secukupnya'],
-    ['蒸魚豉油','Kecap asin khusus kukus ikan','1.5湯匙','1,5 sdm'],
-    ['油','Minyak','3湯匙','3 sdm'],
-  ],
-  steps:[
-    ['粉絲用熱水浸軟，鋪喺碟底。','Rendam soun di air panas hingga lunak, letakkan di dasar piring.'],
-    ['蝦開背去腸，排喺粉絲上面。','Belah punggung udang, buang kotoran, susun di atas soun.'],
-    ['蒜蓉用油爆香，鋪喺蝦面。','Tumis bawang putih cincang dengan minyak hingga harum, taburkan di atas udang.'],
-    ['隔水大火蒸7-9分鐘。','Kukus dengan api besar selama 7-9 menit.'],
-    ['淋上蒸魚豉油，灑蔥花即成。','Siram kecap asin kukus ikan, taburi daun bawang, sajikan.'],
-  ]},
-{cat:'seafood', emoji:'🦑', zh:'豉椒炒魷魚', id:'Cumi Tumis Cabai & Tauco Hitam',
-  ing:[
-    ['魷魚(切花)','Cumi, potong & diberi motif silang','500克','500 gram'],
-    ['青紅椒','Paprika hijau & merah, potong','各1.5隻','masing-masing 1,5 buah'],
-    ['洋蔥','Bawang bombay, potong','1個','1 buah'],
-    ['豆豉','Tauco hitam','1.5湯匙','1,5 sdm'],
-    ['蒜蓉','Bawang putih cincang','3瓣','3 siung'],
-    ['生抽','Kecap asin','1.5湯匙','1,5 sdm'],
-    ['糖','Gula','1茶匙','1 sdt'],
-    ['油','Minyak','3湯匙','3 sdm'],
-  ],
-  steps:[
-    ['魷魚汆水至捲曲，盛起瀝乾。','Rebus sebentar cumi hingga menggulung, tiriskan.'],
-    ['爆香蒜蓉、豆豉，加洋蔥炒香。','Tumis bawang putih dan tauco hitam, masukkan bawang bombay, tumis hingga harum.'],
-    ['加青紅椒炒片刻。','Masukkan paprika, tumis sebentar.'],
-    ['魷魚回鑊，加生抽、糖大火兜炒。','Masukkan kembali cumi, tambahkan kecap asin dan gula, tumis cepat dengan api besar.'],
-  ]},
-{cat:'seafood', emoji:'🥫', zh:'罐頭鯪魚炒油麥菜', id:'Ikan Kaleng Tumis Sayur Yu Mak',
-  ing:[
-    ['罐頭豆豉鯪魚','Ikan kaleng saus tauco hitam','2罐','2 kaleng'],
-    ['油麥菜','Sayur yu mak, potong','2棵','2 ikat'],
-    ['蒜片','Bawang putih, iris','4瓣','4 siung'],
-    ['糖','Gula','少許','secukupnya'],
-    ['油','Minyak','1.5湯匙','1,5 sdm'],
-  ],
-  steps:[
-    ['罐頭鯪魚原塊取出，煎至兩面微香。','Ambil ikan kaleng utuh, goreng sebentar hingga kedua sisi harum.'],
-    ['爆香蒜片，加油麥菜大火炒軟。','Tumis irisan bawang putih, masukkan sayur yu mak, tumis hingga layu.'],
-    ['加入鯪魚同罐頭汁，灑少許糖炒勻即成。','Masukkan ikan dan sedikit sausnya, taburi gula, aduk rata, sajikan.'],
-  ]},
-{cat:'seafood', emoji:'🦀', zh:'薑蔥炒蟹', id:'Kepiting Tumis Jahe & Daun Bawang',
-  ing:[
-    ['肉蟹(斬件)','Kepiting, potong bersih','2隻(約1公斤)','2 ekor (sekitar 1 kg)'],
-    ['薑(切片)','Jahe, iris','8片','8 iris'],
-    ['蔥(切段)','Daun bawang, potong','5條','5 batang'],
-    ['生粉','Tepung maizena (lapisan & pengental)','2.5湯匙','2,5 sdm'],
-    ['生抽','Kecap asin','1.5湯匙','1,5 sdm'],
-    ['紹興酒/料酒','Arak masak (Shaoxing)','1.5湯匙','1,5 sdm'],
-    ['油','Minyak','4湯匙','4 sdm'],
-  ],
-  steps:[
-    ['蟹件切好後沾少許生粉。','Potong kepiting, lumuri sedikit tepung maizena.'],
-    ['落油鑊將蟹件分批煎香至半熟，盛起。','Goreng potongan kepiting secara bertahap dalam minyak hingga setengah matang, angkat.'],
-    ['爆香薑片，加蟹回鑊。','Tumis jahe hingga harum, masukkan kembali kepiting.'],
-    ['灒酒、加生抽同適量水，蓋煮6-8分鐘。','Tuang arak masak, tambahkan kecap asin dan air secukupnya, tutup dan masak 6-8 menit.'],
-    ['加蔥段炒勻，勾芡即成。','Masukkan daun bawang, aduk rata, kentalkan saus, sajikan.'],
-  ]},
-{cat:'seafood', emoji:'🥃', zh:'XO醬炒蝦仁', id:'Udang Tumis Saus XO',
-  ing:[
-    ['蝦仁','Udang kupas','400克','400 gram'],
-    ['西芹(切段)','Seledri, potong','1條','1 batang'],
-    ['紅蘿蔔(切片)','Wortel, iris','半條','1/2 buah'],
-    ['蒜片','Bawang putih, iris','3瓣','3 siung'],
-    ['XO醬','Saus XO','2.5湯匙','2,5 sdm'],
-    ['生抽','Kecap asin','1茶匙','1 sdt'],
-    ['糖','Gula','半茶匙','1/2 sdt'],
-    ['生粉','Tepung maizena','1茶匙','1 sdt'],
-    ['油','Minyak','2湯匙','2 sdm'],
-  ],
-  steps:[
-    ['蝦仁用生粉、少許鹽略醃。','Lumuri udang dengan tepung maizena dan sedikit garam.'],
-    ['熱油將蝦仁炒至轉色，盛起。','Tumis udang hingga berubah warna, angkat.'],
-    ['爆香蒜片，加西芹、紅蘿蔔炒香。','Tumis bawang putih, masukkan seledri dan wortel, tumis hingga harum.'],
-    ['加XO醬炒勻，蝦仁回鑊，加生抽、糖兜炒即成。','Masukkan saus XO, aduk rata, masukkan kembali udang, tambahkan kecap asin dan gula, aduk cepat, sajikan.'],
-  ]},
-{cat:'seafood', emoji:'🐟', zh:'味醂香煎三文魚', id:'Salmon Panggang Saus Mirin',
-  ing:[
-    ['三文魚扒','Fillet salmon','4塊(約600克)','4 potong (sekitar 600 gram)'],
-    ['鹽','Garam','少許','secukupnya'],
-    ['黑椒碎','Lada hitam bubuk kasar','少許','secukupnya'],
-    ['味醂','Mirin','2湯匙','2 sdm'],
-    ['生抽','Kecap asin','2湯匙','2 sdm'],
-    ['糖','Gula','1茶匙','1 sdt'],
-    ['油','Minyak','1湯匙','1 sdm'],
-  ],
-  steps:[
-    ['三文魚抹乾水，兩面灑鹽同黑椒略醃。','Keringkan salmon, taburi garam dan lada hitam di kedua sisi, diamkan sebentar.'],
-    ['熱油，魚皮向下煎3-4分鐘至香脆。','Panaskan minyak, goreng dengan kulit menghadap bawah selama 3-4 menit hingga renyah.'],
-    ['反面再煎2-3分鐘至熟。','Balik, goreng lagi 2-3 menit hingga matang.'],
-    ['味醂、生抽、糖煮成醬汁，淋在魚面即成。','Masak mirin, kecap asin, dan gula menjadi saus, siram di atas ikan, sajikan.'],
-  ]},
-{cat:'seafood', emoji:'🍋', zh:'咸檸檬蒸魚', id:'Ikan Kukus Lemon Asin',
-  ing:[
-    ['鮮魚(如龍脷/海斑)','Ikan segar (lidah/kerapu)','1條(約600克)','1 ekor (sekitar 600 gram)'],
-    ['咸檸檬(切片)','Lemon asin, iris','2個','2 buah'],
-    ['薑絲','Jahe, iris halus','適量','secukupnya'],
-    ['蔥絲','Daun bawang, iris halus','適量','secukupnya'],
-    ['紅椒絲','Cabai merah, iris halus','少許','secukupnya'],
-    ['蒸魚豉油','Kecap asin khusus kukus ikan','1.5湯匙','1,5 sdm'],
-    ['油','Minyak','2湯匙','2 sdm'],
-  ],
-  steps:[
-    ['魚洗淨抹乾，咸檸檬去籽切片，鋪喺魚身上下。','Cuci bersih ikan, keringkan; buang biji lemon asin, iris, letakkan di atas dan bawah ikan.'],
-    ['加薑絲，隔水大火蒸10-12分鐘至熟。','Tambahkan irisan jahe, kukus dengan api besar selama 10-12 menit hingga matang.'],
-    ['倒去魚汁，淋上蒸魚豉油。','Buang air yang keluar dari ikan, siram dengan kecap asin kukus ikan.'],
-    ['燒熱油淋喺蔥絲、紅椒絲上即成。','Panaskan minyak, tuang di atas irisan daun bawang dan cabai merah, sajikan.'],
+    ['香茅拍扁切段，同薑片一齊爆香。','Memarkan serai, potong-potong, tumis dengan jahe hingga harum.','Dikdikin at hiwain ang tanglad, igisa kasama ang luya hanggang mabango.'],
+    ['加洋蔥炒軟，下雞件煎香。','Masukkan bawang bombay, tumis hingga layu, masukkan ayam, goreng hingga harum.','Idagdag ang sibuyas, igisa hanggang lumambot, idagdag ang manok, iprito hanggang mabango.'],
+    ['加咖喱粉炒勻，下薯仔同水，蓋煮15分鐘。','Tambahkan bubuk kari, aduk rata, masukkan kentang dan air, tutup dan masak 15 menit.','Idagdag ang curry powder, haluin, idagdag ang patatas at tubig, takpan at lutuin ng 15 minuto.'],
+    ['加椰漿煮滾，轉細火煮10分鐘至濃稠，加鹽調味。','Tuang santan, didihkan, kecilkan api, masak 10 menit hingga mengental, tambahkan garam.','Ibuhos ang gata, pakuluin, hinaan ang apoy, lutuin ng 10 minuto hanggang lumapot, lagyan ng asin.'],
   ]},
 
-// ===== 蔬菜 Sayuran =====
-{cat:'veg', emoji:'🥬', zh:'蠔油生菜', id:'Selada Saus Tiram',
+// ===== 海鮮 Makanan Laut / Pagkaing-dagat =====
+{cat:'seafood', emoji:'🐟', zh:'豉汁蒸鯇魚', id:'Ikan Kukus Saus Tauco Hitam', fil:'Pinasingawang Isda sa Tausi',
   ing:[
-    ['生菜','Selada, cuci bersih','2棵(約600克)','2 ikat (sekitar 600 gram)'],
-    ['蒜蓉','Bawang putih cincang','3瓣','3 siung'],
-    ['蠔油','Saus tiram','1.5湯匙','1,5 sdm'],
-    ['糖','Gula','少許','secukupnya'],
-    ['水','Air','3湯匙','3 sdm'],
-    ['油','Minyak','1.5湯匙','1,5 sdm'],
+    ['鯇魚/魚柳','Ikan / fillet ikan','Isda / hiwa ng isda','1條(約650克)','1 ekor (sekitar 650 gram)','1 piraso (mga 650 gramo)'],
+    ['豆豉','Tauco hitam','Tausi','1.5湯匙','1,5 sdm','1.5 kutsara'],
+    ['蒜蓉','Bawang putih cincang','Tinadtad na bawang','3瓣','3 siung','3 piraso'],
+    ['紅椒(切絲)','Cabai merah, iris','Sili pula, hiniwa','1隻','1 buah','1 piraso'],
+    ['蔥(切絲)','Daun bawang, iris','Sibuyas na dahon, hiniwa','3條','3 batang','3 tangkay'],
+    ['生抽','Kecap asin','Toyo','1.5湯匙','1,5 sdm','1.5 kutsara'],
+    ['油','Minyak','Mantika','2.5湯匙','2,5 sdm','2.5 kutsara'],
   ],
   steps:[
-    ['燒滾水加少許油同鹽，放入生菜灼10秒。','Didihkan air dengan sedikit minyak dan garam, celupkan selada 10 detik.'],
-    ['生菜瀝乾，放上碟。','Tiriskan selada, letakkan di piring.'],
-    ['蠔油、糖、水煮滾成醬汁。','Masak saus tiram, gula, dan air hingga mendidih menjadi saus.'],
-    ['淋喺生菜上，最後爆香蒜蓉淋面即成。','Siram di atas selada, tumis bawang putih dan tuang di atasnya, sajikan.'],
+    ['魚洗淨抹乾，放上碟。','Cuci bersih ikan, keringkan, letakkan di piring.','Hugasan ang isda, patuyuin, ilagay sa plato.'],
+    ['蒜蓉、豆豉爆香，鋪喺魚身上。','Tumis bawang putih dan tauco hitam hingga harum, taburkan di atas ikan.','Igisa ang bawang at tausi hanggang mabango, ilagay sa ibabaw ng isda.'],
+    ['隔水大火蒸10-12分鐘至熟。','Kukus dengan api besar selama 10-12 menit hingga matang.','Pasingawan sa mataas na apoy ng 10-12 minuto hanggang maluto.'],
+    ['淋上生抽，燒熱油淋上蔥絲、紅椒即成。','Siram kecap asin, tuang minyak panas di atas daun bawang dan cabai merah, sajikan.','Buhusan ng toyo, magpainit ng mantika at ibuhos sa ibabaw ng sibuyas na dahon at sili pula, ihain.'],
   ]},
-{cat:'veg', emoji:'🥦', zh:'蒜蓉炒芥蘭', id:'Kailan Tumis Bawang Putih',
+{cat:'seafood', emoji:'🍤', zh:'蒜蓉蒸蝦', id:'Udang Kukus Bawang Putih', fil:'Pinasingawang Hipon sa Bawang',
   ing:[
-    ['芥蘭','Kailan, potong','2棵(約500克)','2 ikat (sekitar 500 gram)'],
-    ['蒜蓉','Bawang putih cincang','4瓣','4 siung'],
-    ['生抽','Kecap asin','1.5湯匙','1,5 sdm'],
-    ['糖','Gula','少許','secukupnya'],
-    ['油','Minyak','2.5湯匙','2,5 sdm'],
+    ['蝦(去腸)','Udang, buang kotoran','Hipon, alisan ng laman ng likod','500克','500 gram','500 gramo'],
+    ['蒜蓉','Bawang putih cincang','Tinadtad na bawang','6瓣','6 siung','6 piraso'],
+    ['粉絲(浸軟)','Soun / bihun kaca, rendam lunak','Sotanghon, ibabad hanggang lumambot','1.5把','1,5 genggam','1.5 hakbat'],
+    ['蔥花','Daun bawang, cincang','Tinadtad na sibuyas na dahon','適量','secukupnya','sapat na dami'],
+    ['蒸魚豉油','Kecap asin khusus kukus ikan','Toyo na pang-pasingaw ng isda','1.5湯匙','1,5 sdm','1.5 kutsara'],
+    ['油','Minyak','Mantika','3湯匙','3 sdm','3 kutsara'],
   ],
   steps:[
-    ['芥蘭汆水30秒，瀝乾。','Rebus sebentar kailan selama 30 detik, tiriskan.'],
-    ['爆香蒜蓉。','Tumis bawang putih cincang hingga harum.'],
-    ['加芥蘭大火快炒。','Masukkan kailan, tumis cepat dengan api besar.'],
-    ['加生抽、糖炒勻即成。','Tambahkan kecap asin dan gula, aduk rata, sajikan.'],
+    ['粉絲用熱水浸軟，鋪喺碟底。','Rendam soun di air panas hingga lunak, letakkan di dasar piring.','Ibabad ang sotanghon sa mainit na tubig hanggang lumambot, ilatag sa ilalim ng plato.'],
+    ['蝦開背去腸，排喺粉絲上面。','Belah punggung udang, buang kotoran, susun di atas soun.','Hiwain ang likod ng hipon, alisin ang laman, ihanay sa ibabaw ng sotanghon.'],
+    ['蒜蓉用油爆香，鋪喺蝦面。','Tumis bawang putih cincang dengan minyak hingga harum, taburkan di atas udang.','Igisa ang bawang sa mantika hanggang mabango, ilagay sa ibabaw ng hipon.'],
+    ['隔水大火蒸7-9分鐘。','Kukus dengan api besar selama 7-9 menit.','Pasingawan sa mataas na apoy ng 7-9 minuto.'],
+    ['淋上蒸魚豉油，灑蔥花即成。','Siram kecap asin kukus ikan, taburi daun bawang, sajikan.','Buhusan ng toyo na pang-pasingaw, budburan ng sibuyas na dahon, ihain.'],
   ]},
-{cat:'veg', emoji:'🥬', zh:'蝦米炒椰菜', id:'Kubis Tumis Ebi',
+{cat:'seafood', emoji:'🦑', zh:'豉椒炒魷魚', id:'Cumi Tumis Cabai & Tauco Hitam', fil:'Ginisang Pusit sa Sili at Tausi',
   ing:[
-    ['椰菜','Kubis, potong','1個(約600克)','1 buah (sekitar 600 gram)'],
-    ['蝦米(浸軟)','Ebi / udang kering, rendam lunak','3湯匙','3 sdm'],
-    ['蒜蓉','Bawang putih cincang','3瓣','3 siung'],
-    ['鹽','Garam','少許','secukupnya'],
-    ['油','Minyak','1.5湯匙','1,5 sdm'],
+    ['魷魚(切花)','Cumi, potong & diberi motif silang','Pusit, hiwain nang krus-kruson','500克','500 gram','500 gramo'],
+    ['青紅椒','Paprika hijau & merah, potong','Berde at pulang paminto, hiwain','各1.5隻','masing-masing 1,5 buah','tig-1.5 piraso'],
+    ['洋蔥','Bawang bombay, potong','Sibuyas, hiwain','1個','1 buah','1 piraso'],
+    ['豆豉','Tauco hitam','Tausi','1.5湯匙','1,5 sdm','1.5 kutsara'],
+    ['蒜蓉','Bawang putih cincang','Tinadtad na bawang','3瓣','3 siung','3 piraso'],
+    ['生抽','Kecap asin','Toyo','1.5湯匙','1,5 sdm','1.5 kutsara'],
+    ['糖','Gula','Asukal','1茶匙','1 sdt','1 kutsarita'],
+    ['油','Minyak','Mantika','3湯匙','3 sdm','3 kutsara'],
   ],
   steps:[
-    ['蝦米浸軟，瀝乾備用。','Rendam ebi hingga lunak, tiriskan.'],
-    ['爆香蒜蓉同蝦米。','Tumis bawang putih dan ebi hingga harum.'],
-    ['加椰菜大火炒至軟身。','Masukkan kubis, tumis dengan api besar hingga layu.'],
-    ['加鹽調味炒勻即成。','Tambahkan garam, aduk rata, sajikan.'],
+    ['魷魚汆水至捲曲，盛起瀝乾。','Rebus sebentar cumi hingga menggulung, tiriskan.','Pakuluan ang pusit hanggang mag-curl, alisin at patuyuin.'],
+    ['爆香蒜蓉、豆豉，加洋蔥炒香。','Tumis bawang putih dan tauco hitam, masukkan bawang bombay, tumis hingga harum.','Igisa ang bawang at tausi, idagdag ang sibuyas, igisa hanggang mabango.'],
+    ['加青紅椒炒片刻。','Masukkan paprika, tumis sebentar.','Idagdag ang paminto, igisa nang sandali.'],
+    ['魷魚回鑊，加生抽、糖大火兜炒。','Masukkan kembali cumi, tambahkan kecap asin dan gula, tumis cepat dengan api besar.','Ibalik ang pusit, lagyan ng toyo at asukal, igisa nang mabilis sa mataas na apoy.'],
   ]},
-{cat:'veg', emoji:'🥒', zh:'涼拌青瓜', id:'Acar Timun Segar',
+{cat:'seafood', emoji:'🥫', zh:'罐頭鯪魚炒油麥菜', id:'Ikan Kaleng Tumis Sayur Yu Mak', fil:'De Latang Isda na Ginisa sa Gulay na Yu Mak',
   ing:[
-    ['青瓜','Timun, dipukul & potong','3條','3 buah'],
-    ['蒜蓉','Bawang putih cincang','3瓣','3 siung'],
-    ['指天椒','Cabai rawit, iris','1-2隻','1-2 buah'],
-    ['白醋','Cuka putih','1.5湯匙','1,5 sdm'],
-    ['糖','Gula','1.5湯匙','1,5 sdm'],
-    ['麻油','Minyak wijen','1茶匙','1 sdt'],
-    ['鹽','Garam','1茶匙','1 sdt'],
+    ['罐頭豆豉鯪魚','Ikan kaleng saus tauco hitam','De latang isda sa sarsa tausi','2罐','2 kaleng','2 lata'],
+    ['油麥菜','Sayur yu mak, potong','Gulay na yu mak, hiwain','2棵','2 ikat','2 bigkis'],
+    ['蒜片','Bawang putih, iris','Bawang, hiwain','4瓣','4 siung','4 piraso'],
+    ['糖','Gula','Asukal','少許','secukupnya','kaunti lang'],
+    ['油','Minyak','Mantika','1.5湯匙','1,5 sdm','1.5 kutsara'],
   ],
   steps:[
-    ['青瓜用刀背拍裂，切段，加鹽略醃出水。','Pukul timun hingga retak, potong-potong, taburi garam, diamkan sebentar hingga keluar air.'],
-    ['倒去多餘水分。','Buang air yang keluar.'],
-    ['加蒜蓉、指天椒、白醋、糖、麻油拌勻。','Campurkan bawang putih, cabai rawit, cuka, gula, dan minyak wijen, aduk rata.'],
-    ['雪凍最少30分鐘，入味後食用。','Dinginkan di kulkas minimal 30 menit agar meresap, lalu sajikan.'],
+    ['罐頭鯪魚原塊取出，煎至兩面微香。','Ambil ikan kaleng utuh, goreng sebentar hingga kedua sisi harum.','Kunin ang buong isda mula sa lata, iprito nang sandali hanggang mabango ang magkabilang gilid.'],
+    ['爆香蒜片，加油麥菜大火炒軟。','Tumis irisan bawang putih, masukkan sayur yu mak, tumis hingga layu.','Igisa ang bawang, idagdag ang gulay na yu mak, igisa sa mataas na apoy hanggang malanta.'],
+    ['加入鯪魚同罐頭汁，灑少許糖炒勻即成。','Masukkan ikan dan sedikit sausnya, taburi gula, aduk rata, sajikan.','Idagdag ang isda at kaunti sa sarsa nito, budburan ng asukal, haluin, ihain.'],
   ]},
-{cat:'veg', emoji:'🍄', zh:'木耳炒西芹百合', id:'Jamur Kuping Tumis Seledri & Umbi Lili',
+{cat:'seafood', emoji:'🦀', zh:'薑蔥炒蟹', id:'Kepiting Tumis Jahe & Daun Bawang', fil:'Ginisang Alimasag sa Luya at Sibuyas',
   ing:[
-    ['木耳(浸軟)','Jamur kuping kering, rendam & sobek','約20克乾','sekitar 20 gram kering'],
-    ['西芹','Seledri, potong miring','3條','3 batang'],
-    ['百合','Umbi bunga lili, pisahkan kelopak','2個','2 buah'],
-    ['蒜片','Bawang putih, iris','3瓣','3 siung'],
-    ['鹽','Garam','少許','secukupnya'],
-    ['油','Minyak','1.5湯匙','1,5 sdm'],
+    ['肉蟹(斬件)','Kepiting, potong bersih','Alimasag, hiwain','2隻(約1公斤)','2 ekor (sekitar 1 kg)','2 piraso (mga 1 kilo)'],
+    ['薑(切片)','Jahe, iris','Luya, hiwain','8片','8 iris','8 hiwa'],
+    ['蔥(切段)','Daun bawang, potong','Sibuyas na dahon, hiwain','5條','5 batang','5 tangkay'],
+    ['生粉','Tepung maizena (lapisan & pengental)','Gawgaw (pambalot at pamapal)','2.5湯匙','2,5 sdm','2.5 kutsara'],
+    ['生抽','Kecap asin','Toyo','1.5湯匙','1,5 sdm','1.5 kutsara'],
+    ['紹興酒/料酒','Arak masak (Shaoxing)','Alak na Shaoxing (pampalasa)','1.5湯匙','1,5 sdm','1.5 kutsara'],
+    ['油','Minyak','Mantika','4湯匙','4 sdm','4 kutsara'],
   ],
   steps:[
-    ['木耳浸軟，撕細件，西芹、百合洗淨。','Rendam jamur kuping hingga lunak, sobek kecil-kecil, cuci seledri dan umbi lili.'],
-    ['爆香蒜片。','Tumis irisan bawang putih hingga harum.'],
-    ['加西芹、木耳大火炒香。','Masukkan seledri dan jamur kuping, tumis dengan api besar.'],
-    ['加百合炒片刻，加鹽調味即成。','Masukkan umbi lili, tumis sebentar, tambahkan garam, sajikan.'],
+    ['蟹件切好後沾少許生粉。','Potong kepiting, lumuri sedikit tepung maizena.','Hiwain ang alimasag, budburan ng kaunting gawgaw.'],
+    ['落油鑊將蟹件分批煎香至半熟，盛起。','Goreng potongan kepiting secara bertahap dalam minyak hingga setengah matang, angkat.','Iprito nang paunti-unti ang alimasag sa mantika hanggang kalahating luto, alisin muna.'],
+    ['爆香薑片，加蟹回鑊。','Tumis jahe hingga harum, masukkan kembali kepiting.','Igisa ang luya hanggang mabango, ibalik ang alimasag.'],
+    ['灒酒、加生抽同適量水，蓋煮6-8分鐘。','Tuang arak masak, tambahkan kecap asin dan air secukupnya, tutup dan masak 6-8 menit.','Ibuhos ang alak, lagyan ng toyo at sapat na tubig, takpan at lutuin ng 6-8 minuto.'],
+    ['加蔥段炒勻，勾芡即成。','Masukkan daun bawang, aduk rata, kentalkan saus, sajikan.','Idagdag ang sibuyas na dahon, haluin, papalin ang sarsa, ihain.'],
   ]},
-{cat:'veg', emoji:'🌶️', zh:'椒絲腐乳炒通菜', id:'Kangkung Tumis Fu Yu Pedas',
+{cat:'seafood', emoji:'🥃', zh:'XO醬炒蝦仁', id:'Udang Tumis Saus XO', fil:'Ginisang Hipon sa Sarsa XO',
   ing:[
-    ['通菜(切段)','Kangkung, potong','2棵(約500克)','2 ikat (sekitar 500 gram)'],
-    ['辣腐乳','Fu yu (fermented tofu) pedas','2磚','2 kotak'],
-    ['蒜蓉','Bawang putih cincang','3瓣','3 siung'],
-    ['紅椒絲','Cabai merah, iris','1隻','1 buah'],
-    ['糖','Gula','半茶匙','1/2 sdt'],
-    ['水','Air','2湯匙','2 sdm'],
-    ['油','Minyak','2湯匙','2 sdm'],
+    ['蝦仁','Udang kupas','Hipon, balatan','400克','400 gram','400 gramo'],
+    ['西芹(切段)','Seledri, potong','Kintsay, hiwain','1條','1 batang','1 tangkay'],
+    ['紅蘿蔔(切片)','Wortel, iris','Karot, hiwain','半條','1/2 buah','1/2 piraso'],
+    ['蒜片','Bawang putih, iris','Bawang, hiwain','3瓣','3 siung','3 piraso'],
+    ['XO醬','Saus XO','Sarsa XO','2.5湯匙','2,5 sdm','2.5 kutsara'],
+    ['生抽','Kecap asin','Toyo','1茶匙','1 sdt','1 kutsarita'],
+    ['糖','Gula','Asukal','半茶匙','1/2 sdt','1/2 kutsarita'],
+    ['生粉','Tepung maizena','Gawgaw','1茶匙','1 sdt','1 kutsarita'],
+    ['油','Minyak','Mantika','2湯匙','2 sdm','2 kutsara'],
   ],
   steps:[
-    ['通菜切段洗淨，瀝乾。','Potong kangkung, cuci bersih, tiriskan.'],
-    ['辣腐乳用湯匙壓爛，加水拌成醬汁。','Haluskan fu yu pedas dengan sendok, campur air menjadi saus.'],
-    ['爆香蒜蓉、紅椒絲。','Tumis bawang putih dan cabai merah hingga harum.'],
-    ['下通菜大火快炒，加入腐乳醬汁同糖炒勻即成。','Masukkan kangkung, tumis cepat dengan api besar, tambahkan saus fu yu dan gula, aduk rata, sajikan.'],
+    ['蝦仁用生粉、少許鹽略醃。','Lumuri udang dengan tepung maizena dan sedikit garam.','Haluin ang hipon sa gawgaw at kaunting asin.'],
+    ['熱油將蝦仁炒至轉色，盛起。','Tumis udang hingga berubah warna, angkat.','Igisa ang hipon hanggang magbago ng kulay, alisin muna.'],
+    ['爆香蒜片，加西芹、紅蘿蔔炒香。','Tumis bawang putih, masukkan seledri dan wortel, tumis hingga harum.','Igisa ang bawang, idagdag ang kintsay at karot, igisa hanggang mabango.'],
+    ['加XO醬炒勻，蝦仁回鑊，加生抽、糖兜炒即成。','Masukkan saus XO, aduk rata, masukkan kembali udang, tambahkan kecap asin dan gula, aduk cepat, sajikan.','Idagdag ang sarsa XO, haluin, ibalik ang hipon, lagyan ng toyo at asukal, igisa nang mabilis, ihain.'],
   ]},
-
-// ===== 湯品 Sup =====
-{cat:'soup', emoji:'🍲', zh:'節瓜蜆肉湯', id:'Sup Labu Bulu & Kerang',
+{cat:'seafood', emoji:'🐟', zh:'味醂香煎三文魚', id:'Salmon Panggang Saus Mirin', fil:'Inihaw na Salmon sa Mirin',
   ing:[
-    ['節瓜','Labu bulu, kupas & potong','2條','2 buah'],
-    ['蜆','Kerang, cuci bersih','450克','450 gram'],
-    ['薑(切片)','Jahe, iris','4片','4 iris'],
-    ['水','Air','1.5公升','1,5 liter'],
-    ['鹽','Garam','適量','secukupnya'],
+    ['三文魚扒','Fillet salmon','Hiwa ng salmon','4塊(約600克)','4 potong (sekitar 600 gram)','4 piraso (mga 600 gramo)'],
+    ['鹽','Garam','Asin','少許','secukupnya','kaunti lang'],
+    ['黑椒碎','Lada hitam bubuk kasar','Durog na paminta itim','少許','secukupnya','kaunti lang'],
+    ['味醂','Mirin','Mirin','2湯匙','2 sdm','2 kutsara'],
+    ['生抽','Kecap asin','Toyo','2湯匙','2 sdm','2 kutsara'],
+    ['糖','Gula','Asukal','1茶匙','1 sdt','1 kutsarita'],
+    ['油','Minyak','Mantika','1湯匙','1 sdm','1 kutsara'],
   ],
   steps:[
-    ['蜆浸鹽水吐沙後洗淨。','Rendam kerang di air garam agar keluar pasirnya, lalu cuci bersih.'],
-    ['水加薑片煮滾。','Didihkan air dengan irisan jahe.'],
-    ['加節瓜煮10-12分鐘。','Masukkan labu bulu, masak 10-12 menit.'],
-    ['加蜆煮至開口，加鹽調味即成。','Masukkan kerang, masak hingga terbuka, tambahkan garam, sajikan.'],
+    ['三文魚抹乾水，兩面灑鹽同黑椒略醃。','Keringkan salmon, taburi garam dan lada hitam di kedua sisi, diamkan sebentar.','Patuyuin ang salmon, budburan ng asin at paminta sa magkabilang gilid, ipahinga sandali.'],
+    ['熱油，魚皮向下煎3-4分鐘至香脆。','Panaskan minyak, goreng dengan kulit menghadap bawah selama 3-4 menit hingga renyah.','Init-in ang mantika, iprito na nakadapa ang balat ng 3-4 minuto hanggang maging malutong.'],
+    ['反面再煎2-3分鐘至熟。','Balik, goreng lagi 2-3 menit hingga matang.','Baliktarin, iprito pa ng 2-3 minuto hanggang maluto.'],
+    ['味醂、生抽、糖煮成醬汁，淋在魚面即成。','Masak mirin, kecap asin, dan gula menjadi saus, siram di atas ikan, sajikan.','Pakuluin ang mirin, toyo, at asukal para gawing sarsa, ibuhos sa ibabaw ng isda, ihain.'],
   ]},
-{cat:'soup', emoji:'🥣', zh:'冬瓜薏米湯', id:'Sup Labu Air & Jelai',
+{cat:'seafood', emoji:'🍋', zh:'咸檸檬蒸魚', id:'Ikan Kukus Lemon Asin', fil:'Pinasingawang Isda sa Inasnang Limon',
   ing:[
-    ['冬瓜','Labu air, potong','1個(約800克)','1 buah (sekitar 800 gram)'],
-    ['薏米','Jelai / biji jali','1杯','1 cangkir'],
-    ['瘦肉','Daging babi tanpa lemak','350克','350 gram'],
-    ['薑(切片)','Jahe, iris','3片','3 iris'],
-    ['水','Air','2公升','2 liter'],
-    ['鹽','Garam','適量','secukupnya'],
+    ['鮮魚(如龍脷/海斑)','Ikan segar (lidah/kerapu)','Sariwang isda (dila o lapu-lapu)','1條(約600克)','1 ekor (sekitar 600 gram)','1 piraso (mga 600 gramo)'],
+    ['咸檸檬(切片)','Lemon asin, iris','Inasnang limon, hiwain','2個','2 buah','2 piraso'],
+    ['薑絲','Jahe, iris halus','Hiniwang manipis na luya','適量','secukupnya','sapat na dami'],
+    ['蔥絲','Daun bawang, iris halus','Hiniwang manipis na sibuyas na dahon','適量','secukupnya','sapat na dami'],
+    ['紅椒絲','Cabai merah, iris halus','Hiniwang manipis na sili pula','少許','secukupnya','kaunti lang'],
+    ['蒸魚豉油','Kecap asin khusus kukus ikan','Toyo na pang-pasingaw ng isda','1.5湯匙','1,5 sdm','1.5 kutsara'],
+    ['油','Minyak','Mantika','2湯匙','2 sdm','2 kutsara'],
   ],
   steps:[
-    ['薏米浸水30分鐘。','Rendam jelai di air selama 30 menit.'],
-    ['瘦肉汆水去血水。','Rebus sebentar daging untuk membuang darah, tiriskan.'],
-    ['全部材料加水，大火煮滾。','Masukkan semua bahan dan air, didihkan dengan api besar.'],
-    ['轉細火煲1.5小時，加鹽調味。','Kecilkan api, masak 1,5 jam, tambahkan garam.'],
-  ]},
-{cat:'soup', emoji:'🍅', zh:'番茄薯仔湯', id:'Sup Tomat & Kentang',
-  ing:[
-    ['番茄','Tomat, potong','4個','4 buah'],
-    ['薯仔','Kentang, potong','3個','3 buah'],
-    ['瘦肉/排骨','Daging / iga','350克','350 gram'],
-    ['薑(切片)','Jahe, iris','3片','3 iris'],
-    ['水','Air','1.8公升','1,8 liter'],
-    ['鹽','Garam','適量','secukupnya'],
-  ],
-  steps:[
-    ['排骨汆水，洗淨。','Rebus sebentar iga, cuci bersih.'],
-    ['番茄去皮切件，薯仔去皮切件。','Kupas tomat lalu potong, kupas kentang lalu potong.'],
-    ['全部材料加水煮滾。','Masukkan semua bahan dengan air, didihkan.'],
-    ['轉細火煲45分鐘，加鹽調味。','Kecilkan api, masak 45 menit, tambahkan garam.'],
-  ]},
-{cat:'soup', emoji:'🥚', zh:'紫菜蛋花湯', id:'Sup Rumput Laut & Telur',
-  ing:[
-    ['紫菜','Rumput laut kering','2片','2 lembar'],
-    ['雞蛋','Telur','3隻','3 butir'],
-    ['蔥花','Daun bawang, cincang','適量','secukupnya'],
-    ['雞湯/水','Kaldu ayam / air','1.2公升','1,2 liter'],
-    ['生抽','Kecap asin','1.5茶匙','1,5 sdt'],
-    ['麻油','Minyak wijen','少許','secukupnya'],
-  ],
-  steps:[
-    ['紫菜撕碎，雞蛋打散。','Sobek rumput laut, kocok telur.'],
-    ['湯煮滾，加紫菜同生抽。','Didihkan kaldu, masukkan rumput laut dan kecap asin.'],
-    ['慢慢淋入蛋液，輕輕攪拌成蛋花。','Tuang telur perlahan sambil diaduk pelan hingga membentuk serpihan.'],
-    ['灑蔥花、麻油即成。','Taburi daun bawang dan minyak wijen, sajikan.'],
-  ]},
-{cat:'soup', emoji:'🥜', zh:'眉豆花生豬骨湯', id:'Sup Tulang Babi, Kacang Tanah & Kacang Mata Hitam',
-  ing:[
-    ['豬骨','Tulang babi','600克','600 gram'],
-    ['眉豆','Kacang mata hitam','1杯','1 cangkir'],
-    ['花生','Kacang tanah','1杯','1 cangkir'],
-    ['薑(切片)','Jahe, iris','3片','3 iris'],
-    ['水','Air','2公升','2 liter'],
-    ['鹽','Garam','適量','secukupnya'],
-  ],
-  steps:[
-    ['眉豆、花生浸水30分鐘。','Rendam kacang mata hitam dan kacang tanah selama 30 menit.'],
-    ['豬骨汆水，洗淨。','Rebus sebentar tulang babi, cuci bersih.'],
-    ['全部材料加水煮滾。','Masukkan semua bahan dengan air, didihkan.'],
-    ['轉細火煲1.5小時，加鹽調味。','Kecilkan api, masak 1,5 jam, tambahkan garam.'],
-  ]},
-{cat:'soup', emoji:'🌶️', zh:'泡菜豬肉湯', id:'Sup Kimchi & Daging Babi',
-  ing:[
-    ['豬梅肉/五花肉(切片)','Daging babi, iris','400克','400 gram'],
-    ['韓式泡菜','Kimchi Korea','300克','300 gram'],
-    ['豆腐(切件)','Tahu, potong','1磚','1 kotak'],
-    ['洋蔥(切件)','Bawang bombay, potong','半個','1/2 buah'],
-    ['蒜蓉','Bawang putih cincang','3瓣','3 siung'],
-    ['韓式辣椒粉','Bubuk cabai Korea (gochugaru)','1湯匙','1 sdm'],
-    ['水/高湯','Air / kaldu','1.5公升','1,5 liter'],
-    ['生抽','Kecap asin','1湯匙','1 sdm'],
-    ['蔥(切段)','Daun bawang, potong','2條','2 batang'],
-  ],
-  steps:[
-    ['熱油爆香蒜蓉、洋蔥。','Tumis bawang putih dan bawang bombay hingga harum.'],
-    ['加豬肉片炒至變色。','Masukkan irisan daging babi, tumis hingga berubah warna.'],
-    ['加泡菜炒香，下辣椒粉炒勻。','Masukkan kimchi, tumis hingga harum, tambahkan bubuk cabai, aduk rata.'],
-    ['加水煮滾，轉細火煮15分鐘。','Tambahkan air, didihkan, kecilkan api, masak 15 menit.'],
-    ['加豆腐煮5分鐘，下生抽調味，灑蔥段即成。','Masukkan tahu, masak 5 menit, tambahkan kecap asin, taburi daun bawang, sajikan.'],
-  ]},
-{cat:'soup', emoji:'🌽', zh:'吞拿魚粟米湯', id:'Sup Tuna Kaleng & Jagung',
-  ing:[
-    ['罐頭吞拿魚','Tuna kaleng','1罐(約185克)','1 kaleng (sekitar 185 gram)'],
-    ['粟米粒(罐頭或新鮮)','Jagung manis (kaleng atau segar)','1罐','1 kaleng'],
-    ['薯仔(切件)','Kentang, potong','2個','2 buah'],
-    ['洋蔥(切件)','Bawang bombay, potong','半個','1/2 buah'],
-    ['水/高湯','Air / kaldu','1.2公升','1,2 liter'],
-    ['鹽','Garam','適量','secukupnya'],
-    ['黑椒碎','Lada hitam bubuk kasar','少許','secukupnya'],
-  ],
-  steps:[
-    ['爆香洋蔥，加薯仔略炒。','Tumis bawang bombay, masukkan kentang, aduk sebentar.'],
-    ['加水煮滾，轉細火煮15分鐘至薯仔軟身。','Tambahkan air, didihkan, kecilkan api, masak 15 menit hingga kentang empuk.'],
-    ['加粟米粒同吞拿魚(連油/水)煮5分鐘。','Masukkan jagung dan tuna kaleng (dengan minyak/airnya), masak 5 menit.'],
-    ['加鹽、黑椒調味即成。','Tambahkan garam dan lada hitam, sajikan.'],
+    ['魚洗淨抹乾，咸檸檬去籽切片，鋪喺魚身上下。','Cuci bersih ikan, keringkan; buang biji lemon asin, iris, letakkan di atas dan bawah ikan.','Hugasan ang isda, patuyuin; alisin ang buto ng inasnang limon, hiwain, ilagay sa ibabaw at ilalim ng isda.'],
+    ['加薑絲，隔水大火蒸10-12分鐘至熟。','Tambahkan irisan jahe, kukus dengan api besar selama 10-12 menit hingga matang.','Idagdag ang luya, pasingawan sa mataas na apoy ng 10-12 minuto hanggang maluto.'],
+    ['倒去魚汁，淋上蒸魚豉油。','Buang air yang keluar dari ikan, siram dengan kecap asin kukus ikan.','Itapon ang tubig na lumabas sa isda, buhusan ng toyo na pang-pasingaw.'],
+    ['燒熱油淋喺蔥絲、紅椒絲上即成。','Panaskan minyak, tuang di atas irisan daun bawang dan cabai merah, sajikan.','Magpainit ng mantika, ibuhos sa ibabaw ng sibuyas na dahon at sili pula, ihain.'],
   ]},
 
-// ===== 飯麵 Nasi & Mi =====
-{cat:'rice', emoji:'🍝', zh:'星洲炒米', id:'Bihun Goreng Gaya Singapura',
+// ===== 蔬菜 Sayuran / Gulay =====
+{cat:'veg', emoji:'🥬', zh:'蠔油生菜', id:'Selada Saus Tiram', fil:'Letsugas sa Sarsa Tiram',
   ing:[
-    ['米粉(浸軟)','Bihun, rendam lunak','300克','300 gram'],
-    ['叉燒(切絲)','Char siu, iris','150克','150 gram'],
-    ['蝦仁','Udang kupas','150克','150 gram'],
-    ['雞蛋','Telur','2隻','2 butir'],
-    ['洋蔥','Bawang bombay, iris','1個','1 buah'],
-    ['咖喱粉','Bubuk kari','1.5湯匙','1,5 sdm'],
-    ['生抽','Kecap asin','2湯匙','2 sdm'],
-    ['鹽','Garam','少許','secukupnya'],
-    ['油','Minyak','2.5湯匙','2,5 sdm'],
+    ['生菜','Selada, cuci bersih','Letsugas, hugasan','2棵(約600克)','2 ikat (sekitar 600 gram)','2 bigkis (mga 600 gramo)'],
+    ['蒜蓉','Bawang putih cincang','Tinadtad na bawang','3瓣','3 siung','3 piraso'],
+    ['蠔油','Saus tiram','Sarsa tiram','1.5湯匙','1,5 sdm','1.5 kutsara'],
+    ['糖','Gula','Asukal','少許','secukupnya','kaunti lang'],
+    ['水','Air','Tubig','3湯匙','3 sdm','3 kutsara'],
+    ['油','Minyak','Mantika','1.5湯匙','1,5 sdm','1.5 kutsara'],
   ],
   steps:[
-    ['米粉浸熱水至軟身，瀝乾。','Rendam bihun di air panas hingga lunak, tiriskan.'],
-    ['雞蛋炒熟盛起，蝦仁炒熟盛起。','Orak-arik telur hingga matang, sisihkan; tumis udang hingga matang, sisihkan.'],
-    ['爆香洋蔥、叉燒，加咖喱粉炒香。','Tumis bawang bombay dan char siu, masukkan bubuk kari, tumis hingga harum.'],
-    ['加米粉、生抽、鹽拌炒均勻。','Masukkan bihun, kecap asin, dan garam, aduk rata.'],
-    ['加返雞蛋、蝦仁炒勻即成。','Masukkan kembali telur dan udang, aduk rata, sajikan.'],
+    ['燒滾水加少許油同鹽，放入生菜灼10秒。','Didihkan air dengan sedikit minyak dan garam, celupkan selada 10 detik.','Pakuluan ang tubig na may kaunting mantika at asin, isawsaw ang letsugas ng 10 segundo.'],
+    ['生菜瀝乾，放上碟。','Tiriskan selada, letakkan di piring.','Patuyuin ang letsugas, ilagay sa plato.'],
+    ['蠔油、糖、水煮滾成醬汁。','Masak saus tiram, gula, dan air hingga mendidih menjadi saus.','Pakuluin ang sarsa tiram, asukal, at tubig para gawing sarsa.'],
+    ['淋喺生菜上，最後爆香蒜蓉淋面即成。','Siram di atas selada, tumis bawang putih dan tuang di atasnya, sajikan.','Ibuhos sa ibabaw ng letsugas, igisa ang bawang at ibuhos sa ibabaw, ihain.'],
   ]},
-{cat:'rice', emoji:'🍚', zh:'揚州炒飯', id:'Nasi Goreng Yangzhou',
+{cat:'veg', emoji:'🥦', zh:'蒜蓉炒芥蘭', id:'Kailan Tumis Bawang Putih', fil:'Ginisang Kailan sa Bawang',
   ing:[
-    ['白飯(最好隔夜)','Nasi putih, sebaiknya dingin','4碗','4 mangkuk'],
-    ['叉燒(切粒)','Char siu, potong dadu','150克','150 gram'],
-    ['蝦仁','Udang kupas','150克','150 gram'],
-    ['雞蛋','Telur','3隻','3 butir'],
-    ['青豆、粟米、紅蘿蔔粒','Kacang polong, jagung, wortel cincang','各適量','masing-masing secukupnya'],
-    ['蔥花','Daun bawang, cincang','適量','secukupnya'],
-    ['鹽','Garam','少許','secukupnya'],
-    ['油','Minyak','2.5湯匙','2,5 sdm'],
+    ['芥蘭','Kailan, potong','Kailan, hiwain','2棵(約500克)','2 ikat (sekitar 500 gram)','2 bigkis (mga 500 gramo)'],
+    ['蒜蓉','Bawang putih cincang','Tinadtad na bawang','4瓣','4 siung','4 piraso'],
+    ['生抽','Kecap asin','Toyo','1.5湯匙','1,5 sdm','1.5 kutsara'],
+    ['糖','Gula','Asukal','少許','secukupnya','kaunti lang'],
+    ['油','Minyak','Mantika','2.5湯匙','2,5 sdm','2.5 kutsara'],
   ],
   steps:[
-    ['雞蛋打散，白飯用飯勺散開。','Kocok telur, remas-remas nasi agar tidak menggumpal.'],
-    ['蛋液落熱油鑊炒至半凝固，加白飯炒散。','Tuang telur ke minyak panas, orak-arik setengah matang, masukkan nasi, aduk rata.'],
-    ['加叉燒、蝦仁、青豆、粟米、紅蘿蔔粒炒勻。','Masukkan char siu, udang, kacang polong, jagung, dan wortel, aduk rata.'],
-    ['加鹽調味，灑蔥花即成。','Tambahkan garam, taburi daun bawang, sajikan.'],
+    ['芥蘭汆水30秒，瀝乾。','Rebus sebentar kailan selama 30 detik, tiriskan.','Pakuluin ang kailan ng 30 segundo, patuyuin.'],
+    ['爆香蒜蓉。','Tumis bawang putih cincang hingga harum.','Igisa ang bawang hanggang mabango.'],
+    ['加芥蘭大火快炒。','Masukkan kailan, tumis cepat dengan api besar.','Idagdag ang kailan, igisa nang mabilis sa mataas na apoy.'],
+    ['加生抽、糖炒勻即成。','Tambahkan kecap asin dan gula, aduk rata, sajikan.','Lagyan ng toyo at asukal, haluin, ihain.'],
   ]},
-{cat:'rice', emoji:'🍜', zh:'豉油皇炒麵', id:'Mi Goreng Saus Kecap',
+{cat:'veg', emoji:'🥬', zh:'蝦米炒椰菜', id:'Kubis Tumis Ebi', fil:'Ginisang Repolyo sa Hibi',
   ing:[
-    ['麵(煮熟)','Mi telur, direbus & ditiriskan','450克','450 gram'],
-    ['芽菜','Taoge','200克','200 gram'],
-    ['韭黃/蔥','Daun bawang muda','適量','secukupnya'],
-    ['生抽','Kecap asin','3湯匙','3 sdm'],
-    ['老抽','Kecap hitam kental','1.5茶匙','1,5 sdt'],
-    ['糖','Gula','1茶匙','1 sdt'],
-    ['油','Minyak','3湯匙','3 sdm'],
+    ['椰菜','Kubis, potong','Repolyo, hiwain','1個(約600克)','1 buah (sekitar 600 gram)','1 piraso (mga 600 gramo)'],
+    ['蝦米(浸軟)','Ebi / udang kering, rendam lunak','Hibi (tuyong hipon), ibabad hanggang lumambot','3湯匙','3 sdm','3 kutsara'],
+    ['蒜蓉','Bawang putih cincang','Tinadtad na bawang','3瓣','3 siung','3 piraso'],
+    ['鹽','Garam','Asin','少許','secukupnya','kaunti lang'],
+    ['油','Minyak','Mantika','1.5湯匙','1,5 sdm','1.5 kutsara'],
   ],
   steps:[
-    ['麵煮熟後過冷水，瀝乾備用。','Rebus mi hingga matang, bilas air dingin, tiriskan.'],
-    ['熱鑊落油，麵餅煎至兩面微焦。','Panaskan wajan dengan minyak, goreng mi hingga kedua sisi sedikit kecokelatan.'],
-    ['加生抽、老抽、糖淋在麵上炒勻。','Tuang kecap asin, kecap hitam, dan gula di atas mi, aduk rata.'],
-    ['加芽菜同韭黃炒香即成。','Masukkan taoge dan daun bawang muda, tumis sebentar, sajikan.'],
+    ['蝦米浸軟，瀝乾備用。','Rendam ebi hingga lunak, tiriskan.','Ibabad ang hibi hanggang lumambot, patuyuin.'],
+    ['爆香蒜蓉同蝦米。','Tumis bawang putih dan ebi hingga harum.','Igisa ang bawang at hibi hanggang mabango.'],
+    ['加椰菜大火炒至軟身。','Masukkan kubis, tumis dengan api besar hingga layu.','Idagdag ang repolyo, igisa sa mataas na apoy hanggang malanta.'],
+    ['加鹽調味炒勻即成。','Tambahkan garam, aduk rata, sajikan.','Lagyan ng asin, haluin, ihain.'],
   ]},
-{cat:'rice', emoji:'🍚', zh:'臘腸煲仔飯', id:'Nasi Periuk dengan Sosis Cina',
+{cat:'veg', emoji:'🥒', zh:'涼拌青瓜', id:'Acar Timun Segar', fil:'Maasim-Matamis na Pipino',
   ing:[
-    ['白米','Beras','3杯','3 cangkir'],
-    ['臘腸(切片)','Sosis Cina / lap cheong, iris','3條','3 buah'],
-    ['生抽','Kecap asin','3湯匙','3 sdm'],
-    ['老抽','Kecap hitam kental','1.5湯匙','1,5 sdm'],
-    ['糖','Gula','1茶匙','1 sdt'],
-    ['水','Air','適量','secukupnya'],
-    ['蔥花','Daun bawang, cincang','適量','secukupnya'],
+    ['青瓜','Timun, dipukul & potong','Pipino, dikdikin at hiwain','3條','3 buah','3 piraso'],
+    ['蒜蓉','Bawang putih cincang','Tinadtad na bawang','3瓣','3 siung','3 piraso'],
+    ['指天椒','Cabai rawit, iris','Sili labuyo, hiniwa','1-2隻','1-2 buah','1-2 piraso'],
+    ['白醋','Cuka putih','Puting suka','1.5湯匙','1,5 sdm','1.5 kutsara'],
+    ['糖','Gula','Asukal','1.5湯匙','1,5 sdm','1.5 kutsara'],
+    ['麻油','Minyak wijen','Langis ng linga','1茶匙','1 sdt','1 kutsarita'],
+    ['鹽','Garam','Asin','1茶匙','1 sdt','1 kutsarita'],
   ],
   steps:[
-    ['白米洗淨，落煲加適量水浸30分鐘。','Cuci beras, masukkan ke panci dengan air secukupnya, rendam 30 menit.'],
-    ['大火煮滾後轉細火，鋪上臘腸片。','Didihkan dengan api besar, kecilkan api, taburkan irisan sosis di atasnya.'],
-    ['蓋蓋焗18-20分鐘至飯熟起鍋巴。','Tutup panci, masak 18-20 menit hingga nasi matang dan terbentuk kerak.'],
-    ['生抽、老抽、糖煮成豉油汁。','Masak kecap asin, kecap hitam, dan gula menjadi saus.'],
-    ['熄火淋上豉油汁，灑蔥花拌勻即成。','Matikan api, siram saus, taburi daun bawang, aduk rata, sajikan.'],
+    ['青瓜用刀背拍裂，切段，加鹽略醃出水。','Pukul timun hingga retak, potong-potong, taburi garam, diamkan sebentar hingga keluar air.','Dikdikin ang pipino hanggang mabitak, hiwain, budburan ng asin, ipahinga sandali hanggang lumabas ang tubig.'],
+    ['倒去多餘水分。','Buang air yang keluar.','Itapon ang tubig na lumabas.'],
+    ['加蒜蓉、指天椒、白醋、糖、麻油拌勻。','Campurkan bawang putih, cabai rawit, cuka, gula, dan minyak wijen, aduk rata.','Ihalo ang bawang, sili labuyo, suka, asukal, at langis ng linga.'],
+    ['雪凍最少30分鐘，入味後食用。','Dinginkan di kulkas minimal 30 menit agar meresap, lalu sajikan.','Ipalamig sa refrigerator ng hindi bababa sa 30 minuto para tumagos ang lasa, ihain.'],
   ]},
-{cat:'rice', emoji:'🍲', zh:'牛腩湯麵', id:'Mi Kuah Sengkel Sapi',
+{cat:'veg', emoji:'🍄', zh:'木耳炒西芹百合', id:'Jamur Kuping Tumis Seledri & Umbi Lili', fil:'Ginisang Tainga ng Daga sa Kintsay at Liryo',
   ing:[
-    ['熟牛腩','Sengkel sapi matang, potong','350克','350 gram'],
-    ['麵','Mi, direbus','350克','350 gram'],
-    ['白蘿蔔','Lobak putih, potong','1條','1 buah'],
-    ['牛骨湯/水','Kaldu sapi / air','1.2公升','1,2 liter'],
-    ['薑(切片)','Jahe, iris','2片','2 iris'],
-    ['生抽','Kecap asin','1.5湯匙','1,5 sdm'],
-    ['鹽','Garam','適量','secukupnya'],
-    ['蔥花','Daun bawang, cincang','適量','secukupnya'],
+    ['木耳(浸軟)','Jamur kuping kering, rendam & sobek','Tuyong tainga ng daga, ibabad at pilasin','約20克乾','sekitar 20 gram kering','mga 20 gramo (tuyo)'],
+    ['西芹','Seledri, potong miring','Kintsay, hiwain nang pahilig','3條','3 batang','3 tangkay'],
+    ['百合','Umbi bunga lili, pisahkan kelopak','Liryo (lily bulb), hiwalayin ang mga talulot','2個','2 buah','2 piraso'],
+    ['蒜片','Bawang putih, iris','Bawang, hiwain','3瓣','3 siung','3 piraso'],
+    ['鹽','Garam','Asin','少許','secukupnya','kaunti lang'],
+    ['油','Minyak','Mantika','1.5湯匙','1,5 sdm','1.5 kutsara'],
   ],
   steps:[
-    ['牛骨湯加薑片、白蘿蔔煮滾。','Didihkan kaldu sapi dengan jahe dan lobak putih.'],
-    ['轉細火煮20分鐘至蘿蔔軟身。','Kecilkan api, masak 20 menit hingga lobak empuk.'],
-    ['加牛腩、生抽、鹽調味煮滾。','Masukkan sengkel sapi, kecap asin, dan garam, didihkan.'],
-    ['麵另鍋煮熟，放入碗中，淋上牛腩湯。','Rebus mi terpisah hingga matang, letakkan di mangkuk, siram dengan kuah sapi.'],
-    ['灑蔥花即成。','Taburi daun bawang, sajikan.'],
+    ['木耳浸軟，撕細件，西芹、百合洗淨。','Rendam jamur kuping hingga lunak, sobek kecil-kecil, cuci seledri dan umbi lili.','Ibabad ang tainga ng daga hanggang lumambot, pilasin ng maliliit, hugasan ang kintsay at liryo.'],
+    ['爆香蒜片。','Tumis irisan bawang putih hingga harum.','Igisa ang bawang hanggang mabango.'],
+    ['加西芹、木耳大火炒香。','Masukkan seledri dan jamur kuping, tumis dengan api besar.','Idagdag ang kintsay at tainga ng daga, igisa sa mataas na apoy.'],
+    ['加百合炒片刻，加鹽調味即成。','Masukkan umbi lili, tumis sebentar, tambahkan garam, sajikan.','Idagdag ang liryo, igisa sandali, lagyan ng asin, ihain.'],
+  ]},
+{cat:'veg', emoji:'🌶️', zh:'椒絲腐乳炒通菜', id:'Kangkung Tumis Fu Yu Pedas', fil:'Ginisang Kangkong sa Tahuring Maanghang',
+  ing:[
+    ['通菜(切段)','Kangkung, potong','Kangkong, hiwain','2棵(約500克)','2 ikat (sekitar 500 gram)','2 bigkis (mga 500 gramo)'],
+    ['辣腐乳','Fu yu (fermented tofu) pedas','Tahuring maanghang (fermented tofu)','2磚','2 kotak','2 piraso'],
+    ['蒜蓉','Bawang putih cincang','Tinadtad na bawang','3瓣','3 siung','3 piraso'],
+    ['紅椒絲','Cabai merah, iris','Sili pula, hiniwa','1隻','1 buah','1 piraso'],
+    ['糖','Gula','Asukal','半茶匙','1/2 sdt','1/2 kutsarita'],
+    ['水','Air','Tubig','2湯匙','2 sdm','2 kutsara'],
+    ['油','Minyak','Mantika','2湯匙','2 sdm','2 kutsara'],
+  ],
+  steps:[
+    ['通菜切段洗淨，瀝乾。','Potong kangkung, cuci bersih, tiriskan.','Hiwain ang kangkong, hugasan, patuyuin.'],
+    ['辣腐乳用湯匙壓爛，加水拌成醬汁。','Haluskan fu yu pedas dengan sendok, campur air menjadi saus.','Dikdikin ang tahuring maanghang gamit ang kutsara, ihalo sa tubig para gawing sarsa.'],
+    ['爆香蒜蓉、紅椒絲。','Tumis bawang putih dan cabai merah hingga harum.','Igisa ang bawang at sili pula hanggang mabango.'],
+    ['下通菜大火快炒，加入腐乳醬汁同糖炒勻即成。','Masukkan kangkung, tumis cepat dengan api besar, tambahkan saus fu yu dan gula, aduk rata, sajikan.','Idagdag ang kangkong, igisa nang mabilis sa mataas na apoy, lagyan ng sarsa ng tahuri at asukal, haluin, ihain.'],
   ]},
 
-// ===== 蛋豆腐 Telur & Tahu =====
-{cat:'egg', emoji:'🍳', zh:'番茄炒蛋', id:'Telur Tumis Tomat',
+// ===== 湯品 Sup / Sabaw =====
+{cat:'soup', emoji:'🍲', zh:'節瓜蜆肉湯', id:'Sup Labu Bulu & Kerang', fil:'Sabaw ng Hairy Melon at Tulya',
   ing:[
-    ['雞蛋','Telur','6隻','6 butir'],
-    ['番茄','Tomat, potong wedges','3個','3 buah'],
-    ['糖','Gula','1茶匙','1 sdt'],
-    ['鹽','Garam','少許','secukupnya'],
-    ['蔥花','Daun bawang, cincang','適量','secukupnya'],
-    ['油','Minyak','2.5湯匙','2,5 sdm'],
+    ['節瓜','Labu bulu, kupas & potong','Hairy melon, balatan at hiwain','2條','2 buah','2 piraso'],
+    ['蜆','Kerang, cuci bersih','Tulya, hugasan','450克','450 gram','450 gramo'],
+    ['薑(切片)','Jahe, iris','Luya, hiwain','4片','4 iris','4 hiwa'],
+    ['水','Air','Tubig','1.5公升','1,5 liter','1.5 litro'],
+    ['鹽','Garam','Asin','適量','secukupnya','sapat na dami'],
   ],
   steps:[
-    ['雞蛋加少許鹽打散。','Kocok telur dengan sedikit garam.'],
-    ['熱油將蛋液炒至半凝固盛起。','Panaskan minyak, orak-arik telur hingga setengah matang, sisihkan.'],
-    ['同鑊落番茄炒軟，加糖調味。','Di wajan yang sama, tumis tomat hingga layu, tambahkan gula.'],
-    ['加返雞蛋炒勻，灑蔥花即成。','Masukkan kembali telur, aduk rata, taburi daun bawang, sajikan.'],
+    ['蜆浸鹽水吐沙後洗淨。','Rendam kerang di air garam agar keluar pasirnya, lalu cuci bersih.','Ibabad ang tulya sa maalat na tubig para lumabas ang buhangin, hugasan.'],
+    ['水加薑片煮滾。','Didihkan air dengan irisan jahe.','Pakuluin ang tubig na may luya.'],
+    ['加節瓜煮10-12分鐘。','Masukkan labu bulu, masak 10-12 menit.','Idagdag ang hairy melon, lutuin ng 10-12 minuto.'],
+    ['加蜆煮至開口，加鹽調味即成。','Masukkan kerang, masak hingga terbuka, tambahkan garam, sajikan.','Idagdag ang tulya, lutuin hanggang mabuksan, lagyan ng asin, ihain.'],
   ]},
-{cat:'egg', emoji:'🥚', zh:'涼瓜炒蛋', id:'Telur Tumis Pare',
+{cat:'soup', emoji:'🥣', zh:'冬瓜薏米湯', id:'Sup Labu Air & Jelai', fil:'Sabaw ng Kondol at Adlai',
   ing:[
-    ['涼瓜/苦瓜','Pare, iris tipis','1.5條','1,5 buah'],
-    ['雞蛋','Telur','5隻','5 butir'],
-    ['鹽','Garam','少許','secukupnya'],
-    ['油','Minyak','2.5湯匙','2,5 sdm'],
+    ['冬瓜','Labu air, potong','Kondol, hiwain','1個(約800克)','1 buah (sekitar 800 gram)','1 piraso (mga 800 gramo)'],
+    ['薏米','Jelai / biji jali','Adlai','1杯','1 cangkir','1 tasa'],
+    ['瘦肉','Daging babi tanpa lemak','Karneng baboy na walang taba','350克','350 gram','350 gramo'],
+    ['薑(切片)','Jahe, iris','Luya, hiwain','3片','3 iris','3 hiwa'],
+    ['水','Air','Tubig','2公升','2 liter','2 litro'],
+    ['鹽','Garam','Asin','適量','secukupnya','sapat na dami'],
   ],
   steps:[
-    ['涼瓜汆水去苦味，瀝乾。','Rebus sebentar pare untuk mengurangi rasa pahit, tiriskan.'],
-    ['雞蛋加鹽打散。','Kocok telur dengan garam.'],
-    ['熱油炒香涼瓜片。','Panaskan minyak, tumis pare hingga harum.'],
-    ['倒入蛋液炒至凝固即成。','Tuang telur, aduk hingga matang, sajikan.'],
+    ['薏米浸水30分鐘。','Rendam jelai di air selama 30 menit.','Ibabad ang adlai sa tubig ng 30 minuto.'],
+    ['瘦肉汆水去血水。','Rebus sebentar daging untuk membuang darah, tiriskan.','Pakuluan ang karne para maalis ang dugo, alisin at hugasan.'],
+    ['全部材料加水，大火煮滾。','Masukkan semua bahan dan air, didihkan dengan api besar.','Ilagay ang lahat ng sangkap at tubig, pakuluin sa mataas na apoy.'],
+    ['轉細火煲1.5小時，加鹽調味。','Kecilkan api, masak 1,5 jam, tambahkan garam.','Hinaan ang apoy, lutuin ng 1.5 oras, lagyan ng asin.'],
   ]},
-{cat:'egg', emoji:'🧈', zh:'家常豆腐', id:'Tahu Rumahan',
+{cat:'soup', emoji:'🍅', zh:'番茄薯仔湯', id:'Sup Tomat & Kentang', fil:'Sabaw ng Kamatis at Patatas',
   ing:[
-    ['豆腐','Tahu, potong','2磚','2 kotak'],
-    ['免治豬肉','Daging babi cincang','200克','200 gram'],
-    ['蒜蓉','Bawang putih cincang','3瓣','3 siung'],
-    ['蔥花','Daun bawang, cincang','適量','secukupnya'],
-    ['生抽','Kecap asin','1.5湯匙','1,5 sdm'],
-    ['蠔油','Saus tiram','1.5湯匙','1,5 sdm'],
-    ['生粉水','Larutan tepung maizena','適量','secukupnya'],
-    ['油','Minyak','2.5湯匙','2,5 sdm'],
+    ['番茄','Tomat, potong','Kamatis, hiwain','4個','4 buah','4 piraso'],
+    ['薯仔','Kentang, potong','Patatas, hiwain','3個','3 buah','3 piraso'],
+    ['瘦肉/排骨','Daging / iga','Karne o tadyang ng baboy','350克','350 gram','350 gramo'],
+    ['薑(切片)','Jahe, iris','Luya, hiwain','3片','3 iris','3 hiwa'],
+    ['水','Air','Tubig','1.8公升','1,8 liter','1.8 litro'],
+    ['鹽','Garam','Asin','適量','secukupnya','sapat na dami'],
   ],
   steps:[
-    ['豆腐煎至兩面金黃，盛起。','Goreng tahu hingga kedua sisi keemasan, angkat.'],
-    ['爆香蒜蓉，加免治豬肉炒散。','Tumis bawang putih, masukkan daging cincang, aduk hingga matang.'],
-    ['加生抽、蠔油同適量水煮滾。','Tambahkan kecap asin, saus tiram, dan air secukupnya, didihkan.'],
-    ['加豆腐回鑊煮4分鐘，勾芡。','Masukkan kembali tahu, masak 4 menit, kentalkan dengan larutan maizena.'],
-    ['灑蔥花即成。','Taburi daun bawang, sajikan.'],
+    ['排骨汆水，洗淨。','Rebus sebentar iga, cuci bersih.','Pakuluan ang tadyang, hugasan.'],
+    ['番茄去皮切件，薯仔去皮切件。','Kupas tomat lalu potong, kupas kentang lalu potong.','Balatan at hiwain ang kamatis, balatan at hiwain ang patatas.'],
+    ['全部材料加水煮滾。','Masukkan semua bahan dengan air, didihkan.','Ilagay ang lahat ng sangkap at tubig, pakuluin.'],
+    ['轉細火煲45分鐘，加鹽調味。','Kecilkan api, masak 45 menit, tambahkan garam.','Hinaan ang apoy, lutuin ng 45 minuto, lagyan ng asin.'],
   ]},
-{cat:'egg', emoji:'🥚', zh:'蒸水蛋', id:'Telur Kukus Halus',
+{cat:'soup', emoji:'🥚', zh:'紫菜蛋花湯', id:'Sup Rumput Laut & Telur', fil:'Sabaw ng Nori at Itlog',
   ing:[
-    ['雞蛋','Telur','5隻','5 butir'],
-    ['水或上湯(微暖)','Air atau kaldu, suam-suam kuku','蛋液1.5倍','1,5 kali volume telur'],
-    ['鹽','Garam','少許','secukupnya'],
-    ['胡椒粉','Merica bubuk putih','少許','secukupnya'],
-    ['生抽','Kecap asin','少許','secukupnya'],
-    ['麻油','Minyak wijen','少許','secukupnya'],
-    ['蔥花','Daun bawang, cincang','適量','secukupnya'],
+    ['紫菜','Rumput laut kering','Tuyong nori','2片','2 lembar','2 pirasong dahon'],
+    ['雞蛋','Telur','Itlog','3隻','3 butir','3 piraso'],
+    ['蔥花','Daun bawang, cincang','Tinadtad na sibuyas na dahon','適量','secukupnya','sapat na dami'],
+    ['雞湯/水','Kaldu ayam / air','Sabaw ng manok o tubig','1.2公升','1,2 liter','1.2 litro'],
+    ['生抽','Kecap asin','Toyo','1.5茶匙','1,5 sdt','1.5 kutsarita'],
+    ['麻油','Minyak wijen','Langis ng linga','少許','secukupnya','kaunti lang'],
   ],
   steps:[
-    ['雞蛋加鹽、胡椒粉打散，加溫水拌勻，隔渣。','Kocok telur dengan garam dan merica bubuk, campur air hangat, saring agar halus.'],
-    ['蛋液用保鮮紙封好碗口。','Tutup mangkuk berisi telur dengan plastik wrap.'],
-    ['隔水中火蒸14分鐘至凝固。','Kukus dengan api sedang selama 14 menit hingga mengeras.'],
-    ['淋上生抽、麻油，灑蔥花即成。','Siram kecap asin dan minyak wijen, taburi daun bawang, sajikan.'],
+    ['紫菜撕碎，雞蛋打散。','Sobek rumput laut, kocok telur.','Pilasin ang nori, batihin ang itlog.'],
+    ['湯煮滾，加紫菜同生抽。','Didihkan kaldu, masukkan rumput laut dan kecap asin.','Pakuluin ang sabaw, idagdag ang nori at toyo.'],
+    ['慢慢淋入蛋液，輕輕攪拌成蛋花。','Tuang telur perlahan sambil diaduk pelan hingga membentuk serpihan.','Dahan-dahang ibuhos ang itlog habang inaalog nang bahagya para maging serpentina.'],
+    ['灑蔥花、麻油即成。','Taburi daun bawang dan minyak wijen, sajikan.','Budburan ng sibuyas na dahon at langis ng linga, ihain.'],
   ]},
-{cat:'egg', emoji:'🌶️', zh:'麻婆豆腐', id:'Tahu Mapo',
+{cat:'soup', emoji:'🥜', zh:'眉豆花生豬骨湯', id:'Sup Tulang Babi, Kacang Tanah & Kacang Mata Hitam', fil:'Sabaw ng Buto ng Baboy, Mani, at Paayap',
   ing:[
-    ['豆腐','Tahu, potong dadu','2磚','2 kotak'],
-    ['免治豬肉/牛肉','Daging cincang babi/sapi','200克','200 gram'],
-    ['豆瓣醬','Saus cabai fermentasi (doubanjiang)','1.5湯匙','1,5 sdm'],
-    ['蒜蓉、薑蓉','Bawang putih & jahe, cincang','各1.5茶匙','masing-masing 1,5 sdt'],
-    ['乾辣椒(剪段)','Cabai kering, gunting','3-4隻','3-4 buah'],
-    ['蔥花','Daun bawang, cincang','適量','secukupnya'],
-    ['生抽','Kecap asin','1.5湯匙','1,5 sdm'],
-    ['生粉水','Larutan tepung maizena','適量','secukupnya'],
-    ['花椒粉(可選)','Bubuk lada Sichuan (opsional)','少許','secukupnya'],
-    ['油','Minyak','2.5湯匙','2,5 sdm'],
+    ['豬骨','Tulang babi','Buto ng baboy','600克','600 gram','600 gramo'],
+    ['眉豆','Kacang mata hitam','Paayap','1杯','1 cangkir','1 tasa'],
+    ['花生','Kacang tanah','Mani','1杯','1 cangkir','1 tasa'],
+    ['薑(切片)','Jahe, iris','Luya, hiwain','3片','3 iris','3 hiwa'],
+    ['水','Air','Tubig','2公升','2 liter','2 litro'],
+    ['鹽','Garam','Asin','適量','secukupnya','sapat na dami'],
   ],
   steps:[
-    ['豆腐切件，落滾水略灼，瀝乾。','Potong tahu, rebus sebentar di air mendidih, tiriskan.'],
-    ['爆香蒜蓉、薑蓉、乾辣椒、豆瓣醬。','Tumis bawang putih, jahe, cabai kering, dan saus cabai fermentasi hingga harum.'],
-    ['加免治肉炒至變色。','Masukkan daging cincang, tumis hingga berubah warna.'],
-    ['加生抽同適量水煮滾，加豆腐煮4分鐘。','Tambahkan kecap asin dan air secukupnya, didihkan, masukkan tahu, masak 4 menit.'],
-    ['勾芡，灑蔥花同花椒粉即成。','Kentalkan saus, taburi daun bawang dan bubuk lada Sichuan, sajikan.'],
+    ['眉豆、花生浸水30分鐘。','Rendam kacang mata hitam dan kacang tanah selama 30 menit.','Ibabad ang paayap at mani ng 30 minuto.'],
+    ['豬骨汆水，洗淨。','Rebus sebentar tulang babi, cuci bersih.','Pakuluan ang buto ng baboy, hugasan.'],
+    ['全部材料加水煮滾。','Masukkan semua bahan dengan air, didihkan.','Ilagay ang lahat ng sangkap at tubig, pakuluin.'],
+    ['轉細火煲1.5小時，加鹽調味。','Kecilkan api, masak 1,5 jam, tambahkan garam.','Hinaan ang apoy, lutuin ng 1.5 oras, lagyan ng asin.'],
+  ]},
+
+// ===== 飯麵 Nasi & Mi / Kanin at Pansit =====
+{cat:'rice', emoji:'🍝', zh:'星洲炒米', id:'Bihun Goreng Gaya Singapura', fil:'Bihon Estilong Singapore',
+  ing:[
+    ['米粉(浸軟)','Bihun, rendam lunak','Bihon, ibabad hanggang lumambot','300克','300 gram','300 gramo'],
+    ['叉燒(切絲)','Char siu, iris','Char siu, hiniwa','150克','150 gram','150 gramo'],
+    ['蝦仁','Udang kupas','Hipon, balatan','150克','150 gram','150 gramo'],
+    ['雞蛋','Telur','Itlog','2隻','2 butir','2 piraso'],
+    ['洋蔥','Bawang bombay, iris','Sibuyas, hiwain','1個','1 buah','1 piraso'],
+    ['咖喱粉','Bubuk kari','Pulbos na curry','1.5湯匙','1,5 sdm','1.5 kutsara'],
+    ['生抽','Kecap asin','Toyo','2湯匙','2 sdm','2 kutsara'],
+    ['鹽','Garam','Asin','少許','secukupnya','kaunti lang'],
+    ['油','Minyak','Mantika','2.5湯匙','2,5 sdm','2.5 kutsara'],
+  ],
+  steps:[
+    ['米粉浸熱水至軟身，瀝乾。','Rendam bihun di air panas hingga lunak, tiriskan.','Ibabad ang bihon sa mainit na tubig hanggang lumambot, patuyuin.'],
+    ['雞蛋炒熟盛起，蝦仁炒熟盛起。','Orak-arik telur hingga matang, sisihkan; tumis udang hingga matang, sisihkan.','Iprito ang itlog hanggang maluto, alisin muna; iprito ang hipon hanggang maluto, alisin muna.'],
+    ['爆香洋蔥、叉燒，加咖喱粉炒香。','Tumis bawang bombay dan char siu, masukkan bubuk kari, tumis hingga harum.','Igisa ang sibuyas at char siu, idagdag ang curry powder, igisa hanggang mabango.'],
+    ['加米粉、生抽、鹽拌炒均勻。','Masukkan bihun, kecap asin, dan garam, aduk rata.','Idagdag ang bihon, toyo, at asin, haluin nang mabuti.'],
+    ['加返雞蛋、蝦仁炒勻即成。','Masukkan kembali telur dan udang, aduk rata, sajikan.','Ibalik ang itlog at hipon, haluin, ihain.'],
+  ]},
+{cat:'rice', emoji:'🍚', zh:'揚州炒飯', id:'Nasi Goreng Yangzhou', fil:'Fried Rice Yangzhou',
+  ing:[
+    ['白飯(最好隔夜)','Nasi putih, sebaiknya dingin','Kanin, mas mainam kung araw na','4碗','4 mangkuk','4 tasa'],
+    ['叉燒(切粒)','Char siu, potong dadu','Char siu, hiwain nang dice','150克','150 gram','150 gramo'],
+    ['蝦仁','Udang kupas','Hipon, balatan','150克','150 gram','150 gramo'],
+    ['雞蛋','Telur','Itlog','3隻','3 butir','3 piraso'],
+    ['青豆、粟米、紅蘿蔔粒','Kacang polong, jagung, wortel cincang','Gisantes, mais, at tinadtad na karot','各適量','masing-masing secukupnya','tig-sapat na dami'],
+    ['蔥花','Daun bawang, cincang','Tinadtad na sibuyas na dahon','適量','secukupnya','sapat na dami'],
+    ['鹽','Garam','Asin','少許','secukupnya','kaunti lang'],
+    ['油','Minyak','Mantika','2.5湯匙','2,5 sdm','2.5 kutsara'],
+  ],
+  steps:[
+    ['雞蛋打散，白飯用飯勺散開。','Kocok telur, remas-remas nasi agar tidak menggumpal.','Batihin ang itlog, durugin ang kanin gamit ang sandok para hindi mabuo-buo.'],
+    ['蛋液落熱油鑊炒至半凝固，加白飯炒散。','Tuang telur ke minyak panas, orak-arik setengah matang, masukkan nasi, aduk rata.','Ibuhos ang itlog sa mainit na mantika, iprito nang kalahating luto, idagdag ang kanin, haluin nang mabuti.'],
+    ['加叉燒、蝦仁、青豆、粟米、紅蘿蔔粒炒勻。','Masukkan char siu, udang, kacang polong, jagung, dan wortel, aduk rata.','Idagdag ang char siu, hipon, gisantes, mais, at karot, haluin nang mabuti.'],
+    ['加鹽調味，灑蔥花即成。','Tambahkan garam, taburi daun bawang, sajikan.','Lagyan ng asin, budburan ng sibuyas na dahon, ihain.'],
+  ]},
+{cat:'rice', emoji:'🍜', zh:'豉油皇炒麵', id:'Mi Goreng Saus Kecap', fil:'Pansit na may Toyo',
+  ing:[
+    ['麵(煮熟)','Mi telur, direbus & ditiriskan','Pansit na itlog, lutuin at salain','450克','450 gram','450 gramo'],
+    ['芽菜','Taoge','Toge','200克','200 gram','200 gramo'],
+    ['韭黃/蔥','Daun bawang muda','Batang sibuyas na dahon','適量','secukupnya','sapat na dami'],
+    ['生抽','Kecap asin','Toyo','3湯匙','3 sdm','3 kutsara'],
+    ['老抽','Kecap hitam kental','Toyong itim (matapang)','1.5茶匙','1,5 sdt','1.5 kutsarita'],
+    ['糖','Gula','Asukal','1茶匙','1 sdt','1 kutsarita'],
+    ['油','Minyak','Mantika','3湯匙','3 sdm','3 kutsara'],
+  ],
+  steps:[
+    ['麵煮熟後過冷水，瀝乾備用。','Rebus mi hingga matang, bilas air dingin, tiriskan.','Lutuin ang pansit hanggang maluto, banlawan ng malamig na tubig, patuyuin.'],
+    ['熱鑊落油，麵餅煎至兩面微焦。','Panaskan wajan dengan minyak, goreng mi hingga kedua sisi sedikit kecokelatan.','Init-in ang kawali na may mantika, iprito ang pansit hanggang medyo kayumanggi ang magkabilang gilid.'],
+    ['加生抽、老抽、糖淋在麵上炒勻。','Tuang kecap asin, kecap hitam, dan gula di atas mi, aduk rata.','Ibuhos ang toyo, toyong itim, at asukal sa ibabaw ng pansit, haluin nang mabuti.'],
+    ['加芽菜同韭黃炒香即成。','Masukkan taoge dan daun bawang muda, tumis sebentar, sajikan.','Idagdag ang toge at batang sibuyas na dahon, igisa sandali, ihain.'],
+  ]},
+{cat:'rice', emoji:'🍚', zh:'臘腸煲仔飯', id:'Nasi Periuk dengan Sosis Cina', fil:'Kanin sa Palayok na may Chorizo Tsino',
+  ing:[
+    ['白米','Beras','Bigas','3杯','3 cangkir','3 tasa'],
+    ['臘腸(切片)','Sosis Cina / lap cheong, iris','Chorizo Tsino (lap cheong), hiwain','3條','3 buah','3 piraso'],
+    ['生抽','Kecap asin','Toyo','3湯匙','3 sdm','3 kutsara'],
+    ['老抽','Kecap hitam kental','Toyong itim (matapang)','1.5湯匙','1,5 sdm','1.5 kutsara'],
+    ['糖','Gula','Asukal','1茶匙','1 sdt','1 kutsarita'],
+    ['水','Air','Tubig','適量','secukupnya','sapat na dami'],
+    ['蔥花','Daun bawang, cincang','Tinadtad na sibuyas na dahon','適量','secukupnya','sapat na dami'],
+  ],
+  steps:[
+    ['白米洗淨，落煲加適量水浸30分鐘。','Cuci beras, masukkan ke panci dengan air secukupnya, rendam 30 menit.','Hugasan ang bigas, ilagay sa palayok na may sapat na tubig, ibabad ng 30 minuto.'],
+    ['大火煮滾後轉細火，鋪上臘腸片。','Didihkan dengan api besar, kecilkan api, taburkan irisan sosis di atasnya.','Pakuluin sa mataas na apoy, hinaan ang apoy, ilagay ang chorizo sa ibabaw.'],
+    ['蓋蓋焗18-20分鐘至飯熟起鍋巴。','Tutup panci, masak 18-20 menit hingga nasi matang dan terbentuk kerak.','Takpan, lutuin ng 18-20 minuto hanggang maluto ang kanin at magkaroon ng crust.'],
+    ['生抽、老抽、糖煮成豉油汁。','Masak kecap asin, kecap hitam, dan gula menjadi saus.','Pakuluin ang toyo, toyong itim, at asukal para gawing sarsa.'],
+    ['熄火淋上豉油汁，灑蔥花拌勻即成。','Matikan api, siram saus, taburi daun bawang, aduk rata, sajikan.','Patayin ang apoy, ibuhos ang sarsa, budburan ng sibuyas na dahon, haluin, ihain.'],
+  ]},
+{cat:'rice', emoji:'🍲', zh:'牛腩湯麵', id:'Mi Kuah Sengkel Sapi', fil:'Pansit na may Sabaw ng Brisket ng Baka',
+  ing:[
+    ['熟牛腩','Sengkel sapi matang, potong','Lutong brisket ng baka, hiwain','350克','350 gram','350 gramo'],
+    ['麵','Mi, direbus','Pansit, lutuin','350克','350 gram','350 gramo'],
+    ['白蘿蔔','Lobak putih, potong','Puting labanos, hiwain','1條','1 buah','1 piraso'],
+    ['牛骨湯/水','Kaldu sapi / air','Sabaw ng baka o tubig','1.2公升','1,2 liter','1.2 litro'],
+    ['薑(切片)','Jahe, iris','Luya, hiwain','2片','2 iris','2 hiwa'],
+    ['生抽','Kecap asin','Toyo','1.5湯匙','1,5 sdm','1.5 kutsara'],
+    ['鹽','Garam','Asin','適量','secukupnya','sapat na dami'],
+    ['蔥花','Daun bawang, cincang','Tinadtad na sibuyas na dahon','適量','secukupnya','sapat na dami'],
+  ],
+  steps:[
+    ['牛骨湯加薑片、白蘿蔔煮滾。','Didihkan kaldu sapi dengan jahe dan lobak putih.','Pakuluin ang sabaw ng baka na may luya at labanos.'],
+    ['轉細火煮20分鐘至蘿蔔軟身。','Kecilkan api, masak 20 menit hingga lobak empuk.','Hinaan ang apoy, lutuin ng 20 minuto hanggang lumambot ang labanos.'],
+    ['加牛腩、生抽、鹽調味煮滾。','Masukkan sengkel sapi, kecap asin, dan garam, didihkan.','Idagdag ang brisket, toyo, at asin, pakuluin.'],
+    ['麵另鍋煮熟，放入碗中，淋上牛腩湯。','Rebus mi terpisah hingga matang, letakkan di mangkuk, siram dengan kuah sapi.','Lutuin ang pansit sa hiwalay na kaldero, ilagay sa mangkok, buhusan ng sabaw ng baka.'],
+    ['灑蔥花即成。','Taburi daun bawang, sajikan.','Budburan ng sibuyas na dahon, ihain.'],
+  ]},
+
+// ===== 蛋豆腐 Telur & Tahu / Itlog at Tokwa =====
+{cat:'egg', emoji:'🍳', zh:'番茄炒蛋', id:'Telur Tumis Tomat', fil:'Ginisang Itlog sa Kamatis',
+  ing:[
+    ['雞蛋','Telur','Itlog','6隻','6 butir','6 piraso'],
+    ['番茄','Tomat, potong wedges','Kamatis, hiwain','3個','3 buah','3 piraso'],
+    ['糖','Gula','Asukal','1茶匙','1 sdt','1 kutsarita'],
+    ['鹽','Garam','Asin','少許','secukupnya','kaunti lang'],
+    ['蔥花','Daun bawang, cincang','Tinadtad na sibuyas na dahon','適量','secukupnya','sapat na dami'],
+    ['油','Minyak','Mantika','2.5湯匙','2,5 sdm','2.5 kutsara'],
+  ],
+  steps:[
+    ['雞蛋加少許鹽打散。','Kocok telur dengan sedikit garam.','Batihin ang itlog na may kaunting asin.'],
+    ['熱油將蛋液炒至半凝固盛起。','Panaskan minyak, orak-arik telur hingga setengah matang, sisihkan.','Init-in ang mantika, iprito ang itlog hanggang kalahating luto, alisin muna.'],
+    ['同鑊落番茄炒軟，加糖調味。','Di wajan yang sama, tumis tomat hingga layu, tambahkan gula.','Sa parehong kawali, igisa ang kamatis hanggang malanta, lagyan ng asukal.'],
+    ['加返雞蛋炒勻，灑蔥花即成。','Masukkan kembali telur, aduk rata, taburi daun bawang, sajikan.','Ibalik ang itlog, haluin, budburan ng sibuyas na dahon, ihain.'],
+  ]},
+{cat:'egg', emoji:'🥚', zh:'涼瓜炒蛋', id:'Telur Tumis Pare', fil:'Ginisang Itlog sa Ampalaya',
+  ing:[
+    ['涼瓜/苦瓜','Pare, iris tipis','Ampalaya, hiwain nang manipis','1.5條','1,5 buah','1.5 piraso'],
+    ['雞蛋','Telur','Itlog','5隻','5 butir','5 piraso'],
+    ['鹽','Garam','Asin','少許','secukupnya','kaunti lang'],
+    ['油','Minyak','Mantika','2.5湯匙','2,5 sdm','2.5 kutsara'],
+  ],
+  steps:[
+    ['涼瓜汆水去苦味，瀝乾。','Rebus sebentar pare untuk mengurangi rasa pahit, tiriskan.','Pakuluan ang ampalaya para mabawasan ang pait, patuyuin.'],
+    ['雞蛋加鹽打散。','Kocok telur dengan garam.','Batihin ang itlog na may asin.'],
+    ['熱油炒香涼瓜片。','Panaskan minyak, tumis pare hingga harum.','Init-in ang mantika, igisa ang ampalaya hanggang mabango.'],
+    ['倒入蛋液炒至凝固即成。','Tuang telur, aduk hingga matang, sajikan.','Ibuhos ang itlog, haluin hanggang maluto, ihain.'],
+  ]},
+{cat:'egg', emoji:'🧈', zh:'家常豆腐', id:'Tahu Rumahan', fil:'Tokwang Pang-araw-araw',
+  ing:[
+    ['豆腐','Tahu, potong','Tokwa, hiwain','2磚','2 kotak','2 piraso'],
+    ['免治豬肉','Daging babi cincang','Giniling na baboy','200克','200 gram','200 gramo'],
+    ['蒜蓉','Bawang putih cincang','Tinadtad na bawang','3瓣','3 siung','3 piraso'],
+    ['蔥花','Daun bawang, cincang','Tinadtad na sibuyas na dahon','適量','secukupnya','sapat na dami'],
+    ['生抽','Kecap asin','Toyo','1.5湯匙','1,5 sdm','1.5 kutsara'],
+    ['蠔油','Saus tiram','Sarsa tiram','1.5湯匙','1,5 sdm','1.5 kutsara'],
+    ['生粉水','Larutan tepung maizena','Hinalong gawgaw sa tubig','適量','secukupnya','sapat na dami'],
+    ['油','Minyak','Mantika','2.5湯匙','2,5 sdm','2.5 kutsara'],
+  ],
+  steps:[
+    ['豆腐煎至兩面金黃，盛起。','Goreng tahu hingga kedua sisi keemasan, angkat.','Iprito ang tokwa hanggang maging ginto ang magkabilang gilid, alisin muna.'],
+    ['爆香蒜蓉，加免治豬肉炒散。','Tumis bawang putih, masukkan daging cincang, aduk hingga matang.','Igisa ang bawang, idagdag ang giniling na baboy, igisa hanggang maluto.'],
+    ['加生抽、蠔油同適量水煮滾。','Tambahkan kecap asin, saus tiram, dan air secukupnya, didihkan.','Lagyan ng toyo, sarsa tiram, at sapat na tubig, pakuluin.'],
+    ['加豆腐回鑊煮4分鐘，勾芡。','Masukkan kembali tahu, masak 4 menit, kentalkan dengan larutan maizena.','Ibalik ang tokwa, lutuin ng 4 minuto, papalin ng hinalong gawgaw.'],
+    ['灑蔥花即成。','Taburi daun bawang, sajikan.','Budburan ng sibuyas na dahon, ihain.'],
+  ]},
+{cat:'egg', emoji:'🥚', zh:'蒸水蛋', id:'Telur Kukus Halus', fil:'Pinasingawang Itlog na Malambot',
+  ing:[
+    ['雞蛋','Telur','Itlog','5隻','5 butir','5 piraso'],
+    ['水或上湯(微暖)','Air atau kaldu, suam-suam kuku','Tubig o sabaw, malahininga','蛋液1.5倍','1,5 kali volume telur','1.5 beses ng dami ng itlog'],
+    ['鹽','Garam','Asin','少許','secukupnya','kaunti lang'],
+    ['胡椒粉','Merica bubuk putih','Pulbos na paminta','少許','secukupnya','kaunti lang'],
+    ['生抽','Kecap asin','Toyo','少許','secukupnya','kaunti lang'],
+    ['麻油','Minyak wijen','Langis ng linga','少許','secukupnya','kaunti lang'],
+    ['蔥花','Daun bawang, cincang','Tinadtad na sibuyas na dahon','適量','secukupnya','sapat na dami'],
+  ],
+  steps:[
+    ['雞蛋加鹽、胡椒粉打散，加溫水拌勻，隔渣。','Kocok telur dengan garam dan merica bubuk, campur air hangat, saring agar halus.','Batihin ang itlog na may asin at paminta, ihalo sa maligamgam na tubig, salain para maging makinis.'],
+    ['蛋液用保鮮紙封好碗口。','Tutup mangkuk berisi telur dengan plastik wrap.','Takpan ang mangkok ng itlog gamit ang plastic wrap.'],
+    ['隔水中火蒸14分鐘至凝固。','Kukus dengan api sedang selama 14 menit hingga mengeras.','Pasingawan sa katamtamang apoy ng 14 minuto hanggang tumigas.'],
+    ['淋上生抽、麻油，灑蔥花即成。','Siram kecap asin dan minyak wijen, taburi daun bawang, sajikan.','Buhusan ng toyo at langis ng linga, budburan ng sibuyas na dahon, ihain.'],
+  ]},
+{cat:'egg', emoji:'🌶️', zh:'麻婆豆腐', id:'Tahu Mapo', fil:'Mapo Tofu',
+  ing:[
+    ['豆腐','Tahu, potong dadu','Tokwa, hiwain nang dice','2磚','2 kotak','2 piraso'],
+    ['免治豬肉/牛肉','Daging cincang babi/sapi','Giniling na baboy o baka','200克','200 gram','200 gramo'],
+    ['豆瓣醬','Saus cabai fermentasi (doubanjiang)','Sarsa ng fermented chili bean (doubanjiang)','1.5湯匙','1,5 sdm','1.5 kutsara'],
+    ['蒜蓉、薑蓉','Bawang putih & jahe, cincang','Tinadtad na bawang at luya','各1.5茶匙','masing-masing 1,5 sdt','tig-1.5 kutsarita'],
+    ['乾辣椒(剪段)','Cabai kering, gunting','Tuyong sili, guntingin','3-4隻','3-4 buah','3-4 piraso'],
+    ['蔥花','Daun bawang, cincang','Tinadtad na sibuyas na dahon','適量','secukupnya','sapat na dami'],
+    ['生抽','Kecap asin','Toyo','1.5湯匙','1,5 sdm','1.5 kutsara'],
+    ['生粉水','Larutan tepung maizena','Hinalong gawgaw sa tubig','適量','secukupnya','sapat na dami'],
+    ['花椒粉(可選)','Bubuk lada Sichuan (opsional)','Pulbos na Sichuan pepper (opsyonal)','少許','secukupnya','kaunti lang'],
+    ['油','Minyak','Mantika','2.5湯匙','2,5 sdm','2.5 kutsara'],
+  ],
+  steps:[
+    ['豆腐切件，落滾水略灼，瀝乾。','Potong tahu, rebus sebentar di air mendidih, tiriskan.','Hiwain ang tokwa, pakuluan sandali sa kumukulong tubig, patuyuin.'],
+    ['爆香蒜蓉、薑蓉、乾辣椒、豆瓣醬。','Tumis bawang putih, jahe, cabai kering, dan saus cabai fermentasi hingga harum.','Igisa ang bawang, luya, tuyong sili, at sarsa ng doubanjiang hanggang mabango.'],
+    ['加免治肉炒至變色。','Masukkan daging cincang, tumis hingga berubah warna.','Idagdag ang giniling na karne, igisa hanggang magbago ng kulay.'],
+    ['加生抽同適量水煮滾，加豆腐煮4分鐘。','Tambahkan kecap asin dan air secukupnya, didihkan, masukkan tahu, masak 4 menit.','Lagyan ng toyo at sapat na tubig, pakuluin, idagdag ang tokwa, lutuin ng 4 minuto.'],
+    ['勾芡，灑蔥花同花椒粉即成。','Kentalkan saus, taburi daun bawang dan bubuk lada Sichuan, sajikan.','Papalin ang sarsa, budburan ng sibuyas na dahon at Sichuan pepper, ihain.'],
   ]},
 ];
 
@@ -924,7 +903,7 @@ function renderCatTabs(){
   const el = document.getElementById('catTabs');
   el.innerHTML = CATEGORIES.map(c=>`
     <div class="cat-tab ${c.key===currentCat?'active':''}" data-cat="${c.key}">
-      ${c.emoji} ${c.zh} <span class="id">${c.id}</span>
+      ${c.emoji} ${c.zh} <span class="id">🇮🇩 ${c.id} · 🇵🇭 ${c.fil}</span>
     </div>
   `).join('');
   el.querySelectorAll('.cat-tab').forEach(t=>{
@@ -936,7 +915,7 @@ function getFiltered(){
   const q = document.getElementById('searchInput').value.trim().toLowerCase();
   return RECIPES.filter(r=>{
     const matchCat = currentCat==='all' || r.cat===currentCat;
-    const matchQ = !q || r.zh.toLowerCase().includes(q) || r.id.toLowerCase().includes(q);
+    const matchQ = !q || r.zh.toLowerCase().includes(q) || r.id.toLowerCase().includes(q) || r.fil.toLowerCase().includes(q);
     return matchCat && matchQ;
   });
 }
@@ -945,7 +924,7 @@ function renderGrid(){
   const list = getFiltered();
   const grid = document.getElementById('recipeGrid');
   if(list.length===0){
-    grid.innerHTML = `<div class="empty-msg">冇搵到相關菜式 · Tidak ditemukan resep yang cocok</div>`;
+    grid.innerHTML = `<div class="empty-msg">冇搵到相關菜式 · 🇮🇩 Tidak ditemukan resep yang cocok · 🇵🇭 Walang nahanap na recipe</div>`;
     return;
   }
   grid.innerHTML = list.map((r)=>{
@@ -955,7 +934,8 @@ function renderGrid(){
     <div class="card" data-idx="${idx}">
       <div class="emoji">${r.emoji}</div>
       <div class="zh-name">${r.zh}</div>
-      <div class="id-name">${r.id}</div>
+      <div class="id-name">🇮🇩 ${r.id}</div>
+      <div class="id-name">🇵🇭 ${r.fil}</div>
       <div class="badge-row">
         <div class="badge cat-${r.cat}">${ci.zh} &middot; ${ci.id}</div>
         <div class="badge servings">${SERVINGS.zh}</div>
@@ -977,24 +957,25 @@ function openModal(idx){
       <div class="emoji">${r.emoji}</div>
       <div>
         <div class="zh-name">${r.zh}</div>
-        <div class="id-name">${r.id}</div>
+        <div class="id-name">🇮🇩 ${r.id}</div>
+        <div class="id-name">🇵🇭 ${r.fil}</div>
         <div class="badge-row">
           <div class="badge cat-${r.cat}">${ci.zh} &middot; ${ci.id}</div>
-          <div class="badge servings">${SERVINGS.zh} · ${SERVINGS.id}</div>
+          <div class="badge servings">${SERVINGS.zh} &middot; 🇮🇩 ${SERVINGS.id} &middot; 🇵🇭 ${SERVINGS.fil}</div>
         </div>
       </div>
     </div>
-    <div class="section-title">🧺 材料 · Bahan-bahan</div>
+    <div class="section-title">🧺 材料 · Bahan-bahan · Sangkap</div>
     <table class="ing-table">
-      ${r.ing.map(([zh,id,qzh,qid])=>`
+      ${r.ing.map(([zh,id,fil,qzh,qid,qfil])=>`
         <tr>
-          <td class="name"><span class="zh">${zh}</span><span class="id">${id}</span></td>
-          <td class="qty"><span class="zh">${qzh}</span><span class="id">${qid}</span></td>
+          <td class="name"><span class="zh">${zh}</span><span class="id">🇮🇩 ${id}</span><span class="id">🇵🇭 ${fil}</span></td>
+          <td class="qty"><span class="zh">${qzh}</span><span class="id">🇮🇩 ${qid}</span><span class="id">🇵🇭 ${qfil}</span></td>
         </tr>`).join('')}
     </table>
-    <div class="section-title">🔥 做法 · Cara Memasak</div>
+    <div class="section-title">🔥 做法 · Cara Memasak · Paraan ng Pagluluto</div>
     <ol class="steps">
-      ${r.steps.map(([zh,id])=>`<li>${zh}<span class="id">${id}</span></li>`).join('')}
+      ${r.steps.map(([zh,id,fil])=>`<li>${zh}<span class="id">🇮🇩 ${id}</span><span class="id">🇵🇭 ${fil}</span></li>`).join('')}
     </ol>
   `;
   document.getElementById('closeModalBtn').addEventListener('click', closeModal);
