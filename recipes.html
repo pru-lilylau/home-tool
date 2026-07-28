@@ -91,7 +91,7 @@
   .card .id-name{font-size:12px;color:var(--ink-soft);font-style:italic;}
   .card .badge-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px;}
   .badge{font-size:10.5px;font-weight:700;border-radius:999px;padding:4px 12px;}
-  .badge.servings{background:var(--cream);color:var(--ink-soft);font-weight:600;}
+  .badge.servings, .badge.meta{background:var(--cream);color:var(--ink-soft);font-weight:600;}
   .badge.cat-chicken{background:var(--butter);color:var(--butter-deep);}
   .badge.cat-pork{background:var(--coral);color:#fff;}
   .badge.cat-beef{background:var(--coral-deep);color:#fff;}
@@ -312,11 +312,35 @@ function scaleQty(str, ratio, lang){
   });
 }
 
+// 難易程度 Tingkat Kesulitan / Antas ng Hirap
+const DIFFICULTY = {
+  easy:   {zh:'簡單', id:'Mudah',      fil:'Madali',      stars:1},
+  medium: {zh:'中等', id:'Sedang',     fil:'Katamtaman',  stars:2},
+  hard:   {zh:'較難', id:'Sulit',      fil:'Mahirap',     stars:3},
+};
+
+// 煮食時間 Waktu Memasak / Oras ng Pagluluto — timeMin 係總時間（分鐘），呈現時先按語言格式化
+function formatTime(min, lang){
+  if(min < 60){
+    if(lang==='id') return min+' menit';
+    if(lang==='fil') return min+' minuto';
+    return min+'分鐘';
+  }
+  const hours = min/60;
+  let hourStr;
+  if(Number.isInteger(hours)) hourStr = String(hours);
+  else hourStr = lang==='id' ? hours.toFixed(1).replace('.',',') : hours.toFixed(1);
+  if(lang==='id') return hourStr+' jam';
+  if(lang==='fil') return hourStr+' oras';
+  return hourStr+'小時';
+}
+
 // ing: [中文名, 印尼文名, 菲律賓文名, 中文份量, 印尼文份量, 菲律賓文份量]
 // steps: [中文步驟, 印尼文步驟, 菲律賓文步驟]
 const RECIPES = [
 // ===== 肉類 Daging / Karne =====
 {cat:'pork', emoji:'🥩', zh:'蒜蓉蒸排骨', id:'Iga Babi Kukus Bawang Putih', fil:'Pinasingawang Tadyang ng Baboy sa Bawang',
+  timeMin:30, diff:'easy',
   ing:[
     ['排骨','Iga babi, potong kecil','Tadyang ng baboy, hiwain ng maliit','600克','600 gram','600 gramo'],
     ['蒜頭(剁碎)','Bawang putih, cincang halus','Bawang, tinadtad','8瓣','8 siung','8 piraso'],
@@ -334,6 +358,7 @@ const RECIPES = [
     ['灑上紅椒絲同蔥花即可享用。','Taburi irisan cabai merah dan daun bawang, sajikan.','Budburan ng hiniwang sili pula at sibuyas na dahon, ihain.'],
   ]},
 {cat:'pork', emoji:'🍖', zh:'京都骨（酸甜排骨）', id:'Iga Asam Manis Gaya Kyoto', fil:'Iga sa Matamis at Maasim na Sarsa (Kyoto Style)',
+  timeMin:30, diff:'medium',
   ing:[
     ['豬肋排','Iga babi','Tadyang ng baboy','600克','600 gram','600 gramo'],
     ['生粉(沾裹用)','Tepung maizena (untuk lapisan)','Gawgaw (pambalot)','4湯匙','4 sdm','4 kutsara'],
@@ -351,6 +376,7 @@ const RECIPES = [
     ['排骨回鑊拌勻醬汁即可上碟。','Masukkan kembali iga, aduk rata dengan saus, sajikan.','Ibalik ang tadyang sa sarsa, haluing mabuti, ihain.'],
   ]},
 {cat:'beef', emoji:'🍅', zh:'番茄薯仔炆牛腩', id:'Sengkel Sapi Semur Tomat & Kentang', fil:'Nilagang Brisket ng Baka sa Kamatis at Patatas',
+  timeMin:150, diff:'medium',
   ing:[
     ['牛腩(切件)','Sengkel sapi, potong dadu','Brisket ng baka, hiwain','700克','700 gram','700 gramo'],
     ['番茄','Tomat, potong wedges','Kamatis, hiwain','4個','4 buah','4 piraso'],
@@ -372,6 +398,7 @@ const RECIPES = [
     ['加入薯仔再炆20-25分鐘至軟身。','Masukkan kentang, semur lagi 20-25 menit hingga empuk.','Idagdag ang patatas, lutuin pa ng 20-25 minuto hanggang lumambot.'],
   ]},
 {cat:'pork', emoji:'🍯', zh:'蜜汁叉燒', id:'Char Siu Madu', fil:'Char Siu na may Pulot',
+  timeMin:50, diff:'medium',
   ing:[
     ['豬頸肉/梅頭肉','Daging leher babi','Leeg ng baboy','700克','700 gram','700 gramo'],
     ['叉燒醬','Saus char siu','Sarsa ng char siu','4湯匙','4 sdm','4 kutsara'],
@@ -388,6 +415,7 @@ const RECIPES = [
     ['最後掃上蜜糖，焗多5分鐘至表面焦香。','Olesi madu, panggang 5 menit lagi hingga permukaan karamel.','Sa huli, haplusan ng pulot-pukyutan, ipanggang pa ng 5 minuto hanggang mag-caramelize ang ibabaw.'],
   ]},
 {cat:'beef', emoji:'🥒', zh:'涼瓜炒牛肉', id:'Tumis Daging Sapi dengan Pare', fil:'Ginisang Baka na may Ampalaya',
+  timeMin:25, diff:'easy',
   ing:[
     ['牛肉(切片)','Daging sapi, iris tipis','Karne ng baka, hiwain ng manipis','350克','350 gram','350 gramo'],
     ['涼瓜/苦瓜','Pare, iris','Ampalaya, hiwain','2條','2 buah','2 piraso'],
@@ -406,6 +434,7 @@ const RECIPES = [
     ['牛肉回鑊快炒兜勻即成。','Masukkan kembali daging sapi, aduk rata sebentar, sajikan.','Ibalik ang karne, igisa nang mabilis, ihain.'],
   ]},
 {cat:'chicken', emoji:'🥃', zh:'柱侯醬燜雞翼', id:'Sayap Ayam Semur Saus Chu Hou', fil:'Nilagang Pakpak ng Manok sa Chu Hou',
+  timeMin:30, diff:'easy',
   ing:[
     ['雞中翼','Sayap ayam (bagian tengah)','Pakpak ng manok (gitnang bahagi)','12隻(約700克)','12 buah (sekitar 700 gram)','12 piraso (mga 700 gramo)'],
     ['柱侯醬','Saus chu hou','Sarsa Chu Hou','3湯匙','3 sdm','3 kutsara'],
@@ -425,6 +454,7 @@ const RECIPES = [
     ['下蔥段炒勻，收汁即成。','Masukkan daun bawang, aduk rata, masak hingga saus mengental, sajikan.','Idagdag ang sibuyas na dahon, haluin, lutuin hanggang lumapot ang sarsa, ihain.'],
   ]},
 {cat:'beef', emoji:'🧈', zh:'黑椒牛柳', id:'Has Sapi Saus Lada Hitam', fil:'Lomo ng Baka sa Paminta Itim',
+  timeMin:30, diff:'easy',
   ing:[
     ['牛柳(切條)','Daging sapi has, potong memanjang','Lomo ng baka, hiwain nang mahaba','450克','450 gram','450 gramo'],
     ['洋蔥(切件)','Bawang bombay, potong','Sibuyas, hiwain','1個','1 buah','1 piraso'],
@@ -443,6 +473,7 @@ const RECIPES = [
     ['牛柳回鑊，加黑椒碎、蠔油、糖炒勻即成。','Masukkan kembali daging sapi, tambahkan lada hitam, saus tiram, dan gula, aduk rata, sajikan.','Ibalik ang karne, lagyan ng durog na paminta, sarsa tiram, at asukal, haluin, ihain.'],
   ]},
 {cat:'pork', emoji:'🌶️', zh:'韓式辣醬豬頸肉', id:'Leher Babi Bakar Saus Gochujang Korea', fil:'Inihaw na Leeg ng Baboy sa Gochujang',
+  timeMin:45, diff:'easy',
   ing:[
     ['豬頸肉(切片)','Daging leher babi, iris','Leeg ng baboy, hiwain','500克','500 gram','500 gramo'],
     ['韓式辣醬(苦椒醬)','Saus gochujang Korea','Sarsa gochujang','3湯匙','3 sdm','3 kutsara'],
@@ -459,6 +490,7 @@ const RECIPES = [
     ['灑上芝麻即成。','Taburi wijen, sajikan.','Budburan ng linga, ihain.'],
   ]},
 {cat:'chicken', emoji:'🥥', zh:'椰汁香茅咖喱雞', id:'Kari Ayam Santan & Serai', fil:'Curry na Manok sa Gata at Tanglad',
+  timeMin:35, diff:'medium',
   ing:[
     ['雞件(切塊)','Ayam, potong','Manok, hiwain','700克','700 gram','700 gramo'],
     ['香茅(拍扁切段)','Serai, memarkan & potong','Tanglad, dikdikin at hiwain','2條','2 batang','2 tangkay'],
@@ -480,6 +512,7 @@ const RECIPES = [
 
 // ===== 海鮮 Makanan Laut / Pagkaing-dagat =====
 {cat:'seafood', emoji:'🐟', zh:'豉汁蒸鯇魚', id:'Ikan Kukus Saus Tauco Hitam', fil:'Pinasingawang Isda sa Tausi',
+  timeMin:20, diff:'easy',
   ing:[
     ['鯇魚/魚柳','Ikan / fillet ikan','Isda / hiwa ng isda','1條(約650克)','1 ekor (sekitar 650 gram)','1 piraso (mga 650 gramo)'],
     ['豆豉','Tauco hitam','Tausi','1.5湯匙','1,5 sdm','1.5 kutsara'],
@@ -496,6 +529,7 @@ const RECIPES = [
     ['淋上生抽，燒熱油淋上蔥絲、紅椒即成。','Siram kecap asin, tuang minyak panas di atas daun bawang dan cabai merah, sajikan.','Buhusan ng toyo, magpainit ng mantika at ibuhos sa ibabaw ng sibuyas na dahon at sili pula, ihain.'],
   ]},
 {cat:'seafood', emoji:'🍤', zh:'蒜蓉蒸蝦', id:'Udang Kukus Bawang Putih', fil:'Pinasingawang Hipon sa Bawang',
+  timeMin:25, diff:'easy',
   ing:[
     ['蝦(去腸)','Udang, buang kotoran','Hipon, alisan ng laman ng likod','500克','500 gram','500 gramo'],
     ['蒜蓉','Bawang putih cincang','Tinadtad na bawang','6瓣','6 siung','6 piraso'],
@@ -512,6 +546,7 @@ const RECIPES = [
     ['淋上蒸魚豉油，灑蔥花即成。','Siram kecap asin kukus ikan, taburi daun bawang, sajikan.','Buhusan ng toyo na pang-pasingaw, budburan ng sibuyas na dahon, ihain.'],
   ]},
 {cat:'seafood', emoji:'🦑', zh:'豉椒炒魷魚', id:'Cumi Tumis Cabai & Tauco Hitam', fil:'Ginisang Pusit sa Sili at Tausi',
+  timeMin:20, diff:'easy',
   ing:[
     ['魷魚(切花)','Cumi, potong & diberi motif silang','Pusit, hiwain nang krus-kruson','500克','500 gram','500 gramo'],
     ['青紅椒','Paprika hijau & merah, potong','Berde at pulang paminto, hiwain','各1.5隻','masing-masing 1,5 buah','tig-1.5 piraso'],
@@ -529,6 +564,7 @@ const RECIPES = [
     ['魷魚回鑊，加生抽、糖大火兜炒。','Masukkan kembali cumi, tambahkan kecap asin dan gula, tumis cepat dengan api besar.','Ibalik ang pusit, lagyan ng toyo at asukal, igisa nang mabilis sa mataas na apoy.'],
   ]},
 {cat:'seafood', emoji:'🥫', zh:'豆豉鯪魚炒油麥菜', id:'Ikan Kaleng Saus Tauco Hitam Tumis Sayur Yu Mak', fil:'De Latang Isda sa Sarsa Tausi na Ginisa sa Gulay na Yu Mak',
+  timeMin:15, diff:'easy',
   ing:[
     ['罐頭豆豉鯪魚','Ikan kaleng saus tauco hitam','De latang isda sa sarsa tausi','2罐','2 kaleng','2 lata'],
     ['油麥菜','Sayur yu mak, potong','Gulay na yu mak, hiwain','2棵','2 ikat','2 bigkis'],
@@ -542,6 +578,7 @@ const RECIPES = [
     ['加入鯪魚同罐頭汁，灑少許糖炒勻即成。','Masukkan ikan dan sedikit sausnya, taburi gula, aduk rata, sajikan.','Idagdag ang isda at kaunti sa sarsa nito, budburan ng asukal, haluin, ihain.'],
   ]},
 {cat:'seafood', emoji:'🦀', zh:'薑蔥炒蟹', id:'Kepiting Tumis Jahe & Daun Bawang', fil:'Ginisang Alimasag sa Luya at Sibuyas',
+  timeMin:35, diff:'medium',
   ing:[
     ['肉蟹(斬件)','Kepiting, potong bersih','Alimasag, hiwain','2隻(約1公斤)','2 ekor (sekitar 1 kg)','2 piraso (mga 1 kilo)'],
     ['薑(切片)','Jahe, iris','Luya, hiwain','8片','8 iris','8 hiwa'],
@@ -559,6 +596,7 @@ const RECIPES = [
     ['加蔥段炒勻，勾芡即成。','Masukkan daun bawang, aduk rata, kentalkan saus, sajikan.','Idagdag ang sibuyas na dahon, haluin, papalin ang sarsa, ihain.'],
   ]},
 {cat:'seafood', emoji:'🥃', zh:'XO醬炒蝦仁', id:'Udang Tumis Saus XO', fil:'Ginisang Hipon sa Sarsa XO',
+  timeMin:20, diff:'easy',
   ing:[
     ['蝦仁','Udang kupas','Hipon, balatan','400克','400 gram','400 gramo'],
     ['西芹(切段)','Seledri, potong','Kintsay, hiwain','1條','1 batang','1 tangkay'],
@@ -577,6 +615,7 @@ const RECIPES = [
     ['加XO醬炒勻，蝦仁回鑊，加生抽、糖兜炒即成。','Masukkan saus XO, aduk rata, masukkan kembali udang, tambahkan kecap asin dan gula, aduk cepat, sajikan.','Idagdag ang sarsa XO, haluin, ibalik ang hipon, lagyan ng toyo at asukal, igisa nang mabilis, ihain.'],
   ]},
 {cat:'seafood', emoji:'🐟', zh:'味醂香煎三文魚', id:'Salmon Panggang Saus Mirin', fil:'Inihaw na Salmon sa Mirin',
+  timeMin:20, diff:'easy',
   ing:[
     ['三文魚扒','Fillet salmon','Hiwa ng salmon','4塊(約600克)','4 potong (sekitar 600 gram)','4 piraso (mga 600 gramo)'],
     ['鹽','Garam','Asin','少許','secukupnya','kaunti lang'],
@@ -593,6 +632,7 @@ const RECIPES = [
     ['味醂、生抽、糖煮成醬汁，淋在魚面即成。','Masak mirin, kecap asin, dan gula menjadi saus, siram di atas ikan, sajikan.','Pakuluin ang mirin, toyo, at asukal para gawing sarsa, ibuhos sa ibabaw ng isda, ihain.'],
   ]},
 {cat:'seafood', emoji:'🍋', zh:'咸檸檬蒸魚', id:'Ikan Kukus Lemon Asin', fil:'Pinasingawang Isda sa Inasnang Limon',
+  timeMin:20, diff:'easy',
   ing:[
     ['鮮魚(如龍脷/海斑)','Ikan segar (lidah/kerapu)','Sariwang isda (dila o lapu-lapu)','1條(約600克)','1 ekor (sekitar 600 gram)','1 piraso (mga 600 gramo)'],
     ['咸檸檬(切片)','Lemon asin, iris','Inasnang limon, hiwain','2個','2 buah','2 piraso'],
@@ -611,6 +651,7 @@ const RECIPES = [
 
 // ===== 蔬菜 Sayuran / Gulay =====
 {cat:'veg', emoji:'🥬', zh:'蠔油生菜', id:'Selada Saus Tiram', fil:'Letsugas sa Sarsa Tiram',
+  timeMin:10, diff:'easy',
   ing:[
     ['生菜','Selada, cuci bersih','Letsugas, hugasan','2棵(約600克)','2 ikat (sekitar 600 gram)','2 bigkis (mga 600 gramo)'],
     ['蒜蓉','Bawang putih cincang','Tinadtad na bawang','3瓣','3 siung','3 piraso'],
@@ -626,6 +667,7 @@ const RECIPES = [
     ['淋喺生菜上，最後爆香蒜蓉淋面即成。','Siram di atas selada, tumis bawang putih dan tuang di atasnya, sajikan.','Ibuhos sa ibabaw ng letsugas, igisa ang bawang at ibuhos sa ibabaw, ihain.'],
   ]},
 {cat:'veg', emoji:'🥦', zh:'蒜蓉炒芥蘭', id:'Kailan Tumis Bawang Putih', fil:'Ginisang Kailan sa Bawang',
+  timeMin:10, diff:'easy',
   ing:[
     ['芥蘭','Kailan, potong','Kailan, hiwain','2棵(約500克)','2 ikat (sekitar 500 gram)','2 bigkis (mga 500 gramo)'],
     ['蒜蓉','Bawang putih cincang','Tinadtad na bawang','4瓣','4 siung','4 piraso'],
@@ -640,6 +682,7 @@ const RECIPES = [
     ['加生抽、糖炒勻即成。','Tambahkan kecap asin dan gula, aduk rata, sajikan.','Lagyan ng toyo at asukal, haluin, ihain.'],
   ]},
 {cat:'veg', emoji:'🥬', zh:'蝦米炒椰菜', id:'Kubis Tumis Ebi', fil:'Ginisang Repolyo sa Hibi',
+  timeMin:15, diff:'easy',
   ing:[
     ['椰菜','Kubis, potong','Repolyo, hiwain','1個(約600克)','1 buah (sekitar 600 gram)','1 piraso (mga 600 gramo)'],
     ['蝦米(浸軟)','Ebi / udang kering, rendam lunak','Hibi (tuyong hipon), ibabad hanggang lumambot','3湯匙','3 sdm','3 kutsara'],
@@ -654,6 +697,7 @@ const RECIPES = [
     ['加鹽調味炒勻即成。','Tambahkan garam, aduk rata, sajikan.','Lagyan ng asin, haluin, ihain.'],
   ]},
 {cat:'veg', emoji:'🥒', zh:'涼拌青瓜', id:'Acar Timun Segar', fil:'Maasim-Matamis na Pipino',
+  timeMin:40, diff:'easy',
   ing:[
     ['青瓜','Timun, dipukul & potong','Pipino, dikdikin at hiwain','3條','3 buah','3 piraso'],
     ['蒜蓉','Bawang putih cincang','Tinadtad na bawang','3瓣','3 siung','3 piraso'],
@@ -670,6 +714,7 @@ const RECIPES = [
     ['雪凍最少30分鐘，入味後食用。','Dinginkan di kulkas minimal 30 menit agar meresap, lalu sajikan.','Ipalamig sa refrigerator ng hindi bababa sa 30 minuto para tumagos ang lasa, ihain.'],
   ]},
 {cat:'veg', emoji:'🍄', zh:'木耳炒西芹百合', id:'Jamur Kuping Tumis Seledri & Umbi Lili', fil:'Ginisang Tainga ng Daga sa Kintsay at Liryo',
+  timeMin:30, diff:'easy',
   ing:[
     ['木耳(浸軟)','Jamur kuping kering, rendam & sobek','Tuyong tainga ng daga, ibabad at pilasin','約20克乾','sekitar 20 gram kering','mga 20 gramo (tuyo)'],
     ['西芹','Seledri, potong miring','Kintsay, hiwain nang pahilig','3條','3 batang','3 tangkay'],
@@ -685,6 +730,7 @@ const RECIPES = [
     ['加百合炒片刻，加鹽調味即成。','Masukkan umbi lili, tumis sebentar, tambahkan garam, sajikan.','Idagdag ang liryo, igisa sandali, lagyan ng asin, ihain.'],
   ]},
 {cat:'veg', emoji:'🌶️', zh:'椒絲腐乳炒通菜', id:'Kangkung Tumis Fu Yu Pedas', fil:'Ginisang Kangkong sa Tahuring Maanghang',
+  timeMin:15, diff:'easy',
   ing:[
     ['通菜(切段)','Kangkung, potong','Kangkong, hiwain','2棵(約500克)','2 ikat (sekitar 500 gram)','2 bigkis (mga 500 gramo)'],
     ['辣腐乳','Fu yu (fermented tofu) pedas','Tahuring maanghang (fermented tofu)','2磚','2 kotak','2 piraso'],
@@ -703,6 +749,7 @@ const RECIPES = [
 
 // ===== 湯品 Sup / Sabaw =====
 {cat:'soup', emoji:'🍲', zh:'節瓜蜆肉湯', id:'Sup Labu Bulu & Kerang', fil:'Sabaw ng Hairy Melon at Tulya',
+  timeMin:35, diff:'easy',
   ing:[
     ['節瓜','Labu bulu, kupas & potong','Hairy melon, balatan at hiwain','2條','2 buah','2 piraso'],
     ['蜆','Kerang, cuci bersih','Tulya, hugasan','450克','450 gram','450 gramo'],
@@ -717,6 +764,7 @@ const RECIPES = [
     ['加蜆煮至開口，加鹽調味即成。','Masukkan kerang, masak hingga terbuka, tambahkan garam, sajikan.','Idagdag ang tulya, lutuin hanggang mabuksan, lagyan ng asin, ihain.'],
   ]},
 {cat:'soup', emoji:'🥣', zh:'冬瓜薏米湯', id:'Sup Labu Air & Jelai', fil:'Sabaw ng Kondol at Adlai',
+  timeMin:120, diff:'easy',
   ing:[
     ['冬瓜','Labu air, potong','Kondol, hiwain','1個(約800克)','1 buah (sekitar 800 gram)','1 piraso (mga 800 gramo)'],
     ['薏米','Jelai / biji jali','Adlai','1杯','1 cangkir','1 tasa'],
@@ -732,6 +780,7 @@ const RECIPES = [
     ['轉細火煲1.5小時，加鹽調味。','Kecilkan api, masak 1,5 jam, tambahkan garam.','Hinaan ang apoy, lutuin ng 1.5 oras, lagyan ng asin.'],
   ]},
 {cat:'soup', emoji:'🍅', zh:'番茄薯仔湯', id:'Sup Tomat & Kentang', fil:'Sabaw ng Kamatis at Patatas',
+  timeMin:60, diff:'easy',
   ing:[
     ['番茄','Tomat, potong','Kamatis, hiwain','4個','4 buah','4 piraso'],
     ['薯仔','Kentang, potong','Patatas, hiwain','3個','3 buah','3 piraso'],
@@ -747,6 +796,7 @@ const RECIPES = [
     ['轉細火煲45分鐘，加鹽調味。','Kecilkan api, masak 45 menit, tambahkan garam.','Hinaan ang apoy, lutuin ng 45 minuto, lagyan ng asin.'],
   ]},
 {cat:'soup', emoji:'🥚', zh:'紫菜蛋花湯', id:'Sup Rumput Laut & Telur', fil:'Sabaw ng Nori at Itlog',
+  timeMin:15, diff:'easy',
   ing:[
     ['紫菜','Rumput laut kering','Tuyong nori','2片','2 lembar','2 pirasong dahon'],
     ['雞蛋','Telur','Itlog','3隻','3 butir','3 piraso'],
@@ -762,6 +812,7 @@ const RECIPES = [
     ['灑蔥花、麻油即成。','Taburi daun bawang dan minyak wijen, sajikan.','Budburan ng sibuyas na dahon at langis ng linga, ihain.'],
   ]},
 {cat:'soup', emoji:'🥜', zh:'眉豆花生豬骨湯', id:'Sup Tulang Babi, Kacang Tanah & Kacang Mata Hitam', fil:'Sabaw ng Buto ng Baboy, Mani, at Paayap',
+  timeMin:120, diff:'easy',
   ing:[
     ['豬骨','Tulang babi','Buto ng baboy','600克','600 gram','600 gramo'],
     ['眉豆','Kacang mata hitam','Paayap','1杯','1 cangkir','1 tasa'],
@@ -779,6 +830,7 @@ const RECIPES = [
 
 // ===== 飯麵 Nasi & Mi / Kanin at Pansit =====
 {cat:'rice', emoji:'🍝', zh:'星洲炒米', id:'Bihun Goreng Gaya Singapura', fil:'Bihon Estilong Singapore',
+  timeMin:25, diff:'easy',
   ing:[
     ['米粉(浸軟)','Bihun, rendam lunak','Bihon, ibabad hanggang lumambot','300克','300 gram','300 gramo'],
     ['叉燒(切絲)','Char siu, iris','Char siu, hiniwa','150克','150 gram','150 gramo'],
@@ -798,6 +850,7 @@ const RECIPES = [
     ['加返雞蛋、蝦仁炒勻即成。','Masukkan kembali telur dan udang, aduk rata, sajikan.','Ibalik ang itlog at hipon, haluin, ihain.'],
   ]},
 {cat:'rice', emoji:'🍚', zh:'揚州炒飯', id:'Nasi Goreng Yangzhou', fil:'Fried Rice Yangzhou',
+  timeMin:20, diff:'easy',
   ing:[
     ['白飯(最好隔夜)','Nasi putih, sebaiknya dingin','Kanin, mas mainam kung araw na','4碗','4 mangkuk','4 tasa'],
     ['叉燒(切粒)','Char siu, potong dadu','Char siu, hiwain nang dice','150克','150 gram','150 gramo'],
@@ -815,6 +868,7 @@ const RECIPES = [
     ['加鹽調味，灑蔥花即成。','Tambahkan garam, taburi daun bawang, sajikan.','Lagyan ng asin, budburan ng sibuyas na dahon, ihain.'],
   ]},
 {cat:'rice', emoji:'🍜', zh:'豉油皇炒麵', id:'Mi Goreng Saus Kecap', fil:'Pansit na may Toyo',
+  timeMin:20, diff:'easy',
   ing:[
     ['麵(煮熟)','Mi telur, direbus & ditiriskan','Pansit na itlog, lutuin at salain','450克','450 gram','450 gramo'],
     ['芽菜','Taoge','Toge','200克','200 gram','200 gramo'],
@@ -831,6 +885,7 @@ const RECIPES = [
     ['加芽菜同韭黃炒香即成。','Masukkan taoge dan daun bawang muda, tumis sebentar, sajikan.','Idagdag ang toge at batang sibuyas na dahon, igisa sandali, ihain.'],
   ]},
 {cat:'rice', emoji:'🍚', zh:'臘腸煲仔飯', id:'Nasi Periuk dengan Sosis Cina', fil:'Kanin sa Palayok na may Chorizo Tsino',
+  timeMin:50, diff:'medium',
   ing:[
     ['白米','Beras','Bigas','3杯','3 cangkir','3 tasa'],
     ['臘腸(切片)','Sosis Cina / lap cheong, iris','Chorizo Tsino (lap cheong), hiwain','3條','3 buah','3 piraso'],
@@ -848,6 +903,7 @@ const RECIPES = [
     ['熄火淋上豉油汁，灑蔥花拌勻即成。','Matikan api, siram saus, taburi daun bawang, aduk rata, sajikan.','Patayin ang apoy, ibuhos ang sarsa, budburan ng sibuyas na dahon, haluin, ihain.'],
   ]},
 {cat:'rice', emoji:'🍲', zh:'牛腩湯麵', id:'Mi Kuah Sengkel Sapi', fil:'Pansit na may Sabaw ng Brisket ng Baka',
+  timeMin:40, diff:'easy',
   ing:[
     ['熟牛腩','Sengkel sapi matang, potong','Lutong brisket ng baka, hiwain','350克','350 gram','350 gramo'],
     ['麵','Mi, direbus','Pansit, lutuin','350克','350 gram','350 gramo'],
@@ -868,6 +924,7 @@ const RECIPES = [
 
 // ===== 蛋豆腐 Telur & Tahu / Itlog at Tokwa =====
 {cat:'egg', emoji:'🍳', zh:'番茄炒蛋', id:'Telur Tumis Tomat', fil:'Ginisang Itlog sa Kamatis',
+  timeMin:15, diff:'easy',
   ing:[
     ['雞蛋','Telur','Itlog','6隻','6 butir','6 piraso'],
     ['番茄','Tomat, potong wedges','Kamatis, hiwain','3個','3 buah','3 piraso'],
@@ -883,6 +940,7 @@ const RECIPES = [
     ['加返雞蛋炒勻，灑蔥花即成。','Masukkan kembali telur, aduk rata, taburi daun bawang, sajikan.','Ibalik ang itlog, haluin, budburan ng sibuyas na dahon, ihain.'],
   ]},
 {cat:'egg', emoji:'🥚', zh:'涼瓜炒蛋', id:'Telur Tumis Pare', fil:'Ginisang Itlog sa Ampalaya',
+  timeMin:15, diff:'easy',
   ing:[
     ['涼瓜/苦瓜','Pare, iris tipis','Ampalaya, hiwain nang manipis','1.5條','1,5 buah','1.5 piraso'],
     ['雞蛋','Telur','Itlog','5隻','5 butir','5 piraso'],
@@ -896,6 +954,7 @@ const RECIPES = [
     ['倒入蛋液炒至凝固即成。','Tuang telur, aduk hingga matang, sajikan.','Ibuhos ang itlog, haluin hanggang maluto, ihain.'],
   ]},
 {cat:'egg', emoji:'🧈', zh:'家常豆腐', id:'Tahu Rumahan', fil:'Tokwang Pang-araw-araw',
+  timeMin:20, diff:'easy',
   ing:[
     ['豆腐','Tahu, potong','Tokwa, hiwain','2磚','2 kotak','2 piraso'],
     ['免治豬肉','Daging babi cincang','Giniling na baboy','200克','200 gram','200 gramo'],
@@ -914,6 +973,7 @@ const RECIPES = [
     ['灑蔥花即成。','Taburi daun bawang, sajikan.','Budburan ng sibuyas na dahon, ihain.'],
   ]},
 {cat:'egg', emoji:'🥚', zh:'蒸水蛋', id:'Telur Kukus Halus', fil:'Pinasingawang Itlog na Malambot',
+  timeMin:25, diff:'easy',
   ing:[
     ['雞蛋','Telur','Itlog','5隻','5 butir','5 piraso'],
     ['水或上湯(微暖)','Air atau kaldu, suam-suam kuku','Tubig o sabaw, malahininga','蛋液1.5倍','1,5 kali volume telur','1.5 beses ng dami ng itlog'],
@@ -930,6 +990,7 @@ const RECIPES = [
     ['淋上生抽、麻油，灑蔥花即成。','Siram kecap asin dan minyak wijen, taburi daun bawang, sajikan.','Buhusan ng toyo at langis ng linga, budburan ng sibuyas na dahon, ihain.'],
   ]},
 {cat:'egg', emoji:'🌶️', zh:'麻婆豆腐', id:'Tahu Mapo', fil:'Mapo Tofu',
+  timeMin:25, diff:'medium',
   ing:[
     ['豆腐','Tahu, potong dadu','Tokwa, hiwain nang dice','2磚','2 kotak','2 piraso'],
     ['免治豬肉/牛肉','Daging cincang babi/sapi','Giniling na baboy o baka','200克','200 gram','200 gramo'],
@@ -952,6 +1013,7 @@ const RECIPES = [
 
 // ===== 新增 Tambahan / Karagdagan =====
 {cat:'seafood', emoji:'🐟', zh:'薑蔥蒸鯇魚', id:'Ikan Kukus Jahe & Daun Bawang', fil:'Pinasingawang Isda sa Luya at Sibuyas na Dahon',
+  timeMin:20, diff:'easy',
   ing:[
     ['鯇魚(魚腩或魚扒)','Ikan (bagian perut atau fillet)','Isda (tiyan o hiwa)','1條(約700克)','1 ekor (sekitar 700 gram)','1 piraso (mga 700 gramo)'],
     ['薑(切片、切絲)','Jahe, iris & iris halus','Luya, hiwain at hiwain manipis','適量','secukupnya','sapat na dami'],
@@ -969,6 +1031,7 @@ const RECIPES = [
     ['面層鋪上薑絲蔥絲，燒滾油淋上即成。','Taburi irisan halus jahe dan daun bawang di atasnya, panaskan minyak hingga mendidih dan siramkan, sajikan.','Budburan ng hiniwang manipis na luya at sibuyas na dahon sa ibabaw, painitin ang mantika hanggang kumulo at ibuhos, ihain.'],
   ]},
 {cat:'pork', emoji:'🥚', zh:'鹹蛋蒸肉餅', id:'Bakso Babi Kukus dengan Telur Asin', fil:'Pinasingawang Giniling na Baboy na may Itlog na Inasnan',
+  timeMin:30, diff:'easy',
   ing:[
     ['免治豬肉','Daging babi cincang','Giniling na baboy','500克','500 gram','500 gramo'],
     ['鹹蛋','Telur asin','Itlog na inasnan','3隻','3 butir','3 piraso'],
@@ -989,6 +1052,7 @@ const RECIPES = [
     ['灑上蔥花即成。','Taburi daun bawang, sajikan.','Budburan ng sibuyas na dahon, ihain.'],
   ]},
 {cat:'chicken', emoji:'🍗', zh:'豉油皇雞脾', id:'Ayam Kecap Rebus & Rendam Gaya Kanton', fil:'Manok na Nilaga sa Toyo (Estilong Cantonese)',
+  timeMin:60, diff:'easy',
   ing:[
     ['雞脾(光雞脾)','Paha ayam utuh','Hita ng manok, buo','4隻(約800克)','4 buah (sekitar 800 gram)','4 piraso (mga 800 gramo)'],
     ['紹興酒(擦勻用)','Arak Shaoxing (untuk melumuri)','Alak na Shaoxing (panghaplos)','1湯匙','1 sdm','1 kutsara'],
@@ -1009,6 +1073,7 @@ const RECIPES = [
     ['取出雞脾，切件，淋少許麻油即成。','Angkat ayam, potong-potong, siram sedikit minyak wijen, sajikan.','Alisin ang manok, hiwain, buhusan ng kaunting langis ng linga, ihain.'],
   ]},
 {cat:'veg', emoji:'🫘', zh:'乾煸四季豆', id:'Buncis Tumis Kering Pedas', fil:'Tuyong Ginisang Baguio Beans',
+  timeMin:25, diff:'medium',
   ing:[
     ['四季豆(切段)','Buncis, potong','Baguio beans, hiwain','350克','350 gram','350 gramo'],
     ['免治豬肉','Daging babi cincang','Giniling na baboy','150克','150 gram','150 gramo'],
@@ -1032,6 +1097,7 @@ const RECIPES = [
     ['四季豆回鑊，大火兜炒均勻，灑麻油、蔥花即成。','Masukkan kembali buncis, aduk rata dengan api besar, taburi minyak wijen dan daun bawang, sajikan.','Ibalik ang baguio beans, igisa nang mabilis sa mataas na apoy, budburan ng langis ng linga at sibuyas na dahon, ihain.'],
   ]},
 {cat:'soup', emoji:'🍲', zh:'菜乾南北杏豬骨湯', id:'Sup Tulang Babi dengan Sayur Kering & Kacang Almond Utara-Selatan', fil:'Sabaw ng Buto ng Baboy na may Tuyong Gulay at Almond Nan Bei Hang',
+  timeMin:150, diff:'easy',
   ing:[
     ['菜乾','Sayur choi gon kering','Tuyong gulay na choi gon','1份','1 ikat','1 bigkis'],
     ['無花果乾','Buah tin kering','Tuyong igos','4粒','4 buah','4 piraso'],
@@ -1049,6 +1115,7 @@ const RECIPES = [
     ['將所有材料放入湯煲，加入1800毫升浸菜乾嘅水，細火燉2小時。最後加鹽調味即可享用。','Masukkan semua bahan ke dalam panci, tambahkan 1800 ml air rendaman sayur kering, lalu masak dengan api kecil selama 2 jam. Bumbui dengan garam secukupnya dan siap disajikan.','Ilagay ang lahat ng sangkap sa palayok, idagdag ang 1800 ml tubig na ibinabad sa gulay, lutuin sa mahinang apoy ng 2 oras. Timplahan ng asin at ihain.'],
   ]},
 {cat:'beef', emoji:'🥔', zh:'柱侯醬薯仔炆牛肋條', id:'Sapi Rebus Saus Chu Hou dengan Kentang', fil:'Baka na Nilaga sa Sarsa Chu Hou na may Patatas',
+  timeMin:120, diff:'medium',
   ing:[
     ['牛肋條(去骨牛小排)','Daging sapi iga (short rib tanpa tulang)','Iga ng baka (walang buto)','500克','500 gram','500 gramo'],
     ['薯仔(馬鈴薯)','Kentang','Patatas','2個','2 buah','2 piraso'],
@@ -1123,6 +1190,7 @@ function renderGrid(){
   grid.innerHTML = list.map((r)=>{
     const idx = RECIPES.indexOf(r);
     const ci = catInfo(r.cat);
+    const di = DIFFICULTY[r.diff];
     return `
     <div class="card" data-idx="${idx}">
       <div class="emoji">${r.emoji}</div>
@@ -1132,6 +1200,8 @@ function renderGrid(){
       <div class="badge-row">
         <div class="badge cat-${r.cat}">${ci.zh} &middot; ${ci.id}</div>
         <div class="badge servings">${so.zhBadge}</div>
+        <div class="badge meta">${'⭐'.repeat(di.stars)} ${di.zh}</div>
+        <div class="badge meta">⏱️ ${formatTime(r.timeMin,'zh')}</div>
       </div>
     </div>`;
   }).join('');
@@ -1145,6 +1215,7 @@ function openModal(idx){
   const ci = catInfo(r.cat);
   const so = servingInfo(currentServing);
   const ratio = so.mid / BASE_SERVING;
+  const di = DIFFICULTY[r.diff];
   const modal = document.getElementById('modalContent');
   modal.innerHTML = `
     <button class="close-btn" id="closeModalBtn">&times;</button>
@@ -1157,6 +1228,8 @@ function openModal(idx){
         <div class="badge-row">
           <div class="badge cat-${r.cat}">${ci.zh} &middot; ${ci.id}</div>
           <div class="badge servings">${so.zhBadge} &middot; 🇮🇩 ${so.id} &middot; 🇵🇭 ${so.fil}</div>
+          <div class="badge meta">${'⭐'.repeat(di.stars)} ${di.zh} &middot; 🇮🇩 ${di.id} &middot; 🇵🇭 ${di.fil}</div>
+          <div class="badge meta">⏱️ ${formatTime(r.timeMin,'zh')} &middot; 🇮🇩 ${formatTime(r.timeMin,'id')} &middot; 🇵🇭 ${formatTime(r.timeMin,'fil')}</div>
         </div>
       </div>
     </div>
