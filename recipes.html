@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>香港家常菜食譜 · Resep Rumahan Hong Kong｜Lily Lau 免費資源</title>
-<meta name="description" content="香港家常菜食譜，中文、印尼文同菲律賓文對照，每道菜4-5人份，附材料清單同步驟。由 Lily Lau 免費提供俾大家使用。">
+<meta name="description" content="香港家常菜食譜，中文、印尼文同菲律賓文對照，附材料清單同步驟。由 Lily Lau 免費提供俾大家使用。">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=2">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/favicon-180.png">
@@ -22,6 +22,14 @@
     --butter-deep:#633806;
     --lavender:#E6F1FB;
     --lavender-deep:#0C447C;
+    --sage:#DCE4D0;
+    --sage-deep:#4B5D3A;
+    --sand:#EDE3D2;
+    --sand-deep:#7A5C36;
+    --gold:#F0D9A8;
+    --gold-deep:#8C6A1E;
+    --rose:#F3DDE0;
+    --rose-deep:#9C4F5A;
     --ink:#3D2B1A;
     --ink-soft:#6B4E35;
     --white:#FFFCF8;
@@ -100,6 +108,10 @@
   .badge.cat-soup{background:var(--butter-deep);color:#fff;}
   .badge.cat-rice{background:var(--ink);color:#fff;}
   .badge.cat-egg{background:var(--mint-deep);color:#fff;}
+  .badge.cat-cold{background:var(--sage);color:var(--sage-deep);}
+  .badge.cat-congee{background:var(--sand);color:var(--sand-deep);}
+  .badge.cat-pasta{background:var(--gold);color:var(--gold-deep);}
+  .badge.cat-dessert{background:var(--rose);color:var(--rose-deep);}
   .empty-msg{grid-column:1/-1;text-align:center;color:var(--ink-soft);padding:40px 0;font-size:14px;}
 
   .modal-overlay{
@@ -196,9 +208,9 @@
     <a class="eyebrow" href="https://pru-lilylau.github.io/landing-page/" target="_blank" rel="noopener">🎁 免費資源</a>
     <h1>香港家常菜食譜<span class="en">🇮🇩 Resep Masakan Rumahan Hong Kong</span><span class="en">🇵🇭 Mga Recipe ng Lutong Bahay mula Hong Kong</span></h1>
     <p class="tagline">
-      中文、印尼文同菲律賓文對照，方便揀餸同煮食，每道菜份量為4-5人食用 · 揀一味，今日就煮呢個！<br>
-      🇮🇩 Bahasa Kanton, Indonesia, dan Filipino berdampingan, setiap resep untuk porsi 4-5 orang · Pilih satu resep, masak ini hari ini!<br>
-      🇵🇭 Magkasamang Cantonese, Indonesian, at Filipino, bawat recipe ay para sa 4-5 katao · Pumili ng isa, lutuin ito ngayon!
+      中文、印尼文同菲律賓文對照，方便揀餸同煮食 · 揀一味，今日就煮呢個！<br>
+      🇮🇩 Bahasa Kanton, Indonesia, dan Filipino berdampingan, memudahkan memilih dan memasak · Pilih satu resep, masak ini hari ini!<br>
+      🇵🇭 Magkasamang Cantonese, Indonesian, at Filipino, para mas madaling pumili at magluto · Pumili ng isa, lutuin ito ngayon!
     </p>
   </header>
 
@@ -246,9 +258,13 @@ const CATEGORIES = [
   {key:'beef',    zh:'牛肉',     id:'Sapi',             fil:'Baka',               emoji:'🐄'},
   {key:'seafood', zh:'海鮮',     id:'Makanan Laut',     fil:'Pagkaing-dagat',     emoji:'🦐'},
   {key:'veg',     zh:'蔬菜',     id:'Sayuran',          fil:'Gulay',              emoji:'🥬'},
+  {key:'cold',    zh:'涼拌',     id:'Hidangan Dingin',  fil:'Malamig na Ulam',    emoji:'🥗'},
   {key:'soup',    zh:'湯品',     id:'Sup',              fil:'Sabaw',              emoji:'🍲'},
+  {key:'congee',  zh:'粥品',     id:'Bubur',            fil:'Lugaw',              emoji:'🥣'},
   {key:'rice',    zh:'飯麵',     id:'Nasi & Mi',        fil:'Kanin at Pansit',    emoji:'🍚'},
+  {key:'pasta',   zh:'意粉',     id:'Pasta',            fil:'Pasta',              emoji:'🍝'},
   {key:'egg',     zh:'蛋豆腐',   id:'Telur & Tahu',     fil:'Itlog at Tokwa',     emoji:'🍳'},
+  {key:'dessert', zh:'中式糖水', id:'Sup Manis Tionghoa', fil:'Matamis na Panghimagas', emoji:'🍮'},
 ];
 
 // 份量 Porsi / Serving size options. Ingredient quantities are researched/written for ~4.5 pax
@@ -696,7 +712,7 @@ const RECIPES = [
     ['加椰菜大火炒至軟身。','Masukkan kubis, tumis dengan api besar hingga layu.','Idagdag ang repolyo, igisa sa mataas na apoy hanggang malanta.'],
     ['加鹽調味炒勻即成。','Tambahkan garam, aduk rata, sajikan.','Lagyan ng asin, haluin, ihain.'],
   ]},
-{cat:'veg', emoji:'🥒', zh:'涼拌青瓜', id:'Acar Timun Segar', fil:'Maasim-Matamis na Pipino',
+{cat:'cold', emoji:'🥒', zh:'涼拌青瓜', id:'Acar Timun Segar', fil:'Maasim-Matamis na Pipino',
   timeMin:40, diff:'easy',
   ing:[
     ['青瓜','Timun, dipukul & potong','Pipino, dikdikin at hiwain','3條','3 buah','3 piraso'],
