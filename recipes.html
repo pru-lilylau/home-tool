@@ -281,16 +281,31 @@ let currentServing = 's2';
 
 function servingInfo(key){ return SERVING_OPTIONS.find(s=>s.key===key); }
 
+// Units that come in whole discrete pieces (cloves, eggs, wings, slices...) — these
+// scale to whole numbers only, never half-pieces like "1.5個".
+const COUNT_UNITS = [
+  '個','隻','瓣','片','條','塊','粒','包','棵','支','份','盒','罐','尾','對','磚','枚','串','顆','件',
+  'buah','siung','potong','lembar','butir','batang','kotak','ekor',
+  'piraso','hiwa','kahon','tangkay','dahon',
+];
+function isCountUnitAt(str, index){
+  const rest = str.slice(index).trimStart();
+  return COUNT_UNITS.some(u => rest.startsWith(u));
+}
+
 // Scale one ingredient-quantity string (e.g. "600克", "1,5 sdm", "半個", "1/2 buah", "12隻(約700克)").
 // lang selects number-format conventions: zh/fil use '.', id uses ','.
-function scaleNum(value, ratio){
+function scaleNum(value, ratio, isCount){
   let x = value * ratio;
   let r;
-  if(x < 10) r = Math.round(x*2)/2;
+  if(isCount){
+    r = Math.round(x);
+  } else if(x < 10) r = Math.round(x*2)/2;
   else if(x < 50) r = Math.round(x);
   else if(x < 200) r = Math.round(x/5)*5;
   else r = Math.round(x/25)*25;
-  if(r < 0.5) r = 0.5;
+  const floor = isCount ? 1 : 0.5;
+  if(r < floor) r = floor;
   return r;
 }
 function formatNum(n, sep){
@@ -304,29 +319,33 @@ function scaleQty(str, ratio, lang){
 
   if(lang==='zh' && str.startsWith('半')){
     const rest = str.slice(1);
-    const scaled = scaleNum(0.5, ratio);
+    const isCount = isCountUnitAt(rest, 0);
+    const scaled = scaleNum(0.5, ratio, isCount);
     return (scaled===0.5 ? '半' : formatNum(scaled,sep)) + rest;
   }
   const halfMatch = str.match(/^1\/2(\s)/);
   if(halfMatch){
     const rest = str.slice(halfMatch[0].length);
-    const scaled = scaleNum(0.5, ratio);
+    const isCount = isCountUnitAt(rest, 0);
+    const scaled = scaleNum(0.5, ratio, isCount);
     return (scaled===0.5 ? '1/2 ' : formatNum(scaled,sep)+' ') + rest;
   }
 
   const rangeRegex = lang==='id' ? /(\d+(?:,\d+)?)-(\d+(?:,\d+)?)/ : /(\d+(?:\.\d+)?)-(\d+(?:\.\d+)?)/;
   const rangeMatch = str.match(rangeRegex);
   if(rangeMatch){
-    const a = scaleNum(parseFloat(rangeMatch[1].replace(',','.')), ratio);
-    const b = scaleNum(parseFloat(rangeMatch[2].replace(',','.')), ratio);
+    const isCount = isCountUnitAt(str, rangeMatch.index + rangeMatch[0].length);
+    const a = scaleNum(parseFloat(rangeMatch[1].replace(',','.')), ratio, isCount);
+    const b = scaleNum(parseFloat(rangeMatch[2].replace(',','.')), ratio, isCount);
     const repl = a===b ? formatNum(a,sep) : formatNum(a,sep)+'-'+formatNum(b,sep);
     return str.replace(rangeRegex, repl);
   }
 
   const numRegex = lang==='id' ? /\d+(?:,\d+)?/g : /\d+(?:\.\d+)?/g;
-  return str.replace(numRegex, (m)=>{
+  return str.replace(numRegex, (m, offset)=>{
     const val = parseFloat(lang==='id' ? m.replace(',','.') : m);
-    return formatNum(scaleNum(val, ratio), sep);
+    const isCount = isCountUnitAt(str, offset + m.length);
+    return formatNum(scaleNum(val, ratio, isCount), sep);
   });
 }
 
@@ -942,7 +961,7 @@ const RECIPES = [
 {cat:'egg', emoji:'🥚', zh:'涼瓜炒蛋', id:'Telur Tumis Pare', fil:'Ginisang Itlog sa Ampalaya',
   timeMin:15, diff:'easy',
   ing:[
-    ['涼瓜/苦瓜','Pare, iris tipis','Ampalaya, hiwain nang manipis','1.5條','1,5 buah','1.5 piraso'],
+    ['涼瓜/苦瓜','Pare, iris tipis','Ampalaya, hiwain nang manipis','2條','2 buah','2 piraso'],
     ['雞蛋','Telur','Itlog','5隻','5 butir','5 piraso'],
     ['鹽','Garam','Asin','少許','secukupnya','kaunti lang'],
     ['油','Minyak','Mantika','2.5湯匙','2,5 sdm','2.5 kutsara'],
