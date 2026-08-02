@@ -90,11 +90,19 @@
 
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px;}
   .card{
-    background:var(--white);border:1px solid #F2ECE1;border-radius:22px;
-    box-shadow:var(--shadow);padding:18px;cursor:pointer;transition:transform .2s ease, box-shadow .2s ease;
+    background:var(--white);border:1px solid #F2ECE1;border-radius:22px;position:relative;
+    box-shadow:var(--shadow);padding:18px;cursor:pointer;transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
     display:flex;flex-direction:column;gap:6px;
   }
   .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover);}
+  .card.picked{border-color:var(--mint-deep);box-shadow:0 0 0 2px var(--mint-deep);}
+  .card .pick-check{
+    position:absolute;top:12px;right:12px;width:26px;height:26px;border-radius:50%;
+    background:var(--white);border:2px solid #E0D6C6;display:flex;align-items:center;justify-content:center;
+    font-size:14px;font-weight:800;color:transparent;cursor:pointer;transition:all .15s ease;z-index:2;
+  }
+  .card .pick-check:hover{border-color:var(--mint-deep);}
+  .card .pick-check.checked{background:var(--mint-deep);border-color:var(--mint-deep);color:#fff;}
   .card .emoji{font-size:34px;line-height:1;}
   .card .zh-name{font-weight:700;font-size:16px;color:var(--ink);}
   .card .id-name{font-size:12px;color:var(--ink-soft);font-style:italic;}
@@ -173,6 +181,29 @@
   @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
   @media (prefers-reduced-motion: reduce){#guide{animation:none;}html{scroll-behavior:auto;}}
 
+  .share-bar{
+    position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(140%);
+    z-index:65;background:var(--ink);color:#fff;box-shadow:var(--shadow-hover);border-radius:999px;
+    display:flex;align-items:center;gap:10px;padding:8px 8px 8px 20px;
+    transition:transform .25s ease;max-width:calc(100% - 24px);
+  }
+  .share-bar.show{transform:translateX(-50%) translateY(0);}
+  .share-bar .share-info{font-size:13px;font-weight:700;white-space:nowrap;}
+  .share-bar .share-clear-btn{
+    background:none;border:none;color:rgba(255,255,255,.75);font-size:12.5px;cursor:pointer;
+    padding:8px 4px;text-decoration:underline;flex-shrink:0;
+  }
+  .share-bar .share-wa-btn{
+    background:#25D366;color:#fff;border:none;border-radius:999px;padding:10px 18px;
+    font-weight:700;font-size:13.5px;cursor:pointer;display:flex;align-items:center;gap:6px;
+    white-space:nowrap;flex-shrink:0;
+  }
+  .share-bar .share-wa-btn:hover{filter:brightness(1.06);}
+  @media (max-width:480px){
+    .share-bar{padding-left:16px;gap:6px;}
+    .share-bar .share-info{font-size:12px;}
+  }
+
   footer{padding:40px 0 8px;text-align:center;}
   .final-cta{background:var(--ink);border-radius:var(--radius);padding:44px 24px;color:#fff;margin:0 0 28px;}
   .final-cta h2{color:#fff;margin:0 0 10px;font-size:clamp(20px,4vw,28px);}
@@ -231,6 +262,12 @@
 
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal" id="modalContent"></div>
+</div>
+
+<div class="share-bar" id="shareBar">
+  <div class="share-info">已揀 <span id="shareCount">0</span> 味 · dipilih · napili</div>
+  <button id="shareClearBtn" class="share-clear-btn">清除</button>
+  <button id="shareWaBtn" class="share-wa-btn">📤 WhatsApp分享</button>
 </div>
 
 <footer>
@@ -3573,6 +3610,7 @@ const RECIPES = [
 ];
 
 let currentCat = 'all';
+const selectedIdx = new Set();
 
 function catInfo(key){ return CATEGORIES.find(c=>c.key===key); }
 
@@ -3624,8 +3662,10 @@ function renderGrid(){
     const idx = RECIPES.indexOf(r);
     const ci = catInfo(r.cat);
     const di = DIFFICULTY[r.diff];
+    const picked = selectedIdx.has(idx);
     return `
-    <div class="card" data-idx="${idx}">
+    <div class="card ${picked?'picked':''}" data-idx="${idx}">
+      <div class="pick-check ${picked?'checked':''}" data-idx="${idx}" title="揀呢味去WhatsApp分享">&#10003;</div>
       <div class="emoji">${r.emoji}</div>
       <div class="zh-name">${r.zh}</div>
       <div class="id-name">🇮🇩 ${r.id}</div>
@@ -3641,7 +3681,74 @@ function renderGrid(){
   grid.querySelectorAll('.card').forEach(c=>{
     c.addEventListener('click', ()=> openModal(parseInt(c.dataset.idx)));
   });
+  grid.querySelectorAll('.pick-check').forEach(cb=>{
+    cb.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      toggleSelected(parseInt(cb.dataset.idx));
+    });
+  });
 }
+
+function toggleSelected(idx){
+  if(selectedIdx.has(idx)) selectedIdx.delete(idx);
+  else selectedIdx.add(idx);
+  const card = document.querySelector(`.card[data-idx="${idx}"]`);
+  const check = document.querySelector(`.pick-check[data-idx="${idx}"]`);
+  const picked = selectedIdx.has(idx);
+  if(card) card.classList.toggle('picked', picked);
+  if(check) check.classList.toggle('checked', picked);
+  updateShareBar();
+}
+
+function updateShareBar(){
+  const bar = document.getElementById('shareBar');
+  document.getElementById('shareCount').textContent = selectedIdx.size;
+  bar.classList.toggle('show', selectedIdx.size > 0);
+}
+
+function buildShareText(){
+  const so = servingInfo(currentServing);
+  const ratio = so.mid / BASE_SERVING;
+  const picks = [...selectedIdx].sort((a,b)=>a-b).map(i=>RECIPES[i]);
+  const lines = [];
+  lines.push(`🍽️ 今日餸菜清單 (${so.zhBadge} · 🇮🇩 ${so.id} · 🇵🇭 ${so.fil})`);
+  lines.push('');
+  picks.forEach((r,n)=>{
+    const di = DIFFICULTY[r.diff];
+    lines.push(`${n+1}. ${r.emoji} ${r.zh}`);
+    lines.push(`🇮🇩 ${r.id} · 🇵🇭 ${r.fil}`);
+    lines.push(`${'⭐'.repeat(di.stars)} ${di.zh}/${di.id}/${di.fil} · ⏱️ ${formatTime(r.timeMin,'zh')}/${formatTime(r.timeMin,'id')}/${formatTime(r.timeMin,'fil')}`);
+    lines.push('');
+    lines.push('🧺 材料 Bahan-bahan / Sangkap:');
+    r.ing.forEach(([zh,id,fil,qzh,qid,qfil])=>{
+      lines.push(`- ${zh} ${scaleQty(qzh,ratio,'zh')} / ${id} ${scaleQty(qid,ratio,'id')} / ${fil} ${scaleQty(qfil,ratio,'fil')}`);
+    });
+    lines.push('');
+    lines.push('🔥 做法 Cara Memasak / Paraan ng Pagluluto:');
+    r.steps.forEach(([zh,id,fil],si)=>{
+      lines.push(`${si+1}) ${zh}`);
+      lines.push(`   🇮🇩 ${id}`);
+      lines.push(`   🇵🇭 ${fil}`);
+    });
+    lines.push('');
+    lines.push('———');
+    lines.push('');
+  });
+  lines.push('📖 香港家常菜食譜 · Lily Lau');
+  return lines.join('\n');
+}
+
+document.getElementById('shareClearBtn').addEventListener('click', ()=>{
+  selectedIdx.clear();
+  renderGrid();
+  updateShareBar();
+});
+
+document.getElementById('shareWaBtn').addEventListener('click', ()=>{
+  if(selectedIdx.size===0) return;
+  const text = buildShareText();
+  window.open('https://wa.me/?text='+encodeURIComponent(text), '_blank', 'noopener');
+});
 
 function openModal(idx){
   const r = RECIPES[idx];
