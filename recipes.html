@@ -172,11 +172,12 @@
   .steps li .id{display:block;color:var(--ink-soft);font-style:italic;font-size:12.5px;margin-top:3px;}
 
   #guide{
-    position:fixed;right:18px;bottom:18px;z-index:60;width:60px;height:60px;border-radius:50%;
+    position:fixed;right:18px;bottom:18px;z-index:70;width:60px;height:60px;border-radius:50%;
     background:#25D366;box-shadow:var(--shadow-hover);display:flex;align-items:center;justify-content:center;
     text-decoration:none;border:3px solid var(--white);animation:float 3.4s ease-in-out infinite;
-    transition:transform .2s ease;
+    transition:transform .2s ease, bottom .25s ease;
   }
+  #guide.raised{bottom:180px;}
   #guide:hover{transform:scale(1.08);}
   @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
   @media (prefers-reduced-motion: reduce){#guide{animation:none;}html{scroll-behavior:auto;}}
@@ -196,7 +197,6 @@
     transition:all .15s ease;flex-shrink:0;
   }
   .lang-chip.active{background:var(--mint-deep);border-color:var(--mint-deep);color:#fff;}
-  .lang-chip.locked{cursor:default;opacity:.9;}
   .share-bar-row{display:flex;align-items:center;gap:10px;}
   .share-bar .share-info{font-size:13px;font-weight:700;white-space:nowrap;}
   .share-bar .share-clear-btn{
@@ -277,9 +277,8 @@
 <div class="share-bar" id="shareBar">
   <div class="share-lang-row" id="shareLangRow">
     <span class="lang-label">分享語言</span>
-    <button class="lang-chip locked active" data-lang="zh" disabled>中文</button>
-    <button class="lang-chip active" data-lang="id">🇮🇩 印尼文</button>
-    <button class="lang-chip active" data-lang="fil">🇵🇭 菲律賓文</button>
+    <button class="lang-chip active" data-lang="id">🇮🇩 印</button>
+    <button class="lang-chip active" data-lang="fil">🇵🇭 菲</button>
   </div>
   <div class="share-bar-row">
     <div class="share-info">已揀 <span id="shareCount">0</span> 味 · dipilih · napili</div>
@@ -3721,8 +3720,10 @@ function toggleSelected(idx){
 
 function updateShareBar(){
   const bar = document.getElementById('shareBar');
+  const shown = selectedIdx.size > 0;
   document.getElementById('shareCount').textContent = selectedIdx.size;
-  bar.classList.toggle('show', selectedIdx.size > 0);
+  bar.classList.toggle('show', shown);
+  document.getElementById('guide').classList.toggle('raised', shown);
 }
 
 function buildShareText(){
@@ -3785,7 +3786,7 @@ function buildShareText(){
   return lines.join('\n');
 }
 
-document.getElementById('shareLangRow').querySelectorAll('.lang-chip:not(.locked)').forEach(chip=>{
+document.getElementById('shareLangRow').querySelectorAll('.lang-chip').forEach(chip=>{
   chip.addEventListener('click', ()=>{
     const lang = chip.dataset.lang;
     if(shareLangs.has(lang)) shareLangs.delete(lang);
