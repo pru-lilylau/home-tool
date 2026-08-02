@@ -172,7 +172,7 @@
   .steps li .id{display:block;color:var(--ink-soft);font-style:italic;font-size:12.5px;margin-top:3px;}
 
   #guide{
-    position:fixed;right:18px;bottom:18px;z-index:60;width:60px;height:60px;border-radius:50%;
+    position:fixed;right:18px;bottom:170px;z-index:70;width:60px;height:60px;border-radius:50%;
     background:#25D366;box-shadow:var(--shadow-hover);display:flex;align-items:center;justify-content:center;
     text-decoration:none;border:3px solid var(--white);animation:float 3.4s ease-in-out infinite;
     transition:transform .2s ease;
@@ -182,12 +182,12 @@
   @media (prefers-reduced-motion: reduce){#guide{animation:none;}html{scroll-behavior:auto;}}
 
   .share-bar{
-    position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(140%);
+    position:fixed;left:18px;right:18px;bottom:18px;transform:translateY(140%);
     z-index:65;background:var(--ink);color:#fff;box-shadow:var(--shadow-hover);border-radius:22px;
     display:flex;flex-direction:column;gap:8px;padding:12px 14px;
-    transition:transform .25s ease;max-width:calc(100% - 24px);
+    transition:transform .25s ease;max-width:520px;margin:0 auto;
   }
-  .share-bar.show{transform:translateX(-50%) translateY(0);}
+  .share-bar.show{transform:translateY(0);}
   .share-lang-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
   .share-lang-row .lang-label{font-size:11.5px;color:rgba(255,255,255,.65);flex-shrink:0;}
   .lang-chip{
@@ -196,16 +196,15 @@
     transition:all .15s ease;flex-shrink:0;
   }
   .lang-chip.active{background:var(--mint-deep);border-color:var(--mint-deep);color:#fff;}
-  .lang-chip.locked{cursor:default;opacity:.9;}
-  .share-bar-row{display:flex;align-items:center;gap:10px;}
+  .share-bar-row{display:flex;align-items:center;justify-content:space-between;gap:8px;}
   .share-bar .share-info{font-size:13px;font-weight:700;white-space:nowrap;}
   .share-bar .share-clear-btn{
     background:none;border:none;color:rgba(255,255,255,.75);font-size:12.5px;cursor:pointer;
     padding:8px 4px;text-decoration:underline;flex-shrink:0;
   }
   .share-bar .share-wa-btn{
-    background:#25D366;color:#fff;border:none;border-radius:999px;padding:10px 18px;
-    font-weight:700;font-size:13.5px;cursor:pointer;display:flex;align-items:center;gap:6px;
+    background:#25D366;color:#fff;border:none;border-radius:999px;padding:8px 14px;
+    font-weight:700;font-size:12.5px;cursor:pointer;display:flex;align-items:center;gap:5px;
     white-space:nowrap;flex-shrink:0;margin-left:auto;
   }
   .share-bar .share-wa-btn:hover{filter:brightness(1.06);}
@@ -277,9 +276,8 @@
 <div class="share-bar" id="shareBar">
   <div class="share-lang-row" id="shareLangRow">
     <span class="lang-label">分享語言</span>
-    <button class="lang-chip locked active" data-lang="zh" disabled>中文</button>
-    <button class="lang-chip active" data-lang="id">🇮🇩 印尼文</button>
-    <button class="lang-chip active" data-lang="fil">🇵🇭 菲律賓文</button>
+    <button class="lang-chip active" data-lang="id">🇮🇩 印</button>
+    <button class="lang-chip active" data-lang="fil">🇵🇭 菲</button>
   </div>
   <div class="share-bar-row">
     <div class="share-info">已揀 <span id="shareCount">0</span> 味 · dipilih · napili</div>
@@ -3721,8 +3719,9 @@ function toggleSelected(idx){
 
 function updateShareBar(){
   const bar = document.getElementById('shareBar');
+  const shown = selectedIdx.size > 0;
   document.getElementById('shareCount').textContent = selectedIdx.size;
-  bar.classList.toggle('show', selectedIdx.size > 0);
+  bar.classList.toggle('show', shown);
 }
 
 function buildShareText(){
@@ -3785,7 +3784,7 @@ function buildShareText(){
   return lines.join('\n');
 }
 
-document.getElementById('shareLangRow').querySelectorAll('.lang-chip:not(.locked)').forEach(chip=>{
+document.getElementById('shareLangRow').querySelectorAll('.lang-chip').forEach(chip=>{
   chip.addEventListener('click', ()=>{
     const lang = chip.dataset.lang;
     if(shareLangs.has(lang)) shareLangs.delete(lang);
