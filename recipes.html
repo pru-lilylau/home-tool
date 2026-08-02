@@ -172,7 +172,7 @@
   .steps li .id{display:block;color:var(--ink-soft);font-style:italic;font-size:12.5px;margin-top:3px;}
 
   #guide{
-    position:fixed;right:18px;bottom:18px;z-index:70;width:60px;height:60px;border-radius:50%;
+    position:fixed;right:18px;bottom:170px;z-index:70;width:60px;height:60px;border-radius:50%;
     background:#25D366;box-shadow:var(--shadow-hover);display:flex;align-items:center;justify-content:center;
     text-decoration:none;border:3px solid var(--white);animation:float 3.4s ease-in-out infinite;
     transition:transform .2s ease;
@@ -184,7 +184,7 @@
   .share-bar{
     position:fixed;left:18px;right:18px;bottom:18px;transform:translateY(140%);
     z-index:65;background:var(--ink);color:#fff;box-shadow:var(--shadow-hover);border-radius:22px;
-    display:flex;flex-direction:column;gap:8px;padding:12px 88px 12px 14px;
+    display:flex;flex-direction:column;gap:8px;padding:12px 14px;
     transition:transform .25s ease;max-width:520px;margin:0 auto;
   }
   .share-bar.show{transform:translateY(0);}
@@ -196,20 +196,20 @@
     transition:all .15s ease;flex-shrink:0;
   }
   .lang-chip.active{background:var(--mint-deep);border-color:var(--mint-deep);color:#fff;}
-  .share-bar-row{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+  .share-bar-row{display:flex;align-items:center;justify-content:space-between;gap:8px;}
   .share-bar .share-info{font-size:13px;font-weight:700;white-space:nowrap;}
   .share-bar .share-clear-btn{
     background:none;border:none;color:rgba(255,255,255,.75);font-size:12.5px;cursor:pointer;
     padding:8px 4px;text-decoration:underline;flex-shrink:0;
   }
   .share-bar .share-wa-btn{
-    background:#25D366;color:#fff;border:none;border-radius:999px;padding:10px 18px;
-    font-weight:700;font-size:13.5px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;
-    white-space:nowrap;width:100%;
+    background:#25D366;color:#fff;border:none;border-radius:999px;padding:8px 14px;
+    font-weight:700;font-size:12.5px;cursor:pointer;display:flex;align-items:center;gap:5px;
+    white-space:nowrap;flex-shrink:0;margin-left:auto;
   }
   .share-bar .share-wa-btn:hover{filter:brightness(1.06);}
   @media (max-width:480px){
-    .share-bar{padding:10px 80px 10px 12px;}
+    .share-bar{padding:10px 12px;}
     .share-bar .share-info{font-size:12px;}
   }
 
@@ -282,8 +282,8 @@
   <div class="share-bar-row">
     <div class="share-info">已揀 <span id="shareCount">0</span> 味 · dipilih · napili</div>
     <button id="shareClearBtn" class="share-clear-btn">清除</button>
+    <button id="shareWaBtn" class="share-wa-btn">WhatsApp分享</button>
   </div>
-  <button id="shareWaBtn" class="share-wa-btn">WhatsApp分享</button>
 </div>
 
 <footer>
