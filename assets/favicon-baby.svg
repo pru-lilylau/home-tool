@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" fill="#E7DAD3"/>
+
+  <g fill="none" stroke="#1A1A1A" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+    <!-- hair curl (spiral) -->
+    <path d="M 29.50,21.50 L 22.24,13.58 L 22.87,12.59 L 23.68,11.77 L 24.62,11.16 L 25.65,10.77 L 26.70,10.61 L 27.74,10.69 L 28.72,10.97 L 29.58,11.44 L 30.31,12.07 L 30.87,12.82 L 31.24,13.65 L 31.42,14.51 L 31.41,15.36 L 31.22,16.16 L 30.88,16.88 L 30.40,17.49 L 29.83,17.96 L 29.19,18.29 L 28.53,18.46 L 27.87,18.48 L 27.24,18.36 L 26.69,18.12 L 26.22,17.77 L 25.85,17.35 L 25.60,16.89 L 25.47,16.41 L 25.46,15.93 L 25.54,15.49 L 25.71,15.11 L 25.95,14.80 L 26.24,14.56 L 26.55,14.42 L 26.86,14.35 L 27.16,14.37 L 27.41,14.45 L 27.62,14.59 L 27.76,14.76 L 27.85,14.94 L 27.87,15.12"/>
+    <!-- heart -->
+    <g transform="translate(46,17) rotate(-10)">
+      <path d="M0,6.5 C-5,2.5 -7.5,-1 -4.7,-4 C-2.3,-6.5 0,-4 0,-1.5 C0,-4 2.3,-6.5 4.7,-4 C7.5,-1 5,2.5 0,6.5 Z"/>
+    </g>
+  </g>
+
+  <!-- head -->
+  <circle cx="30" cy="37.5" r="15.5" fill="none" stroke="#1A1A1A" stroke-width="2.6"/>
+
+  <!-- ears (fill covers head outline for a clean bump) -->
+  <circle cx="15.2" cy="38.5" r="5.2" fill="#E7DAD3" stroke="#1A1A1A" stroke-width="2.6"/>
+  <circle cx="44.8" cy="38.5" r="5.2" fill="#E7DAD3" stroke="#1A1A1A" stroke-width="2.6"/>
+
+  <!-- face -->
+  <circle cx="24.5" cy="35" r="1.9" fill="#1A1A1A"/>
+  <circle cx="35.5" cy="35" r="1.9" fill="#1A1A1A"/>
+  <path d="M23.5,42 Q30,48 36.5,42" fill="none" stroke="#1A1A1A" stroke-width="2.4" stroke-linecap="round"/>
+</svg>
