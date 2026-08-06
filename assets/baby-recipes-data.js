@@ -760,7 +760,7 @@ const babyRecipes = [
   id: "spinach-tofu-pork-noodle-soup-01",
   title: "菠菜豆腐豬肉湯米線",
   stage: "1-3歲",
-  category: "湯水",
+  category: "主食",
   g6pd_status: "caution",
   g6pd_note: "豆腐屬黃豆製品,一般屬安全食材,如有疑慮可向醫生確認。",
   allergens: ["大豆"],
