@@ -208,6 +208,13 @@
     white-space:nowrap;flex-shrink:0;margin-left:auto;
   }
   .share-bar .share-wa-btn:hover{filter:brightness(1.06);}
+  .share-quick-row{display:flex;gap:8px;flex-wrap:wrap;}
+  .quick-send-btn{
+    flex:1;min-width:130px;background:#25D366;color:#fff;border:none;border-radius:999px;
+    padding:8px 12px;font-weight:700;font-size:12.5px;cursor:pointer;display:flex;align-items:center;
+    justify-content:center;gap:5px;white-space:nowrap;transition:filter .15s ease;
+  }
+  .quick-send-btn:hover{filter:brightness(1.06);}
   @media (max-width:480px){
     .share-bar{padding:10px 12px;}
     .share-bar .share-info{font-size:12px;}
@@ -278,6 +285,10 @@
     <span class="lang-label">分享語言</span>
     <button class="lang-chip active" data-lang="id">🇮🇩 印</button>
     <button class="lang-chip active" data-lang="fil">🇵🇭 菲</button>
+  </div>
+  <div class="share-quick-row">
+    <button id="shareIdBtn" class="quick-send-btn">🇮🇩 中+印 送姐姐</button>
+    <button id="shareFilBtn" class="quick-send-btn">🇵🇭 中+菲 送姐姐</button>
   </div>
   <div class="share-bar-row">
     <div class="share-info">已揀 <span id="shareCount">0</span> 味 · dipilih · napili</div>
@@ -3724,12 +3735,13 @@ function updateShareBar(){
   bar.classList.toggle('show', shown);
 }
 
-function buildShareText(){
+function buildShareText(langs){
+  const activeLangs = langs || shareLangs;
   const so = servingInfo(currentServing);
   const ratio = so.mid / BASE_SERVING;
   const picks = [...selectedIdx].sort((a,b)=>a-b).map(i=>RECIPES[i]);
-  const showId = shareLangs.has('id');
-  const showFil = shareLangs.has('fil');
+  const showId = activeLangs.has('id');
+  const showFil = activeLangs.has('fil');
   const lines = [];
 
   const servingParts = [so.zhBadge];
@@ -3802,6 +3814,18 @@ document.getElementById('shareClearBtn').addEventListener('click', ()=>{
 document.getElementById('shareWaBtn').addEventListener('click', ()=>{
   if(selectedIdx.size===0) return;
   const text = buildShareText();
+  window.open('https://wa.me/?text='+encodeURIComponent(text), '_blank', 'noopener');
+});
+
+document.getElementById('shareIdBtn').addEventListener('click', ()=>{
+  if(selectedIdx.size===0) return;
+  const text = buildShareText(new Set(['zh','id']));
+  window.open('https://wa.me/?text='+encodeURIComponent(text), '_blank', 'noopener');
+});
+
+document.getElementById('shareFilBtn').addEventListener('click', ()=>{
+  if(selectedIdx.size===0) return;
+  const text = buildShareText(new Set(['zh','fil']));
   window.open('https://wa.me/?text='+encodeURIComponent(text), '_blank', 'noopener');
 });
 
