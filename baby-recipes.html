@@ -203,14 +203,12 @@
     font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;
   }
 
-  .print-btn,.share-btn{
-    margin-top:10px;width:100%;background:var(--ink);color:#fff;border:none;border-radius:999px;
+  .share-btn{
+    margin-top:22px;width:100%;background:#25D366;color:#fff;border:none;border-radius:999px;
     padding:14px;font-weight:700;font-size:14px;cursor:pointer;display:flex;align-items:center;
     justify-content:center;gap:8px;font-family:'Noto Sans TC',sans-serif;
   }
-  .print-btn{margin-top:22px;}
-  .print-btn:hover,.share-btn:hover{filter:brightness(1.15);}
-  .share-btn{background:#25D366;}
+  .share-btn:hover{filter:brightness(1.15);}
   .share-btn:disabled{opacity:.65;cursor:wait;filter:none;}
 
   #guide{
@@ -241,14 +239,6 @@
   .about-text{text-align:left;font-size:12.5px;color:var(--ink-soft);max-width:360px;}
   .about-text b{color:var(--ink);}
   .disclaimer{font-size:11.5px;color:var(--ink-soft);max-width:680px;margin:0 auto;padding:0 20px;opacity:.85;}
-
-  #printArea{display:none;}
-  @media print{
-    body.printing > *:not(#printArea){display:none !important;}
-    body.printing{background:#fff;padding:0;}
-    #printArea{display:block !important;padding:10px;}
-    #printArea .badge{border:1px solid #999;}
-  }
 
   #shareArea{position:fixed;left:-9999px;top:0;width:400px;}
   .share-card{background:var(--white);border-radius:24px;padding:22px;font-family:'Noto Sans TC',sans-serif;}
@@ -315,7 +305,6 @@
   <div class="modal" id="modalContent"></div>
 </div>
 
-<div id="printArea"></div>
 <div id="shareArea"></div>
 
 <footer>
@@ -489,12 +478,12 @@ function renderGrid(){
   });
 }
 
-function recipeDetailHTML(r, forPrint){
+function recipeDetailHTML(r, plain){
   const ci = catInfo(r.category);
   const gi = g6pdInfo(r.g6pd_status);
   let html = `
     <div class="modal-head">
-      ${imgBlock(r, forPrint)}
+      ${imgBlock(r, plain)}
       <div class="zh-name">${r.title}</div>
       ${cardBadges(r)}
     </div>`;
@@ -513,9 +502,8 @@ function recipeDetailHTML(r, forPrint){
   if(r.tips){
     html += `<div class="tips-box">💡 小貼士：${r.tips}</div>`;
   }
-  if(!forPrint){
-    html += `<button class="share-btn" data-id="${r.id}">📤 分享做圖片（WhatsApp）</button>`;
-    html += `<button class="print-btn" data-id="${r.id}">🖨️ 列印 / 儲存做PDF</button>`;
+  if(!plain){
+    html += `<button class="share-btn" data-id="${r.id}">WhatsApp 分享</button>`;
   }
   return html;
 }
@@ -536,8 +524,6 @@ function openModal(id){
   const modal = document.getElementById('modalContent');
   modal.innerHTML = `<button class="close-btn" id="closeModalBtn">&times;</button>` + recipeDetailHTML(r, false);
   document.getElementById('closeModalBtn').addEventListener('click', closeModal);
-  const printBtn = modal.querySelector('.print-btn');
-  if(printBtn) printBtn.addEventListener('click', ()=> printRecipe(printBtn.dataset.id));
   const shareBtn = modal.querySelector('.share-btn');
   if(shareBtn) shareBtn.addEventListener('click', ()=> shareRecipeImage(shareBtn.dataset.id, shareBtn));
   document.getElementById('modalOverlay').classList.add('show');
@@ -565,18 +551,6 @@ function waitForImages(container){
     });
   }));
 }
-
-function printRecipe(id){
-  const r = babyRecipes.find(x=>x.id===id);
-  if(!r) return;
-  const printArea = document.getElementById('printArea');
-  printArea.innerHTML = recipeDetailHTML(r, true);
-  waitForImages(printArea).then(()=>{
-    document.body.classList.add('printing');
-    window.print();
-  });
-}
-window.addEventListener('afterprint', ()=>{ document.body.classList.remove('printing'); });
 
 let html2canvasPromise;
 function loadHtml2Canvas(){
