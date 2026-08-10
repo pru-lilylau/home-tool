@@ -801,5 +801,920 @@ const babyRecipes = [
   image: "garlic-cauliflower-brownrice.jpg",
   tips: "1-3歲幼兒每日鹽份攝取建議要好少(遠低於成人份量),整餐嗰陣調味要格外克制,或者可以喺調味前先預留幼兒嗰份。"
 }
+,
+
+// ========================================
+// BLW手指食物組合餐盤(6-8個月)
+// 重點:全部食材蒸到好軟腍,一格一款食材,等BB自己揀住食、練習抓握。
+// ========================================
+
+
+
+{
+  id: "blw-plate-6to8m-01",
+  title: "蘋果西蘭花薯仔餐盤",
+  stage: "6-8個月",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: [],
+  prep_time: 25,
+  ingredients: [
+    { name: "蘋果", amount: "適量(蒸軟切薄片)" },
+    { name: "西蘭花", amount: "適量(蒸軟切小朵)" },
+    { name: "紅蘿蔔", amount: "適量(蒸軟切條)" },
+    { name: "薯仔", amount: "適量(蒸軟切條)" }
+  ],
+  steps: [
+    "蘋果去皮去芯,切薄片,隔水蒸軟。",
+    "西蘭花同紅蘿蔔分別隔水蒸軟,西蘭花切成小朵,紅蘿蔔切成手指粗條,蒸至手指可以輕易捏扁嘅軟度。",
+    "薯仔去皮切條,隔水蒸至軟身。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-6to8m-01.jpg",
+  tips: ""
+},
+{
+  id: "blw-plate-6to8m-02",
+  title: "香蕉椰菜花蛋黃餐盤",
+  stage: "6-8個月",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: ["蛋"],
+  prep_time: 20,
+  ingredients: [
+    { name: "香蕉", amount: "適量(切薄片)" },
+    { name: "椰菜花", amount: "適量(蒸軟切小朵)" },
+    { name: "南瓜", amount: "適量(蒸軟切塊)" },
+    { name: "雞蛋", amount: "半隻(煮熟蛋黃壓碎)" }
+  ],
+  steps: [
+    "香蕉去皮切薄片。",
+    "椰菜花同南瓜分別隔水蒸軟,椰菜花切成小朵,南瓜切成小塊。",
+    "雞蛋連殼煮熟,剝殼取蛋黃,用叉壓碎。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-6to8m-02.jpg",
+  tips: ""
+},
+{
+  id: "blw-plate-6to8m-03",
+  title: "雪梨紫蕃薯雞柳餐盤",
+  stage: "6-8個月",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: [],
+  prep_time: 30,
+  ingredients: [
+    { name: "雪梨", amount: "適量(蒸軟切片)" },
+    { name: "青江菜", amount: "適量(蒸軟切成菜梗條)" },
+    { name: "紫蕃薯", amount: "適量(蒸軟切條)" },
+    { name: "雞柳", amount: "適量(蒸熟撕碎)" }
+  ],
+  steps: [
+    "雪梨去皮去芯切片,隔水蒸軟。",
+    "青江菜菜梗同紫蕃薯分別隔水蒸軟,切成手指條狀。",
+    "雞柳隔水蒸熟,撕成幼絲/碎狀。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-6to8m-03.jpg",
+  tips: ""
+},
+{
+  id: "blw-plate-6to8m-04",
+  title: "牛油果南瓜豬柳餐盤",
+  stage: "6-8個月",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: [],
+  prep_time: 30,
+  ingredients: [
+    { name: "牛油果", amount: "適量(切條)" },
+    { name: "紅蘿蔔", amount: "適量(蒸軟切條)" },
+    { name: "南瓜", amount: "適量(蒸軟切塊)" },
+    { name: "豬柳", amount: "適量(蒸熟撕碎)" }
+  ],
+  steps: [
+    "牛油果去皮去核,切成手指粗條。",
+    "紅蘿蔔同南瓜分別隔水蒸軟,切成條狀/塊狀。",
+    "豬柳隔水蒸熟,撕成幼絲/碎狀。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-6to8m-04.jpg",
+  tips: ""
+},
+{
+  id: "blw-plate-6to8m-05",
+  title: "火龍果淮山魚柳餐盤",
+  stage: "6-8個月",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: ["海鮮"],
+  prep_time: 30,
+  ingredients: [
+    { name: "火龍果", amount: "適量(蒸軟切塊)" },
+    { name: "茄子", amount: "適量(蒸軟切條)" },
+    { name: "淮山", amount: "適量(蒸軟切條)" },
+    { name: "魚柳", amount: "適量(蒸熟撕碎)" }
+  ],
+  steps: [
+    "火龍果去皮切塊,隔水蒸至軟身。",
+    "茄子同淮山分別隔水蒸軟,切成手指條狀。",
+    "魚柳隔水蒸熟,仔細檢查冇細骨後撕成碎狀。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-6to8m-05.jpg",
+  tips: "第一次食新魚種要留意觀察過敏反應,魚肉記得仔細檢查冇細骨先可以俾BB食。"
+},
+{
+  id: "blw-plate-6to8m-06",
+  title: "木瓜翠玉瓜豆腐餐盤",
+  stage: "6-8個月",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "豆腐屬黃豆製品,同蠶豆(broad bean)係完全不同品種,一般屬安全食材;如BB對大豆有懷疑可先向醫生確認。",
+  allergens: ["大豆"],
+  prep_time: 20,
+  ingredients: [
+    { name: "木瓜", amount: "適量(切條)" },
+    { name: "翠玉瓜", amount: "適量(蒸軟切條)" },
+    { name: "薯仔", amount: "適量(蒸軟切條)" },
+    { name: "豆腐", amount: "適量(蒸熱切條)" }
+  ],
+  steps: [
+    "木瓜去皮去籽,切成手指粗條。",
+    "翠玉瓜同薯仔分別隔水蒸軟,切成手指條狀。",
+    "豆腐隔水蒸熱,切成條狀,質地軟身方便BB捏住。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-6to8m-06.jpg",
+  tips: ""
+},
+{
+  id: "blw-plate-6to8m-07",
+  title: "啤梨南瓜雞柳餐盤",
+  stage: "6-8個月",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: [],
+  prep_time: 30,
+  ingredients: [
+    { name: "啤梨", amount: "適量(蒸軟切片)" },
+    { name: "露筍", amount: "適量(蒸軟切條)" },
+    { name: "南瓜", amount: "適量(蒸軟切塊)" },
+    { name: "雞柳", amount: "適量(蒸熟撕碎)" }
+  ],
+  steps: [
+    "啤梨去皮去芯切片,隔水蒸軟。",
+    "露筍同南瓜分別隔水蒸軟,露筍切去老莖切段,南瓜切塊。",
+    "雞柳隔水蒸熟,撕成幼絲。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-6to8m-07.jpg",
+  tips: ""
+},
+{
+  id: "blw-plate-6to8m-08",
+  title: "提子紅蘿蔔豆腐餐盤",
+  stage: "6-8個月",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "豆腐屬黃豆製品,同蠶豆(broad bean)係完全不同品種,一般屬安全食材;如BB對大豆有懷疑可先向醫生確認。",
+  allergens: ["大豆"],
+  prep_time: 20,
+  ingredients: [
+    { name: "提子", amount: "適量(去皮去籽,蒸熟)" },
+    { name: "椰菜花", amount: "適量(蒸軟切小朵)" },
+    { name: "紅蘿蔔", amount: "適量(蒸軟切條)" },
+    { name: "豆腐", amount: "適量(蒸熱切條)" }
+  ],
+  steps: [
+    "提子去皮去籽,隔水蒸熟軟身(蒸熟令提子皮更易咬開,減低哽塞風險)。",
+    "椰菜花同紅蘿蔔分別隔水蒸軟,切成小朵/條狀。",
+    "豆腐隔水蒸熱,切成條狀。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-6to8m-08.jpg",
+  tips: "提子建議去皮去籽同切半先俾BB食,減低哽塞風險。"
+},
+{
+  id: "blw-plate-6to8m-09",
+  title: "蘋果翠玉瓜蛋黃餐盤",
+  stage: "6-8個月",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: ["蛋"],
+  prep_time: 20,
+  ingredients: [
+    { name: "蘋果", amount: "適量(蒸軟切片)" },
+    { name: "粟米筍", amount: "適量(蒸軟切段)" },
+    { name: "翠玉瓜", amount: "適量(蒸軟切條)" },
+    { name: "雞蛋", amount: "半隻(煮熟蛋黃壓碎)" }
+  ],
+  steps: [
+    "蘋果去皮去芯切片,隔水蒸軟。",
+    "粟米筍同翠玉瓜分別隔水蒸軟,切成手指段/條狀。",
+    "雞蛋連殼煮熟,剝殼取蛋黃,用叉壓碎。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-6to8m-09.jpg",
+  tips: ""
+},
+{
+  id: "blw-plate-6to8m-10",
+  title: "木瓜薯仔魚柳餐盤",
+  stage: "6-8個月",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: ["海鮮"],
+  prep_time: 30,
+  ingredients: [
+    { name: "木瓜", amount: "適量(切條)" },
+    { name: "青江菜", amount: "適量(蒸軟切成菜梗條)" },
+    { name: "薯仔", amount: "適量(蒸軟切條)" },
+    { name: "魚柳", amount: "適量(蒸熟撕碎)" }
+  ],
+  steps: [
+    "木瓜去皮去籽,切成手指粗條。",
+    "青江菜菜梗同薯仔分別隔水蒸軟,切成手指條狀。",
+    "魚柳隔水蒸熟,仔細檢查冇細骨後撕成碎狀。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-6to8m-10.jpg",
+  tips: "第一次食新魚種要留意觀察過敏反應,魚肉記得仔細檢查冇細骨先可以俾BB食。"
+},
+
+// ========================================
+// BLW手指食物組合餐盤(9-12個月)
+// 重點:開始有餅狀/糰狀變化,訓練咀嚼同手眼協調。
+// ========================================
+
+
+
+{
+  id: "blw-plate-9to12m-01",
+  title: "提子雞柳南瓜餐盤",
+  stage: "9-12個月",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: [],
+  prep_time: 30,
+  ingredients: [
+    { name: "提子", amount: "適量(去皮去籽切半)" },
+    { name: "西蘭花", amount: "適量(蒸軟切小朵)" },
+    { name: "紅蘿蔔", amount: "適量(蒸軟切條)" },
+    { name: "雞柳", amount: "適量(蒸熟撕絲)" },
+    { name: "南瓜", amount: "適量(蒸軟切塊)" }
+  ],
+  steps: [
+    "提子去皮去籽,切半。",
+    "西蘭花同紅蘿蔔分別隔水蒸軟,切成小朵/條狀。",
+    "雞柳隔水蒸熟,撕成幼絲。",
+    "南瓜隔水蒸軟,切成小塊。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-9to12m-01.jpg",
+  tips: "提子建議去皮去籽同切半先俾BB食,減低哽塞風險。"
+},
+{
+  id: "blw-plate-9to12m-02",
+  title: "藍莓水煮蛋薯仔餐盤",
+  stage: "9-12個月",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: ["蛋"],
+  prep_time: 25,
+  ingredients: [
+    { name: "藍莓", amount: "適量(壓扁)" },
+    { name: "椰菜花", amount: "適量(蒸軟切小朵)" },
+    { name: "粟米筍", amount: "適量(蒸軟切段)" },
+    { name: "雞蛋", amount: "1隻(煮熟切瓣)" },
+    { name: "薯仔", amount: "適量(蒸軟切條)" }
+  ],
+  steps: [
+    "藍莓洗淨,用叉背壓扁,減低哽塞風險。",
+    "椰菜花同粟米筍分別隔水蒸軟,切成小朵/段。",
+    "雞蛋連殼煮熟,剝殼切瓣。",
+    "薯仔隔水蒸軟,切成條狀。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-9to12m-02.jpg",
+  tips: "藍莓建議壓扁或切半先俾BB食,減低哽塞風險。"
+},
+{
+  id: "blw-plate-9to12m-03",
+  title: "蘋果魚柳迷你饅頭餐盤",
+  stage: "9-12個月",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: ["海鮮", "麩質"],
+  prep_time: 25,
+  ingredients: [
+    { name: "蘋果", amount: "適量(蒸軟切片)" },
+    { name: "露筍", amount: "適量(蒸軟切條)" },
+    { name: "青江菜", amount: "適量(蒸軟切成菜梗條)" },
+    { name: "魚柳", amount: "適量(蒸熟撕碎)" },
+    { name: "迷你饅頭", amount: "適量(蒸熱)" }
+  ],
+  steps: [
+    "蘋果去皮去芯切片,隔水蒸軟。",
+    "露筍同青江菜菜梗分別隔水蒸軟,切成手指條狀。",
+    "魚柳隔水蒸熟,仔細檢查冇細骨後撕碎。",
+    "迷你饅頭蒸熱,放涼至適合溫度。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-9to12m-03.jpg",
+  tips: "第一次食新魚種要留意觀察過敏反應,魚肉記得仔細檢查冇細骨先可以俾BB食。"
+},
+{
+  id: "blw-plate-9to12m-04",
+  title: "士多啤梨肉餅淮山餐盤",
+  stage: "9-12個月",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: [],
+  prep_time: 30,
+  ingredients: [
+    { name: "士多啤梨", amount: "適量(切半)" },
+    { name: "牛油果", amount: "適量(切條)" },
+    { name: "紅蘿蔔", amount: "適量(蒸軟切條)" },
+    { name: "豬肉餅", amount: "適量(蒸熟切條)" },
+    { name: "淮山", amount: "適量(蒸軟切條)" }
+  ],
+  steps: [
+    "士多啤梨洗淨切半。",
+    "牛油果去皮去核切條;紅蘿蔔隔水蒸軟切條。",
+    "豬肉碎整成肉餅,隔水蒸熟,切成手指條狀。",
+    "淮山隔水蒸軟,切成條狀。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-9to12m-04.jpg",
+  tips: ""
+},
+{
+  id: "blw-plate-9to12m-05",
+  title: "香蕉三文魚蕃薯糕餐盤",
+  stage: "9-12個月",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: ["海鮮"],
+  prep_time: 35,
+  ingredients: [
+    { name: "香蕉", amount: "適量(蒸軟切片)" },
+    { name: "椰菜花", amount: "適量(蒸軟切小朵)" },
+    { name: "翠玉瓜", amount: "適量(蒸軟切條)" },
+    { name: "三文魚", amount: "適量(蒸熟撕碎)" },
+    { name: "蕃薯蒸糕", amount: "適量(蒸熱切塊)" }
+  ],
+  steps: [
+    "香蕉去皮切片,隔水蒸軟。",
+    "椰菜花同翠玉瓜分別隔水蒸軟,切成小朵/條狀。",
+    "三文魚隔水蒸熟,仔細檢查冇細骨後撕碎。",
+    "蕃薯蒸糕蒸熱,切成小塊。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-9to12m-05.jpg",
+  tips: "三文魚含豐富DHA,第一次食要留意過敏反應。"
+},
+{
+  id: "blw-plate-9to12m-06",
+  title: "雪梨雞柳淮山肉餅餐盤",
+  stage: "9-12個月",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: [],
+  prep_time: 35,
+  ingredients: [
+    { name: "雪梨", amount: "適量(蒸軟切片)" },
+    { name: "茄子", amount: "適量(蒸軟切條)" },
+    { name: "黃甜椒", amount: "適量(蒸軟切條)" },
+    { name: "雞柳", amount: "適量(蒸熟撕絲)" },
+    { name: "淮山豬肉餅", amount: "適量(蒸熟切塊)" }
+  ],
+  steps: [
+    "雪梨去皮去芯切片,隔水蒸軟。",
+    "茄子同黃甜椒分別隔水蒸軟,切成手指條狀。",
+    "雞柳隔水蒸熟,撕成幼絲。",
+    "淮山豬肉餅蒸熟,切成小塊。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-9to12m-06.jpg",
+  tips: ""
+},
+{
+  id: "blw-plate-9to12m-07",
+  title: "藍莓蘋果豬柳蕃薯條餐盤",
+  stage: "9-12個月",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: [],
+  prep_time: 30,
+  ingredients: [
+    { name: "藍莓", amount: "適量(壓扁)" },
+    { name: "蘋果", amount: "適量(蒸軟切片)" },
+    { name: "露筍", amount: "適量(蒸軟切條)" },
+    { name: "粟米筍", amount: "適量(蒸軟切段)" },
+    { name: "豬柳", amount: "適量(蒸熟撕絲)" },
+    { name: "蕃薯", amount: "適量(蒸軟切條)" }
+  ],
+  steps: [
+    "藍莓洗淨壓扁;蘋果去皮去芯切片,隔水蒸軟。",
+    "露筍同粟米筍分別隔水蒸軟,切成手指條/段。",
+    "豬柳隔水蒸熟,撕成幼絲。",
+    "蕃薯隔水蒸軟,切成條狀。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-9to12m-07.jpg",
+  tips: "藍莓建議壓扁或切半先俾BB食,減低哽塞風險。"
+},
+{
+  id: "blw-plate-9to12m-08",
+  title: "火龍果香菇迷你饅頭餐盤",
+  stage: "9-12個月",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: ["麩質"],
+  prep_time: 25,
+  ingredients: [
+    { name: "火龍果", amount: "適量(切塊)" },
+    { name: "秋葵", amount: "適量(去頭尾蒸軟切片)" },
+    { name: "紅蘿蔔", amount: "適量(蒸軟切片)" },
+    { name: "鮮香菇", amount: "適量(蒸熟切片)" },
+    { name: "迷你饅頭", amount: "適量(蒸熱)" }
+  ],
+  steps: [
+    "火龍果去皮切塊。",
+    "秋葵去頭尾同紅蘿蔔分別隔水蒸軟,切成薄片。",
+    "鮮香菇隔水蒸熟,切成薄片。",
+    "迷你饅頭蒸熱,放涼至適合溫度。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-9to12m-08.jpg",
+  tips: ""
+},
+{
+  id: "blw-plate-9to12m-09",
+  title: "士多啤梨三文魚淮山條餐盤",
+  stage: "9-12個月",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: ["海鮮"],
+  prep_time: 30,
+  ingredients: [
+    { name: "士多啤梨", amount: "適量(切半)" },
+    { name: "椰菜花", amount: "適量(蒸軟切小朵)" },
+    { name: "青瓜", amount: "適量(切條)" },
+    { name: "三文魚", amount: "適量(蒸熟撕碎)" },
+    { name: "淮山", amount: "適量(蒸軟切條)" }
+  ],
+  steps: [
+    "士多啤梨洗淨切半。",
+    "椰菜花隔水蒸軟切小朵;青瓜去皮切條。",
+    "三文魚隔水蒸熟,仔細檢查冇細骨後撕碎。",
+    "淮山隔水蒸軟,切成條狀。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-9to12m-09.jpg",
+  tips: "三文魚含豐富DHA,第一次食要留意過敏反應。"
+},
+{
+  id: "blw-plate-9to12m-10",
+  title: "提子水煮蛋芋頭糕餐盤",
+  stage: "9-12個月",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: ["蛋"],
+  prep_time: 35,
+  ingredients: [
+    { name: "提子", amount: "適量(去皮去籽切半)" },
+    { name: "白蘿蔔", amount: "適量(蒸軟切條)" },
+    { name: "茄子", amount: "適量(蒸軟切條)" },
+    { name: "雞蛋", amount: "1隻(煮熟切瓣)" },
+    { name: "芋頭蒸糕", amount: "適量(蒸熱切塊)" }
+  ],
+  steps: [
+    "提子去皮去籽,切半。",
+    "白蘿蔔同茄子分別隔水蒸軟,切成手指條狀。",
+    "雞蛋連殼煮熟,剝殼切瓣。",
+    "芋頭蒸糕蒸熱,切成小塊。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-9to12m-10.jpg",
+  tips: "提子建議去皮去籽同切半先俾BB食,減低哽塞風險。"
+},
+{
+  id: "blw-plate-9to12m-11",
+  title: "藍莓韭菜蛋捲小饅頭餐盤",
+  stage: "9-12個月",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: ["蛋", "麩質"],
+  prep_time: 25,
+  ingredients: [
+    { name: "藍莓", amount: "適量(壓扁)" },
+    { name: "紅蘿蔔", amount: "適量(蒸軟切條)" },
+    { name: "青瓜", amount: "適量(切條)" },
+    { name: "韭菜蛋捲", amount: "適量(煎熟切件)" },
+    { name: "小饅頭", amount: "適量(蒸熱)" }
+  ],
+  steps: [
+    "藍莓洗淨壓扁。",
+    "紅蘿蔔隔水蒸軟切條;青瓜去皮切條。",
+    "韭菜切碎同雞蛋拌勻,煎成蛋捲,切成適合BB嘅小件。",
+    "小饅頭蒸熱,放涼至適合溫度。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-9to12m-11.jpg",
+  tips: "藍莓建議壓扁或切半先俾BB食,減低哽塞風險。"
+},
+
+// ========================================
+// BLW手指食物組合餐盤(1-3歲)
+// 重點:造型更多元(餅、糰、卷、意粉、帶骨小禽類),過渡到同桌飲食。
+// ========================================
+
+
+
+{
+  id: "blw-plate-1to3y-01",
+  title: "火龍果豬柳芋頭糕餐盤",
+  stage: "1-3歲",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: [],
+  prep_time: 30,
+  ingredients: [
+    { name: "火龍果", amount: "適量(切塊)" },
+    { name: "紅蘿蔔", amount: "適量(蒸軟切條)" },
+    { name: "白蘿蔔", amount: "適量(蒸軟切條)" },
+    { name: "豬柳", amount: "適量(蒸熟撕條)" },
+    { name: "芋頭蒸糕", amount: "適量(蒸熱切塊)" }
+  ],
+  steps: [
+    "火龍果去皮切塊。",
+    "紅蘿蔔同白蘿蔔分別隔水蒸軟,切成手指條狀。",
+    "豬柳隔水蒸熟,撕成粗條。",
+    "芋頭蒸糕蒸熱,切成小塊。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-1to3y-01.jpg",
+  tips: ""
+},
+{
+  id: "blw-plate-1to3y-02",
+  title: "蘋果雞柳紫蕃薯餐盤",
+  stage: "1-3歲",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: [],
+  prep_time: 30,
+  ingredients: [
+    { name: "蘋果", amount: "適量(蒸軟切片)" },
+    { name: "椰菜花", amount: "適量(蒸軟切小朵)" },
+    { name: "粟米筍", amount: "適量(蒸軟切段)" },
+    { name: "雞柳", amount: "適量(蒸熟撕條)" },
+    { name: "紫蕃薯", amount: "適量(蒸軟切條)" }
+  ],
+  steps: [
+    "蘋果去皮去芯切片,隔水蒸軟。",
+    "椰菜花同粟米筍分別隔水蒸軟,切成小朵/段。",
+    "雞柳隔水蒸熟,撕成粗條。",
+    "紫蕃薯隔水蒸軟,切成條狀。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-1to3y-02.jpg",
+  tips: ""
+},
+{
+  id: "blw-plate-1to3y-03",
+  title: "木瓜香菇椰菜煎餅餐盤",
+  stage: "1-3歲",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: ["蛋", "麩質"],
+  prep_time: 30,
+  ingredients: [
+    { name: "木瓜", amount: "適量(切條)" },
+    { name: "絲瓜", amount: "適量(蒸軟切片)" },
+    { name: "紅蘿蔔", amount: "適量(蒸軟切條)" },
+    { name: "鮮香菇", amount: "適量(蒸熟切片)" },
+    { name: "椰菜煎餅", amount: "適量(煎熟切件)" }
+  ],
+  steps: [
+    "木瓜去皮去籽,切成手指粗條。",
+    "絲瓜同紅蘿蔔分別隔水蒸軟,切成薄片/條狀。",
+    "鮮香菇隔水蒸熟,切成薄片。",
+    "椰菜切碎拌入蛋汁同少量麵粉,煎成小餅,切成適合BB嘅小件。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-1to3y-03.jpg",
+  tips: ""
+},
+{
+  id: "blw-plate-1to3y-04",
+  title: "藍莓橙肉雞柳蕃薯餅餐盤",
+  stage: "1-3歲",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: [],
+  prep_time: 35,
+  ingredients: [
+    { name: "藍莓", amount: "適量(壓扁)" },
+    { name: "橙肉", amount: "適量(去籽切小塊)" },
+    { name: "秋葵", amount: "適量(去頭尾蒸軟切片)" },
+    { name: "紅蘿蔔", amount: "適量(蒸軟切片)" },
+    { name: "雞柳", amount: "適量(蒸熟撕絲)" },
+    { name: "蕃薯豬肉餅", amount: "適量(蒸熟切件)" }
+  ],
+  steps: [
+    "藍莓洗淨壓扁;橙肉去籽切成小塊。",
+    "秋葵去頭尾同紅蘿蔔分別隔水蒸軟,切成薄片。",
+    "雞柳隔水蒸熟,撕成幼絲。",
+    "蕃薯豬肉餅蒸熟,切成適合BB嘅小件。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-1to3y-04.jpg",
+  tips: "藍莓建議壓扁或切半先俾BB食,減低哽塞風險。"
+},
+{
+  id: "blw-plate-1to3y-05",
+  title: "士多啤梨三文魚薯仔餅餐盤",
+  stage: "1-3歲",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: ["海鮮", "蛋"],
+  prep_time: 35,
+  ingredients: [
+    { name: "士多啤梨", amount: "適量(切半)" },
+    { name: "西蘭花", amount: "適量(蒸軟切小朵)" },
+    { name: "青瓜", amount: "適量(切條)" },
+    { name: "三文魚薯仔煎餅", amount: "適量(煎熟切件)" },
+    { name: "迷你飯糰", amount: "適量(捏成小飯糰)" }
+  ],
+  steps: [
+    "士多啤梨洗淨切半。",
+    "西蘭花隔水蒸軟切小朵;青瓜去皮切條。",
+    "三文魚拆碎拌入薯蓉同少量蛋汁,煎成小餅,切成適合BB嘅小件。",
+    "白飯捏成迷你飯糰。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-1to3y-05.jpg",
+  tips: "三文魚含豐富DHA,第一次食要留意過敏反應。"
+},
+{
+  id: "blw-plate-1to3y-06",
+  title: "提子番茄牛肉意粉餐盤",
+  stage: "1-3歲",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: ["麩質"],
+  prep_time: 30,
+  ingredients: [
+    { name: "提子", amount: "適量(去皮去籽切半)" },
+    { name: "椰菜花", amount: "適量(蒸軟切小朵)" },
+    { name: "紅蘿蔔", amount: "適量(蒸軟切條)" },
+    { name: "短意粉", amount: "適量(煮軟剪短)" },
+    { name: "牛肉碎", amount: "適量(炒熟)" },
+    { name: "番茄", amount: "適量(煮軟切碎)" }
+  ],
+  steps: [
+    "提子去皮去籽,切半。",
+    "椰菜花同紅蘿蔔分別隔水蒸軟,切成小朵/條狀。",
+    "短意粉煮軟,剪成適合BB嘅長度。",
+    "番茄去皮切碎,同牛肉碎一齊煮成醬,拌入意粉。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-1to3y-06.jpg",
+  tips: "提子建議去皮去籽同切半先俾BB食,減低哽塞風險。"
+},
+{
+  id: "blw-plate-1to3y-07",
+  title: "雪梨三文魚薯仔餅餐盤",
+  stage: "1-3歲",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: ["海鮮", "蛋", "麩質"],
+  prep_time: 35,
+  ingredients: [
+    { name: "雪梨", amount: "適量(蒸軟切片)" },
+    { name: "西蘭花", amount: "適量(蒸軟切小朵)" },
+    { name: "黃甜椒", amount: "適量(蒸軟切條)" },
+    { name: "三文魚薯仔煎餅", amount: "適量(煎熟切件)" },
+    { name: "椰菜煎餅", amount: "適量(煎熟切件)" }
+  ],
+  steps: [
+    "雪梨去皮去芯切片,隔水蒸軟。",
+    "西蘭花同黃甜椒分別隔水蒸軟,切成小朵/條狀。",
+    "三文魚拆碎拌入薯蓉同少量蛋汁,煎成小餅,切成適合BB嘅小件。",
+    "椰菜切碎拌入蛋汁同少量麵粉,煎成小餅,切成適合BB嘅小件。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-1to3y-07.jpg",
+  tips: "三文魚含豐富DHA,第一次食要留意過敏反應。"
+},
+{
+  id: "blw-plate-1to3y-08",
+  title: "藍莓番茄雞肉意粉餐盤",
+  stage: "1-3歲",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: ["麩質"],
+  prep_time: 30,
+  ingredients: [
+    { name: "藍莓", amount: "適量(壓扁)" },
+    { name: "茄子", amount: "適量(蒸軟切條)" },
+    { name: "紅蘿蔔", amount: "適量(蒸軟切條)" },
+    { name: "短意粉", amount: "適量(煮軟剪短)" },
+    { name: "雞肉碎", amount: "適量(炒熟)" },
+    { name: "番茄", amount: "適量(煮軟切碎)" }
+  ],
+  steps: [
+    "藍莓洗淨壓扁。",
+    "茄子同紅蘿蔔分別隔水蒸軟,切成手指條狀。",
+    "短意粉煮軟,剪成適合BB嘅長度。",
+    "番茄去皮切碎,同雞肉碎一齊煮成醬,拌入意粉。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-1to3y-08.jpg",
+  tips: "藍莓建議壓扁或切半先俾BB食,減低哽塞風險。"
+},
+{
+  id: "blw-plate-1to3y-09",
+  title: "火龍果豬肉餅飯糰餐盤",
+  stage: "1-3歲",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: [],
+  prep_time: 30,
+  ingredients: [
+    { name: "火龍果", amount: "適量(切塊)" },
+    { name: "秋葵", amount: "適量(去頭尾蒸軟切片)" },
+    { name: "粟米筍", amount: "適量(蒸軟切段)" },
+    { name: "淮山豬肉餅", amount: "適量(蒸熟切件)" },
+    { name: "迷你飯糰", amount: "適量(捏成小飯糰)" }
+  ],
+  steps: [
+    "火龍果去皮切塊。",
+    "秋葵去頭尾同粟米筍分別隔水蒸軟,切成薄片/段。",
+    "淮山豬肉餅蒸熟,切成適合BB嘅小件。",
+    "白飯捏成迷你飯糰。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-1to3y-09.jpg",
+  tips: ""
+},
+{
+  id: "blw-plate-1to3y-10",
+  title: "木瓜蕃薯豬肉餅餐盤",
+  stage: "1-3歲",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: [],
+  prep_time: 30,
+  ingredients: [
+    { name: "木瓜", amount: "適量(切條)" },
+    { name: "露筍", amount: "適量(蒸軟切條)" },
+    { name: "青瓜", amount: "適量(切條)" },
+    { name: "蕃薯豬肉餅", amount: "適量(蒸熟切件)" },
+    { name: "紫蕃薯", amount: "適量(蒸軟切條)" }
+  ],
+  steps: [
+    "木瓜去皮去籽,切成手指粗條。",
+    "露筍隔水蒸軟切條;青瓜去皮切條。",
+    "蕃薯豬肉餅蒸熟,切成適合BB嘅小件。",
+    "紫蕃薯隔水蒸軟,切成條狀。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-1to3y-10.jpg",
+  tips: ""
+},
+{
+  id: "blw-plate-1to3y-11",
+  title: "哈密瓜蝦仁鱈魚餐盤",
+  stage: "1-3歲",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: ["海鮮"],
+  prep_time: 30,
+  ingredients: [
+    { name: "哈密瓜", amount: "適量(切塊)" },
+    { name: "蘆筍", amount: "適量(蒸軟切段)" },
+    { name: "紅椒", amount: "適量(蒸軟切粒)" },
+    { name: "蝦仁", amount: "適量(去腸蒸熟切碎)" },
+    { name: "鱈魚", amount: "適量(蒸熟撕碎)" }
+  ],
+  steps: [
+    "哈密瓜去皮去籽,切成小塊。",
+    "蘆筍隔水蒸軟切段;紅椒隔水蒸軟切粒。",
+    "蝦仁去腸洗淨,隔水蒸熟切碎。",
+    "鱈魚隔水蒸熟,仔細檢查冇細骨後撕碎。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-1to3y-11.jpg",
+  tips: "蝦仁、鱈魚屬首次引入嘅海鮮食材,建議先單獨試食,留意有冇過敏反應。"
+},
+{
+  id: "blw-plate-1to3y-12",
+  title: "蜜瓜小饅頭蛋捲餐盤",
+  stage: "1-3歲",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: ["蛋", "麩質"],
+  prep_time: 25,
+  ingredients: [
+    { name: "蜜瓜", amount: "適量(切塊)" },
+    { name: "紅椒", amount: "適量(蒸軟切粒)" },
+    { name: "粟米", amount: "1條(蒸熟)" },
+    { name: "小饅頭", amount: "適量(蒸熱)" },
+    { name: "雞蛋", amount: "適量(煎成蛋捲切件)" }
+  ],
+  steps: [
+    "蜜瓜去皮去籽,切成小塊。",
+    "紅椒隔水蒸軟切粒;粟米整條隔水蒸熟。",
+    "小饅頭蒸熱,放涼至適合溫度。",
+    "雞蛋打散煎成蛋捲,切成適合BB嘅小件。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-1to3y-12.jpg",
+  tips: ""
+},
+{
+  id: "blw-plate-1to3y-13",
+  title: "哈密瓜咖喱雞髀餐盤",
+  stage: "1-3歲",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: [],
+  prep_time: 35,
+  ingredients: [
+    { name: "哈密瓜", amount: "適量(切塊)" },
+    { name: "紅椒", amount: "適量(蒸軟切粒)" },
+    { name: "粟米", amount: "1條(蒸熟)" },
+    { name: "小雞髀", amount: "適量(咖喱燜熟)" }
+  ],
+  steps: [
+    "哈密瓜去皮去籽,切成小塊。",
+    "紅椒隔水蒸軟切粒;粟米整條隔水蒸熟。",
+    "小雞髀用少量咖喱粉同水燜煮至熟透軟身。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-1to3y-13.jpg",
+  tips: "⚠️帶骨食材:骨較細,建議先撕走大部分肉畀BB自己拎,家長在旁睇住,避免BB直接較大力咬骨。呢個組合屬首次引入嘅食材,建議留意有冇過敏反應。"
+},
+{
+  id: "blw-plate-1to3y-14",
+  title: "蜜瓜鵪鶉髀餐盤",
+  stage: "1-3歲",
+  category: "手指食物",
+  g6pd_status: "safe",
+  g6pd_note: "",
+  allergens: [],
+  prep_time: 35,
+  ingredients: [
+    { name: "蜜瓜", amount: "適量(切塊)" },
+    { name: "蘆筍", amount: "適量(蒸軟切段)" },
+    { name: "紅椒", amount: "適量(蒸軟切粒)" },
+    { name: "鵪鶉髀", amount: "適量(蒸熟)" }
+  ],
+  steps: [
+    "蜜瓜去皮去籽,切成小塊。",
+    "蘆筍同紅椒分別隔水蒸軟,切成段/粒。",
+    "鵪鶉髀隔水蒸熟至軟身。",
+    "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
+  ],
+  image: "blw-plate-1to3y-14.jpg",
+  tips: "⚠️帶骨食材:骨較細,建議先撕走大部分肉畀BB自己拎,家長在旁睇住,避免BB直接較大力咬骨。"
+}
 
 ];
