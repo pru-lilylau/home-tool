@@ -65,7 +65,7 @@
   header.top{text-align:center;padding:40px 0 24px;}
   header.top h1{font-size:clamp(26px,5vw,38px);margin:0 0 8px;color:var(--ink);}
   header.top h1 .en{display:block;font-size:14px;font-weight:500;color:var(--ink-soft);letter-spacing:.5px;margin-top:6px;}
-  header.top .tagline{font-size:13px;color:var(--ink-soft);line-height:1.8;margin:10px auto 0;max-width:640px;}
+  header.top .tagline{font-size:15px;color:var(--ink-soft);line-height:1.8;margin:10px auto 0;max-width:640px;}
 
   .g6pd-banner{
     display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;
@@ -185,16 +185,16 @@
   .g6pd-note.avoid{background:var(--g6pd-avoid);color:var(--g6pd-avoid-deep);}
   .tips-box{background:var(--butter);color:var(--butter-deep);border-radius:16px;padding:14px 16px;font-size:13px;margin-top:14px;font-weight:600;}
 
-  .ing-table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  .ing-table{width:100%;border-collapse:collapse;font-size:15px;}
   .ing-table tr{border-bottom:1px solid var(--cream);}
   .ing-table tr:last-child{border-bottom:none;}
   .ing-table td{padding:8px 4px;vertical-align:top;}
-  .ing-table td.qty{text-align:right;color:var(--ink-soft);font-size:13px;white-space:nowrap;}
+  .ing-table td.qty{text-align:right;color:var(--ink-soft);font-size:15px;white-space:nowrap;}
 
   .steps{list-style:none;margin:0;padding:0;counter-reset:step;}
   .steps li{
     counter-increment:step;padding:10px 0 10px 32px;position:relative;
-    border-bottom:1px dashed var(--cream);font-size:13.5px;line-height:1.6;
+    border-bottom:1px dashed var(--cream);font-size:15px;line-height:1.6;
   }
   .steps li:last-child{border-bottom:none;}
   .steps li::before{
@@ -203,12 +203,15 @@
     font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;
   }
 
-  .print-btn{
-    margin-top:22px;width:100%;background:var(--ink);color:#fff;border:none;border-radius:999px;
+  .print-btn,.share-btn{
+    margin-top:10px;width:100%;background:var(--ink);color:#fff;border:none;border-radius:999px;
     padding:14px;font-weight:700;font-size:14px;cursor:pointer;display:flex;align-items:center;
     justify-content:center;gap:8px;font-family:'Noto Sans TC',sans-serif;
   }
-  .print-btn:hover{filter:brightness(1.15);}
+  .print-btn{margin-top:22px;}
+  .print-btn:hover,.share-btn:hover{filter:brightness(1.15);}
+  .share-btn{background:#25D366;}
+  .share-btn:disabled{opacity:.65;cursor:wait;filter:none;}
 
   #guide{
     position:fixed;right:18px;bottom:18px;z-index:70;width:60px;height:60px;border-radius:50%;
@@ -246,6 +249,15 @@
     #printArea{display:block !important;padding:10px;}
     #printArea .badge{border:1px solid #999;}
   }
+
+  #shareArea{position:fixed;left:-9999px;top:0;width:400px;}
+  .share-card{background:var(--white);border-radius:24px;padding:22px;font-family:'Noto Sans TC',sans-serif;}
+  .share-card .modal-head{border-bottom:none;margin-bottom:6px;padding-bottom:0;}
+  .share-footer{
+    margin-top:18px;padding-top:14px;border-top:2px dashed var(--cream);
+    text-align:center;font-size:12px;color:var(--ink-soft);line-height:1.7;
+  }
+  .share-footer b{color:var(--coral-deep);}
 
   @media (max-width:480px){
     header.top h1{font-size:24px;}
@@ -304,6 +316,7 @@
 </div>
 
 <div id="printArea"></div>
+<div id="shareArea"></div>
 
 <footer>
   <div class="wrap">
@@ -450,9 +463,9 @@ function cardBadges(r){
   return html;
 }
 
-function imgBlock(r, fallbackSize){
+function imgBlock(r, eager){
   return `<div class="card-img">
-      <img src="${IMG_BASE}${r.image}" alt="${r.title}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <img src="${IMG_BASE}${r.image}" alt="${r.title}" ${eager?'':'loading="lazy" '}onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
       <div class="img-fallback">${catInfo(r.category)?catInfo(r.category).emoji:'🍽️'}</div>
       <span class="ai-tag">AI示意圖</span>
     </div>`;
@@ -481,7 +494,7 @@ function recipeDetailHTML(r, forPrint){
   const gi = g6pdInfo(r.g6pd_status);
   let html = `
     <div class="modal-head">
-      ${imgBlock(r)}
+      ${imgBlock(r, forPrint)}
       <div class="zh-name">${r.title}</div>
       ${cardBadges(r)}
     </div>`;
@@ -501,8 +514,19 @@ function recipeDetailHTML(r, forPrint){
     html += `<div class="tips-box">💡 小貼士：${r.tips}</div>`;
   }
   if(!forPrint){
+    html += `<button class="share-btn" data-id="${r.id}">📤 分享做圖片（WhatsApp）</button>`;
     html += `<button class="print-btn" data-id="${r.id}">🖨️ 列印 / 儲存做PDF</button>`;
   }
+  return html;
+}
+
+function shareCardHTML(r){
+  let html = recipeDetailHTML(r, true);
+  html += `
+    <div class="share-footer">
+      🍼 <b>Lily Lau</b> 香港持牌會計師 × 保誠保險顧問 × 媽媽<br>
+      IG @pru_lilylau · BB食譜由Lily整理，免費分享俾有需要嘅家庭
+    </div>`;
   return html;
 }
 
@@ -514,6 +538,8 @@ function openModal(id){
   document.getElementById('closeModalBtn').addEventListener('click', closeModal);
   const printBtn = modal.querySelector('.print-btn');
   if(printBtn) printBtn.addEventListener('click', ()=> printRecipe(printBtn.dataset.id));
+  const shareBtn = modal.querySelector('.share-btn');
+  if(shareBtn) shareBtn.addEventListener('click', ()=> shareRecipeImage(shareBtn.dataset.id, shareBtn));
   document.getElementById('modalOverlay').classList.add('show');
 }
 
@@ -528,14 +554,78 @@ document.addEventListener('keydown', (e)=>{
   if(e.key==='Escape') closeModal();
 });
 
+function waitForImages(container){
+  const imgs = Array.from(container.querySelectorAll('img'));
+  return Promise.all(imgs.map(img=>{
+    if(img.complete) return Promise.resolve();
+    return new Promise(resolve=>{
+      img.addEventListener('load', resolve, {once:true});
+      img.addEventListener('error', resolve, {once:true});
+      setTimeout(resolve, 1500);
+    });
+  }));
+}
+
 function printRecipe(id){
   const r = babyRecipes.find(x=>x.id===id);
   if(!r) return;
-  document.getElementById('printArea').innerHTML = recipeDetailHTML(r, true);
-  document.body.classList.add('printing');
-  window.print();
+  const printArea = document.getElementById('printArea');
+  printArea.innerHTML = recipeDetailHTML(r, true);
+  waitForImages(printArea).then(()=>{
+    document.body.classList.add('printing');
+    window.print();
+  });
 }
 window.addEventListener('afterprint', ()=>{ document.body.classList.remove('printing'); });
+
+let html2canvasPromise;
+function loadHtml2Canvas(){
+  if(window.html2canvas) return Promise.resolve();
+  if(html2canvasPromise) return html2canvasPromise;
+  html2canvasPromise = new Promise((resolve, reject)=>{
+    const s = document.createElement('script');
+    s.src = 'assets/html2canvas.min.js';
+    s.onload = ()=> resolve();
+    s.onerror = ()=>{ html2canvasPromise = null; reject(new Error('html2canvas load failed')); };
+    document.head.appendChild(s);
+  });
+  return html2canvasPromise;
+}
+
+async function shareRecipeImage(id, btn){
+  const r = babyRecipes.find(x=>x.id===id);
+  if(!r) return;
+  const originalLabel = btn ? btn.textContent : '';
+  if(btn){ btn.disabled = true; btn.textContent = '⏳ 產生緊圖片…'; }
+  try{
+    await loadHtml2Canvas();
+    const shareArea = document.getElementById('shareArea');
+    shareArea.innerHTML = `<div class="share-card">${shareCardHTML(r)}</div>`;
+    await waitForImages(shareArea);
+    const canvas = await html2canvas(shareArea.firstElementChild, {backgroundColor:'#ffffff', scale:2, useCORS:true});
+    shareArea.innerHTML = '';
+    const blob = await new Promise(resolve=> canvas.toBlob(resolve, 'image/png'));
+    if(!blob) throw new Error('canvas.toBlob failed');
+    const filename = r.title.replace(/[\\/:*?"<>|]+/g, '、') + '.png';
+    const file = new File([blob], filename, {type:'image/png'});
+    if(navigator.canShare && navigator.canShare({files:[file]})){
+      await navigator.share({files:[file], title:r.title, text:`${r.title} - BB食譜`});
+    } else {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = filename;
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(url);
+      alert('圖片已經下載，可以去WhatsApp揀返張相分享俾人喇！');
+    }
+  }catch(e){
+    if(e && e.name !== 'AbortError'){
+      alert('產生圖片失敗，請檢查網絡連線再試一次。');
+    }
+  }finally{
+    if(btn){ btn.disabled = false; btn.textContent = originalLabel; }
+  }
+}
 
 document.getElementById('searchInput').addEventListener('input', renderGrid);
 
