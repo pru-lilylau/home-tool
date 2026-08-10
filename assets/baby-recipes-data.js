@@ -811,7 +811,7 @@ const babyRecipes = [
 
 
 {
-  id: "blw-plate-6to8m-01",
+  id: "combo-6-8-01",
   title: "蘋果西蘭花薯仔餐盤",
   stage: "6-8個月",
   category: "手指食物",
@@ -831,11 +831,11 @@ const babyRecipes = [
     "薯仔去皮切條,隔水蒸至軟身。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-6to8m-01.jpg",
+  image: "combo-6-8-01.jpg",
   tips: ""
 },
 {
-  id: "blw-plate-6to8m-02",
+  id: "combo-6-8-02",
   title: "香蕉椰菜花蛋黃餐盤",
   stage: "6-8個月",
   category: "手指食物",
@@ -855,11 +855,11 @@ const babyRecipes = [
     "雞蛋連殼煮熟,剝殼取蛋黃,用叉壓碎。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-6to8m-02.jpg",
+  image: "combo-6-8-02.jpg",
   tips: ""
 },
 {
-  id: "blw-plate-6to8m-03",
+  id: "combo-6-8-03",
   title: "雪梨紫蕃薯雞柳餐盤",
   stage: "6-8個月",
   category: "手指食物",
@@ -879,11 +879,11 @@ const babyRecipes = [
     "雞柳隔水蒸熟,撕成幼絲/碎狀。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-6to8m-03.jpg",
+  image: "combo-6-8-03.jpg",
   tips: ""
 },
 {
-  id: "blw-plate-6to8m-04",
+  id: "combo-6-8-04",
   title: "牛油果南瓜豬柳餐盤",
   stage: "6-8個月",
   category: "手指食物",
@@ -903,11 +903,11 @@ const babyRecipes = [
     "豬柳隔水蒸熟,撕成幼絲/碎狀。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-6to8m-04.jpg",
+  image: "combo-6-8-04.jpg",
   tips: ""
 },
 {
-  id: "blw-plate-6to8m-05",
+  id: "combo-6-8-05",
   title: "火龍果淮山魚柳餐盤",
   stage: "6-8個月",
   category: "手指食物",
@@ -927,11 +927,11 @@ const babyRecipes = [
     "魚柳隔水蒸熟,仔細檢查冇細骨後撕成碎狀。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-6to8m-05.jpg",
+  image: "combo-6-8-05.jpg",
   tips: "第一次食新魚種要留意觀察過敏反應,魚肉記得仔細檢查冇細骨先可以俾BB食。"
 },
 {
-  id: "blw-plate-6to8m-06",
+  id: "combo-6-8-06",
   title: "木瓜翠玉瓜豆腐餐盤",
   stage: "6-8個月",
   category: "手指食物",
@@ -951,11 +951,11 @@ const babyRecipes = [
     "豆腐隔水蒸熱,切成條狀,質地軟身方便BB捏住。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-6to8m-06.jpg",
+  image: "combo-6-8-06.jpg",
   tips: ""
 },
 {
-  id: "blw-plate-6to8m-07",
+  id: "combo-6-8-07",
   title: "啤梨南瓜雞柳餐盤",
   stage: "6-8個月",
   category: "手指食物",
@@ -975,11 +975,11 @@ const babyRecipes = [
     "雞柳隔水蒸熟,撕成幼絲。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-6to8m-07.jpg",
+  image: "combo-6-8-07.jpg",
   tips: ""
 },
 {
-  id: "blw-plate-6to8m-08",
+  id: "combo-6-8-08",
   title: "提子紅蘿蔔豆腐餐盤",
   stage: "6-8個月",
   category: "手指食物",
@@ -999,11 +999,11 @@ const babyRecipes = [
     "豆腐隔水蒸熱,切成條狀。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-6to8m-08.jpg",
+  image: "combo-6-8-08.jpg",
   tips: "提子建議去皮去籽同切半先俾BB食,減低哽塞風險。"
 },
 {
-  id: "blw-plate-6to8m-09",
+  id: "combo-6-8-09",
   title: "蘋果翠玉瓜蛋黃餐盤",
   stage: "6-8個月",
   category: "手指食物",
@@ -1023,11 +1023,11 @@ const babyRecipes = [
     "雞蛋連殼煮熟,剝殼取蛋黃,用叉壓碎。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-6to8m-09.jpg",
+  image: "combo-6-8-09.jpg",
   tips: ""
 },
 {
-  id: "blw-plate-6to8m-10",
+  id: "combo-6-8-10",
   title: "木瓜薯仔魚柳餐盤",
   stage: "6-8個月",
   category: "手指食物",
@@ -1047,7 +1047,7 @@ const babyRecipes = [
     "魚柳隔水蒸熟,仔細檢查冇細骨後撕成碎狀。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-6to8m-10.jpg",
+  image: "combo-6-8-10.jpg",
   tips: "第一次食新魚種要留意觀察過敏反應,魚肉記得仔細檢查冇細骨先可以俾BB食。"
 },
 
@@ -1059,7 +1059,7 @@ const babyRecipes = [
 
 
 {
-  id: "blw-plate-9to12m-01",
+  id: "combo-9-12-01",
   title: "提子雞柳南瓜餐盤",
   stage: "9-12個月",
   category: "手指食物",
@@ -1081,11 +1081,11 @@ const babyRecipes = [
     "南瓜隔水蒸軟,切成小塊。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-9to12m-01.jpg",
+  image: "combo-9-12-01.jpg",
   tips: "提子建議去皮去籽同切半先俾BB食,減低哽塞風險。"
 },
 {
-  id: "blw-plate-9to12m-02",
+  id: "combo-9-12-02",
   title: "藍莓水煮蛋薯仔餐盤",
   stage: "9-12個月",
   category: "手指食物",
@@ -1107,11 +1107,11 @@ const babyRecipes = [
     "薯仔隔水蒸軟,切成條狀。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-9to12m-02.jpg",
+  image: "combo-9-12-02.jpg",
   tips: "藍莓建議壓扁或切半先俾BB食,減低哽塞風險。"
 },
 {
-  id: "blw-plate-9to12m-03",
+  id: "combo-9-12-03",
   title: "蘋果魚柳迷你饅頭餐盤",
   stage: "9-12個月",
   category: "手指食物",
@@ -1133,11 +1133,11 @@ const babyRecipes = [
     "迷你饅頭蒸熱,放涼至適合溫度。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-9to12m-03.jpg",
+  image: "combo-9-12-03.jpg",
   tips: "第一次食新魚種要留意觀察過敏反應,魚肉記得仔細檢查冇細骨先可以俾BB食。"
 },
 {
-  id: "blw-plate-9to12m-04",
+  id: "combo-9-12-04",
   title: "士多啤梨肉餅淮山餐盤",
   stage: "9-12個月",
   category: "手指食物",
@@ -1159,11 +1159,11 @@ const babyRecipes = [
     "淮山隔水蒸軟,切成條狀。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-9to12m-04.jpg",
+  image: "combo-9-12-04.jpg",
   tips: ""
 },
 {
-  id: "blw-plate-9to12m-05",
+  id: "combo-9-12-05",
   title: "香蕉三文魚蕃薯糕餐盤",
   stage: "9-12個月",
   category: "手指食物",
@@ -1185,11 +1185,11 @@ const babyRecipes = [
     "蕃薯蒸糕蒸熱,切成小塊。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-9to12m-05.jpg",
+  image: "combo-9-12-05.jpg",
   tips: "三文魚含豐富DHA,第一次食要留意過敏反應。"
 },
 {
-  id: "blw-plate-9to12m-06",
+  id: "combo-9-12-06",
   title: "雪梨雞柳淮山肉餅餐盤",
   stage: "9-12個月",
   category: "手指食物",
@@ -1211,11 +1211,11 @@ const babyRecipes = [
     "淮山豬肉餅蒸熟,切成小塊。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-9to12m-06.jpg",
+  image: "combo-9-12-06.jpg",
   tips: ""
 },
 {
-  id: "blw-plate-9to12m-07",
+  id: "combo-9-12-07",
   title: "藍莓蘋果豬柳蕃薯條餐盤",
   stage: "9-12個月",
   category: "手指食物",
@@ -1238,11 +1238,11 @@ const babyRecipes = [
     "蕃薯隔水蒸軟,切成條狀。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-9to12m-07.jpg",
+  image: "combo-9-12-07.jpg",
   tips: "藍莓建議壓扁或切半先俾BB食,減低哽塞風險。"
 },
 {
-  id: "blw-plate-9to12m-08",
+  id: "combo-9-12-08",
   title: "火龍果香菇迷你饅頭餐盤",
   stage: "9-12個月",
   category: "手指食物",
@@ -1264,11 +1264,11 @@ const babyRecipes = [
     "迷你饅頭蒸熱,放涼至適合溫度。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-9to12m-08.jpg",
+  image: "combo-9-12-08.jpg",
   tips: ""
 },
 {
-  id: "blw-plate-9to12m-09",
+  id: "combo-9-12-09",
   title: "士多啤梨三文魚淮山條餐盤",
   stage: "9-12個月",
   category: "手指食物",
@@ -1290,11 +1290,11 @@ const babyRecipes = [
     "淮山隔水蒸軟,切成條狀。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-9to12m-09.jpg",
+  image: "combo-9-12-09.jpg",
   tips: "三文魚含豐富DHA,第一次食要留意過敏反應。"
 },
 {
-  id: "blw-plate-9to12m-10",
+  id: "combo-9-12-10",
   title: "提子水煮蛋芋頭糕餐盤",
   stage: "9-12個月",
   category: "手指食物",
@@ -1316,11 +1316,11 @@ const babyRecipes = [
     "芋頭蒸糕蒸熱,切成小塊。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-9to12m-10.jpg",
+  image: "combo-9-12-10.jpg",
   tips: "提子建議去皮去籽同切半先俾BB食,減低哽塞風險。"
 },
 {
-  id: "blw-plate-9to12m-11",
+  id: "combo-9-12-11",
   title: "藍莓韭菜蛋捲小饅頭餐盤",
   stage: "9-12個月",
   category: "手指食物",
@@ -1342,7 +1342,7 @@ const babyRecipes = [
     "小饅頭蒸熱,放涼至適合溫度。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-9to12m-11.jpg",
+  image: "combo-9-12-11.jpg",
   tips: "藍莓建議壓扁或切半先俾BB食,減低哽塞風險。"
 },
 
@@ -1354,7 +1354,7 @@ const babyRecipes = [
 
 
 {
-  id: "blw-plate-1to3y-01",
+  id: "combo-1-3-01",
   title: "火龍果豬柳芋頭糕餐盤",
   stage: "1-3歲",
   category: "手指食物",
@@ -1376,11 +1376,11 @@ const babyRecipes = [
     "芋頭蒸糕蒸熱,切成小塊。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-1to3y-01.jpg",
+  image: "combo-1-3-01.jpg",
   tips: ""
 },
 {
-  id: "blw-plate-1to3y-02",
+  id: "combo-1-3-02",
   title: "蘋果雞柳紫蕃薯餐盤",
   stage: "1-3歲",
   category: "手指食物",
@@ -1402,11 +1402,11 @@ const babyRecipes = [
     "紫蕃薯隔水蒸軟,切成條狀。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-1to3y-02.jpg",
+  image: "combo-1-3-02.jpg",
   tips: ""
 },
 {
-  id: "blw-plate-1to3y-03",
+  id: "combo-1-3-03",
   title: "木瓜香菇椰菜煎餅餐盤",
   stage: "1-3歲",
   category: "手指食物",
@@ -1428,11 +1428,11 @@ const babyRecipes = [
     "椰菜切碎拌入蛋汁同少量麵粉,煎成小餅,切成適合BB嘅小件。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-1to3y-03.jpg",
+  image: "combo-1-3-03.jpg",
   tips: ""
 },
 {
-  id: "blw-plate-1to3y-04",
+  id: "combo-1-3-04",
   title: "藍莓橙肉雞柳蕃薯餅餐盤",
   stage: "1-3歲",
   category: "手指食物",
@@ -1455,11 +1455,11 @@ const babyRecipes = [
     "蕃薯豬肉餅蒸熟,切成適合BB嘅小件。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-1to3y-04.jpg",
+  image: "combo-1-3-04.jpg",
   tips: "藍莓建議壓扁或切半先俾BB食,減低哽塞風險。"
 },
 {
-  id: "blw-plate-1to3y-05",
+  id: "combo-1-3-05",
   title: "士多啤梨三文魚薯仔餅餐盤",
   stage: "1-3歲",
   category: "手指食物",
@@ -1481,11 +1481,11 @@ const babyRecipes = [
     "白飯捏成迷你飯糰。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-1to3y-05.jpg",
+  image: "combo-1-3-05.jpg",
   tips: "三文魚含豐富DHA,第一次食要留意過敏反應。"
 },
 {
-  id: "blw-plate-1to3y-06",
+  id: "combo-1-3-06",
   title: "提子番茄牛肉意粉餐盤",
   stage: "1-3歲",
   category: "手指食物",
@@ -1508,11 +1508,11 @@ const babyRecipes = [
     "番茄去皮切碎,同牛肉碎一齊煮成醬,拌入意粉。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-1to3y-06.jpg",
+  image: "combo-1-3-06.jpg",
   tips: "提子建議去皮去籽同切半先俾BB食,減低哽塞風險。"
 },
 {
-  id: "blw-plate-1to3y-07",
+  id: "combo-1-3-07",
   title: "雪梨三文魚薯仔餅餐盤",
   stage: "1-3歲",
   category: "手指食物",
@@ -1534,11 +1534,11 @@ const babyRecipes = [
     "椰菜切碎拌入蛋汁同少量麵粉,煎成小餅,切成適合BB嘅小件。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-1to3y-07.jpg",
+  image: "combo-1-3-07.jpg",
   tips: "三文魚含豐富DHA,第一次食要留意過敏反應。"
 },
 {
-  id: "blw-plate-1to3y-08",
+  id: "combo-1-3-08",
   title: "藍莓番茄雞肉意粉餐盤",
   stage: "1-3歲",
   category: "手指食物",
@@ -1561,11 +1561,11 @@ const babyRecipes = [
     "番茄去皮切碎,同雞肉碎一齊煮成醬,拌入意粉。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-1to3y-08.jpg",
+  image: "combo-1-3-08.jpg",
   tips: "藍莓建議壓扁或切半先俾BB食,減低哽塞風險。"
 },
 {
-  id: "blw-plate-1to3y-09",
+  id: "combo-1-3-09",
   title: "火龍果豬肉餅飯糰餐盤",
   stage: "1-3歲",
   category: "手指食物",
@@ -1587,11 +1587,11 @@ const babyRecipes = [
     "白飯捏成迷你飯糰。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-1to3y-09.jpg",
+  image: "combo-1-3-09.jpg",
   tips: ""
 },
 {
-  id: "blw-plate-1to3y-10",
+  id: "combo-1-3-10",
   title: "木瓜蕃薯豬肉餅餐盤",
   stage: "1-3歲",
   category: "手指食物",
@@ -1613,11 +1613,11 @@ const babyRecipes = [
     "紫蕃薯隔水蒸軟,切成條狀。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-1to3y-10.jpg",
+  image: "combo-1-3-10.jpg",
   tips: ""
 },
 {
-  id: "blw-plate-1to3y-11",
+  id: "combo-1-3-11",
   title: "哈密瓜蝦仁鱈魚餐盤",
   stage: "1-3歲",
   category: "手指食物",
@@ -1639,11 +1639,11 @@ const babyRecipes = [
     "鱈魚隔水蒸熟,仔細檢查冇細骨後撕碎。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-1to3y-11.jpg",
+  image: "combo-1-3-11.jpg",
   tips: "蝦仁、鱈魚屬首次引入嘅海鮮食材,建議先單獨試食,留意有冇過敏反應。"
 },
 {
-  id: "blw-plate-1to3y-12",
+  id: "combo-1-3-12",
   title: "蜜瓜小饅頭蛋捲餐盤",
   stage: "1-3歲",
   category: "手指食物",
@@ -1665,11 +1665,11 @@ const babyRecipes = [
     "雞蛋打散煎成蛋捲,切成適合BB嘅小件。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-1to3y-12.jpg",
+  image: "combo-1-3-12.jpg",
   tips: ""
 },
 {
-  id: "blw-plate-1to3y-13",
+  id: "combo-1-3-13",
   title: "哈密瓜咖喱雞髀餐盤",
   stage: "1-3歲",
   category: "手指食物",
@@ -1689,11 +1689,11 @@ const babyRecipes = [
     "小雞髀用少量咖喱粉同水燜煮至熟透軟身。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-1to3y-13.jpg",
+  image: "combo-1-3-13.jpg",
   tips: "⚠️帶骨食材:骨較細,建議先撕走大部分肉畀BB自己拎,家長在旁睇住,避免BB直接較大力咬骨。呢個組合屬首次引入嘅食材,建議留意有冇過敏反應。"
 },
 {
-  id: "blw-plate-1to3y-14",
+  id: "combo-1-3-14",
   title: "蜜瓜鵪鶉髀餐盤",
   stage: "1-3歲",
   category: "手指食物",
@@ -1713,7 +1713,7 @@ const babyRecipes = [
     "鵪鶉髀隔水蒸熟至軟身。",
     "全部放喺分格餐盤,唔同格分開擺,等BB自己揀住食。"
   ],
-  image: "blw-plate-1to3y-14.jpg",
+  image: "combo-1-3-14.jpg",
   tips: "⚠️帶骨食材:骨較細,建議先撕走大部分肉畀BB自己拎,家長在旁睇住,避免BB直接較大力咬骨。"
 }
 
