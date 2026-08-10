@@ -204,13 +204,18 @@
     font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;
   }
 
+  .share-btn-row{display:flex;gap:8px;margin-top:22px;flex-wrap:wrap;}
   .share-btn{
-    margin-top:22px;width:100%;background:#25D366;color:#fff;border:none;border-radius:999px;
+    width:100%;background:#25D366;color:#fff;border:none;border-radius:999px;
     padding:14px;font-weight:700;font-size:14px;cursor:pointer;display:flex;align-items:center;
     justify-content:center;gap:8px;font-family:'Noto Sans TC',sans-serif;
   }
+  .share-btn-row .share-btn{flex:1;min-width:100px;padding:12px 8px;font-size:12.5px;}
   .share-btn:hover{filter:brightness(1.15);}
   .share-btn:disabled{opacity:.65;cursor:wait;filter:none;}
+  .id-name{font-size:13px;color:var(--ink-soft);font-style:italic;margin-top:2px;line-height:1.4;}
+  .modal-head .id-name{font-size:14px;margin-top:4px;}
+  .step-lang{display:block;font-size:13px;font-style:italic;color:var(--ink-soft);margin-top:4px;line-height:1.5;}
 
   #guide{
     position:fixed;right:18px;bottom:18px;z-index:70;width:60px;height:60px;border-radius:50%;
@@ -480,38 +485,58 @@ function renderGrid(){
   });
 }
 
-function recipeDetailHTML(r, plain){
+const SHARE_LANG_FLAG = {id:'🇮🇩', fil:'🇵🇭'};
+
+function recipeDetailHTML(r, plain, langs){
+  langs = langs || [];
   const ci = catInfo(r.category);
   const gi = g6pdInfo(r.g6pd_status);
   let html = `
     <div class="modal-head">
       ${imgBlock(r, plain)}
       <div class="zh-name">${r.title}</div>
+      ${langs.map(l=> r['title_'+l] ? `<div class="id-name">${SHARE_LANG_FLAG[l]} ${r['title_'+l]}</div>` : '').join('')}
       ${cardBadges(r)}
     </div>`;
   if(r.g6pd_note){
-    html += `<div class="g6pd-note ${r.g6pd_status}">🫘 蠶豆症(G6PD)提示：${r.g6pd_note}</div>`;
+    const noteParts = [r.g6pd_note, ...langs.map(l=> r['g6pd_note_'+l] ? `${SHARE_LANG_FLAG[l]} ${r['g6pd_note_'+l]}` : '').filter(Boolean)];
+    html += `<div class="g6pd-note ${r.g6pd_status}">🫘 蠶豆症(G6PD)提示：${noteParts.join('<br><br>')}</div>`;
   }
   html += `
     <div class="section-title">🧺 材料</div>
     <table class="ing-table">
-      ${r.ingredients.map(i=>`<tr><td class="name">${i.name}</td><td class="qty">${i.amount}</td></tr>`).join('')}
+      ${r.ingredients.map(i=>{
+        const nameParts = [i.name, ...langs.map(l=> i['name_'+l] ? `${SHARE_LANG_FLAG[l]} ${i['name_'+l]}` : '').filter(Boolean)];
+        const amtParts = [i.amount, ...langs.map(l=> i['amount_'+l] ? `${SHARE_LANG_FLAG[l]} ${i['amount_'+l]}` : '').filter(Boolean)];
+        return `<tr><td class="name">${nameParts.join('<br>')}</td><td class="qty">${amtParts.join('<br>')}</td></tr>`;
+      }).join('')}
     </table>
     <div class="section-title">🔥 做法</div>
     <ol class="steps">
-      ${r.steps.map(s=>`<li>${s}</li>`).join('')}
+      ${r.steps.map((s,idx)=>{
+        const extra = langs.map(l=>{
+          const arr = r['steps_'+l];
+          return arr && arr[idx] ? `<span class="step-lang">${SHARE_LANG_FLAG[l]} ${arr[idx]}</span>` : '';
+        }).join('');
+        return `<li>${s}${extra}</li>`;
+      }).join('')}
     </ol>`;
   if(r.tips){
-    html += `<div class="tips-box">💡 小貼士：${r.tips}</div>`;
+    const tipsParts = [r.tips, ...langs.map(l=> r['tips_'+l] ? `${SHARE_LANG_FLAG[l]} ${r['tips_'+l]}` : '').filter(Boolean)];
+    html += `<div class="tips-box">💡 小貼士：${tipsParts.join('<br><br>')}</div>`;
   }
   if(!plain){
-    html += `<button class="share-btn" data-id="${r.id}">WhatsApp 分享</button>`;
+    html += `<div class="share-btn-row">
+      <button class="share-btn" data-id="${r.id}" data-langs="">WhatsApp 分享</button>
+      <button class="share-btn" data-id="${r.id}" data-langs="id">🇮🇩 中+印 分享</button>
+      <button class="share-btn" data-id="${r.id}" data-langs="fil">🇵🇭 中+菲 分享</button>
+    </div>`;
   }
   return html;
 }
 
-function shareCardHTML(r){
-  let html = recipeDetailHTML(r, true);
+function shareCardHTML(r, langs){
+  let html = recipeDetailHTML(r, true, langs);
   html += `
     <div class="share-footer">
       🍼 <b>Lily Lau</b> 香港持牌會計師 × 保誠保險顧問 × 媽媽<br>
@@ -526,8 +551,10 @@ function openModal(id){
   const modal = document.getElementById('modalContent');
   modal.innerHTML = `<button class="close-btn" id="closeModalBtn">&times;</button>` + recipeDetailHTML(r, false);
   document.getElementById('closeModalBtn').addEventListener('click', closeModal);
-  const shareBtn = modal.querySelector('.share-btn');
-  if(shareBtn) shareBtn.addEventListener('click', ()=> shareRecipeImage(shareBtn.dataset.id, shareBtn));
+  modal.querySelectorAll('.share-btn').forEach(btn=>{
+    const langs = btn.dataset.langs ? btn.dataset.langs.split(',') : [];
+    btn.addEventListener('click', ()=> shareRecipeImage(btn.dataset.id, btn, langs));
+  });
   loadHtml2Canvas().catch(()=>{});
   document.getElementById('modalOverlay').classList.add('show');
 }
@@ -579,7 +606,8 @@ function withTimeout(promise, ms, message){
   });
 }
 
-async function shareRecipeImage(id, btn){
+async function shareRecipeImage(id, btn, langs){
+  langs = langs || [];
   const r = babyRecipes.find(x=>x.id===id);
   if(!r) return;
   const originalLabel = btn ? btn.textContent : '';
@@ -592,7 +620,7 @@ async function shareRecipeImage(id, btn){
   pendingFontLinks.forEach(l => l.remove());
   try{
     await withTimeout(loadHtml2Canvas(), 8000, 'html2canvas load timeout');
-    shareArea.innerHTML = `<div class="share-card">${shareCardHTML(r)}</div>`;
+    shareArea.innerHTML = `<div class="share-card">${shareCardHTML(r, langs)}</div>`;
     await waitForImages(shareArea);
     // strip any image that failed to load so html2canvas doesn't stall trying to re-fetch it
     shareArea.querySelectorAll('img').forEach(img=>{
@@ -605,7 +633,8 @@ async function shareRecipeImage(id, btn){
     shareArea.innerHTML = '';
     const blob = await new Promise(resolve=> canvas.toBlob(resolve, 'image/png'));
     if(!blob) throw new Error('canvas.toBlob failed');
-    const filename = r.title.replace(/[\\/:*?"<>|]+/g, '、') + '.png';
+    const langSuffix = langs.length ? '（' + langs.map(l=>l==='id'?'印':'菲').join('') + '）' : '';
+    const filename = r.title.replace(/[\\/:*?"<>|]+/g, '、') + langSuffix + '.png';
     const file = new File([blob], filename, {type:'image/png'});
     if(navigator.canShare && navigator.canShare({files:[file]})){
       await navigator.share({files:[file], title:r.title, text:`${r.title} - BB食譜`});
