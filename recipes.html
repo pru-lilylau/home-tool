@@ -188,26 +188,12 @@
     transition:transform .25s ease;max-width:520px;margin:0 auto;
   }
   .share-bar.show{transform:translateY(0);}
-  .share-lang-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
-  .share-lang-row .lang-label{font-size:11.5px;color:rgba(255,255,255,.65);flex-shrink:0;}
-  .lang-chip{
-    background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.25);color:rgba(255,255,255,.7);
-    border-radius:999px;padding:5px 12px;font-size:12px;font-weight:700;cursor:pointer;
-    transition:all .15s ease;flex-shrink:0;
-  }
-  .lang-chip.active{background:var(--mint-deep);border-color:var(--mint-deep);color:#fff;}
   .share-bar-row{display:flex;align-items:center;justify-content:space-between;gap:8px;}
   .share-bar .share-info{font-size:13px;font-weight:700;white-space:nowrap;}
   .share-bar .share-clear-btn{
     background:none;border:none;color:rgba(255,255,255,.75);font-size:12.5px;cursor:pointer;
     padding:8px 4px;text-decoration:underline;flex-shrink:0;
   }
-  .share-bar .share-wa-btn{
-    background:#25D366;color:#fff;border:none;border-radius:999px;padding:8px 14px;
-    font-weight:700;font-size:12.5px;cursor:pointer;display:flex;align-items:center;gap:5px;
-    white-space:nowrap;flex-shrink:0;margin-left:auto;
-  }
-  .share-bar .share-wa-btn:hover{filter:brightness(1.06);}
   .share-quick-row{display:flex;gap:8px;flex-wrap:wrap;}
   .quick-send-btn{
     flex:1;min-width:130px;background:#25D366;color:#fff;border:none;border-radius:999px;
@@ -281,19 +267,13 @@
 </div>
 
 <div class="share-bar" id="shareBar">
-  <div class="share-lang-row" id="shareLangRow">
-    <span class="lang-label">分享語言</span>
-    <button class="lang-chip active" data-lang="id">🇮🇩 印</button>
-    <button class="lang-chip active" data-lang="fil">🇵🇭 菲</button>
-  </div>
   <div class="share-quick-row">
-    <button id="shareIdBtn" class="quick-send-btn">🇮🇩 中+印 送姐姐</button>
-    <button id="shareFilBtn" class="quick-send-btn">🇵🇭 中+菲 送姐姐</button>
+    <button id="shareIdBtn" class="quick-send-btn">🇮🇩 中+印</button>
+    <button id="shareFilBtn" class="quick-send-btn">🇵🇭 中+菲</button>
   </div>
   <div class="share-bar-row">
     <div class="share-info">已揀 <span id="shareCount">0</span> 味 · dipilih · napili</div>
     <button id="shareClearBtn" class="share-clear-btn">清除</button>
-    <button id="shareWaBtn" class="share-wa-btn">WhatsApp分享</button>
   </div>
 </div>
 
@@ -3638,7 +3618,6 @@ const RECIPES = [
 
 let currentCat = 'all';
 const selectedIdx = new Set();
-const shareLangs = new Set(['zh','id','fil']);
 
 function catInfo(key){ return CATEGORIES.find(c=>c.key===key); }
 
@@ -3736,7 +3715,7 @@ function updateShareBar(){
 }
 
 function buildShareText(langs){
-  const activeLangs = langs || shareLangs;
+  const activeLangs = langs;
   const so = servingInfo(currentServing);
   const ratio = so.mid / BASE_SERVING;
   const picks = [...selectedIdx].sort((a,b)=>a-b).map(i=>RECIPES[i]);
@@ -3796,25 +3775,10 @@ function buildShareText(langs){
   return lines.join('\n');
 }
 
-document.getElementById('shareLangRow').querySelectorAll('.lang-chip').forEach(chip=>{
-  chip.addEventListener('click', ()=>{
-    const lang = chip.dataset.lang;
-    if(shareLangs.has(lang)) shareLangs.delete(lang);
-    else shareLangs.add(lang);
-    chip.classList.toggle('active', shareLangs.has(lang));
-  });
-});
-
 document.getElementById('shareClearBtn').addEventListener('click', ()=>{
   selectedIdx.clear();
   renderGrid();
   updateShareBar();
-});
-
-document.getElementById('shareWaBtn').addEventListener('click', ()=>{
-  if(selectedIdx.size===0) return;
-  const text = buildShareText();
-  window.open('https://wa.me/?text='+encodeURIComponent(text), '_blank', 'noopener');
 });
 
 document.getElementById('shareIdBtn').addEventListener('click', ()=>{
