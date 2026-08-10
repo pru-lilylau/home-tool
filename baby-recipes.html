@@ -10,7 +10,8 @@
 <link rel="apple-touch-icon" href="assets/favicon-baby-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap"></noscript>
 <style>
   :root{
     --cream:#F5EDE0;
@@ -526,6 +527,7 @@ function openModal(id){
   document.getElementById('closeModalBtn').addEventListener('click', closeModal);
   const shareBtn = modal.querySelector('.share-btn');
   if(shareBtn) shareBtn.addEventListener('click', ()=> shareRecipeImage(shareBtn.dataset.id, shareBtn));
+  loadHtml2Canvas().catch(()=>{});
   document.getElementById('modalOverlay').classList.add('show');
 }
 
@@ -566,17 +568,39 @@ function loadHtml2Canvas(){
   return html2canvasPromise;
 }
 
+function withTimeout(promise, ms, message){
+  return new Promise((resolve, reject)=>{
+    const timer = setTimeout(()=> reject(new Error(message)), ms);
+    promise.then(
+      v=>{ clearTimeout(timer); resolve(v); },
+      e=>{ clearTimeout(timer); reject(e); }
+    );
+  });
+}
+
 async function shareRecipeImage(id, btn){
   const r = babyRecipes.find(x=>x.id===id);
   if(!r) return;
   const originalLabel = btn ? btn.textContent : '';
   if(btn){ btn.disabled = true; btn.textContent = '⏳ 產生緊圖片…'; }
+  const shareArea = document.getElementById('shareArea');
+  // a still-loading cross-origin stylesheet (e.g. Google Fonts, on a slow/blocked connection) can make
+  // html2canvas's style computation stall for a very long time; pull it out of the DOM for the capture
+  // if it hasn't resolved yet, and put it back afterwards so the rest of the page still gets the webfont
+  const pendingFontLinks = Array.from(document.querySelectorAll('link[href*="fonts.googleapis.com"]')).filter(l => !l.sheet);
+  pendingFontLinks.forEach(l => l.remove());
   try{
-    await loadHtml2Canvas();
-    const shareArea = document.getElementById('shareArea');
+    await withTimeout(loadHtml2Canvas(), 8000, 'html2canvas load timeout');
     shareArea.innerHTML = `<div class="share-card">${shareCardHTML(r)}</div>`;
     await waitForImages(shareArea);
-    const canvas = await html2canvas(shareArea.firstElementChild, {backgroundColor:'#ffffff', scale:2, useCORS:true});
+    // strip any image that failed to load so html2canvas doesn't stall trying to re-fetch it
+    shareArea.querySelectorAll('img').forEach(img=>{
+      if(!img.complete || img.naturalWidth === 0) img.remove();
+    });
+    const canvas = await withTimeout(
+      html2canvas(shareArea.firstElementChild, {backgroundColor:'#ffffff', scale:2, useCORS:true, imageTimeout:4000, logging:false}),
+      10000, 'html2canvas render timeout'
+    );
     shareArea.innerHTML = '';
     const blob = await new Promise(resolve=> canvas.toBlob(resolve, 'image/png'));
     if(!blob) throw new Error('canvas.toBlob failed');
@@ -593,10 +617,12 @@ async function shareRecipeImage(id, btn){
       alert('圖片已經下載，可以去WhatsApp揀返張相分享俾人喇！');
     }
   }catch(e){
+    shareArea.innerHTML = '';
     if(e && e.name !== 'AbortError'){
-      alert('產生圖片失敗，請檢查網絡連線再試一次。');
+      alert('產生圖片失敗，可能係網絡太慢,請再試一次。');
     }
   }finally{
+    pendingFontLinks.forEach(l => document.head.appendChild(l));
     if(btn){ btn.disabled = false; btn.textContent = originalLabel; }
   }
 }
