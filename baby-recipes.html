@@ -139,6 +139,7 @@
   .zh-name{font-weight:700;font-size:16px;color:var(--ink);}
   .badge-row{display:flex;gap:6px;flex-wrap:wrap;}
   .badge{font-size:10.5px;font-weight:700;border-radius:999px;padding:4px 12px;white-space:nowrap;}
+  .badge.lang{font-weight:600;font-style:italic;opacity:.85;}
   .badge.stage{background:var(--sand);color:var(--sand-deep);}
   .badge.meta{background:var(--cream);color:var(--ink-soft);font-weight:600;}
   .badge.allergen{background:var(--cream);color:var(--ink-soft);border:1px solid #E8DFCF;}
@@ -329,30 +330,37 @@
 <script>
 const STAGES = [
   {key:'all',      zh:'全部階段',  emoji:'👶'},
-  {key:'6-8個月',  zh:'6-8個月',   emoji:'🍼'},
-  {key:'9-12個月', zh:'9-12個月',  emoji:'🤏'},
-  {key:'1-3歲',    zh:'1-3歲',     emoji:'🧒'},
+  {key:'6-8個月',  zh:'6-8個月',   emoji:'🍼', id:'6-8 Bulan',  fil:'6-8 Buwan'},
+  {key:'9-12個月', zh:'9-12個月',  emoji:'🤏', id:'9-12 Bulan', fil:'9-12 Buwan'},
+  {key:'1-3歲',    zh:'1-3歲',     emoji:'🧒', id:'1-3 Tahun',  fil:'1-3 Taon'},
 ];
 
 const CATEGORIES = [
   {key:'all',      zh:'全部',    emoji:'🍽️', cls:'all'},
-  {key:'水果泥',   zh:'水果泥',  emoji:'🍎', cls:'fruit'},
-  {key:'蔬菜泥',   zh:'蔬菜泥',  emoji:'🥦', cls:'veg'},
-  {key:'肉類',     zh:'肉類',    emoji:'🍗', cls:'meat'},
-  {key:'主食',     zh:'主食',    emoji:'🍚', cls:'staple'},
-  {key:'湯水',     zh:'湯水',    emoji:'🍲', cls:'soup'},
-  {key:'手指食物', zh:'手指食物',emoji:'✋', cls:'finger'},
-  {key:'家庭餐',   zh:'家庭餐',  emoji:'🍽️', cls:'family'},
+  {key:'水果泥',   zh:'水果泥',  emoji:'🍎', cls:'fruit',  id:'Puree Buah',    fil:'Purong Prutas'},
+  {key:'蔬菜泥',   zh:'蔬菜泥',  emoji:'🥦', cls:'veg',    id:'Puree Sayur',   fil:'Purong Gulay'},
+  {key:'肉類',     zh:'肉類',    emoji:'🍗', cls:'meat',   id:'Daging',        fil:'Karne'},
+  {key:'主食',     zh:'主食',    emoji:'🍚', cls:'staple', id:'Makanan Pokok', fil:'Pangunahing Pagkain'},
+  {key:'湯水',     zh:'湯水',    emoji:'🍲', cls:'soup',   id:'Sup',           fil:'Sabaw'},
+  {key:'手指食物', zh:'手指食物',emoji:'✋', cls:'finger', id:'Makanan Tangan',fil:'Finger Food'},
+  {key:'家庭餐',   zh:'家庭餐',  emoji:'🍽️', cls:'family', id:'Makanan Keluarga', fil:'Pagkain ng Pamilya'},
 ];
 
 const G6PD_STATUS = [
   {key:'all',     zh:'全部',   emoji:'📋'},
-  {key:'safe',    zh:'安全',   emoji:'✅'},
-  {key:'caution', zh:'需注意', emoji:'⚠️'},
-  {key:'avoid',   zh:'避免',   emoji:'⛔'},
+  {key:'safe',    zh:'安全',   emoji:'✅', id:'Aman',              fil:'Ligtas'},
+  {key:'caution', zh:'需注意', emoji:'⚠️', id:'Perlu Perhatian',   fil:'Kailangan ng Pansin'},
+  {key:'avoid',   zh:'避免',   emoji:'⛔', id:'Hindari',           fil:'Iwasan'},
 ];
 
-const ALLERGEN_META = {'蛋':'🥚','奶':'🥛','麩質':'🌾','堅果':'🥜','大豆':'🫘','海鮮':'🦐'};
+const ALLERGEN_META = {
+  '蛋':   {emoji:'🥚', id:'Telur',   fil:'Itlog'},
+  '奶':   {emoji:'🥛', id:'Susu',    fil:'Gatas'},
+  '麩質': {emoji:'🌾', id:'Gluten',  fil:'Gluten'},
+  '堅果': {emoji:'🥜', id:'Kacang',  fil:'Nuts'},
+  '大豆': {emoji:'🫘', id:'Kedelai', fil:'Soy'},
+  '海鮮': {emoji:'🦐', id:'Makanan Laut', fil:'Pagkaing-dagat'},
+};
 const ALLERGENS = Object.keys(ALLERGEN_META);
 
 const IMG_BASE = 'images/baby-recipes/';
@@ -403,7 +411,7 @@ function renderAllergenChips(){
   const el = document.getElementById('allergenChips');
   el.innerHTML = ALLERGENS.map(a=>{
     const active = excludedAllergens.has(a);
-    return `<div class="cat-tab allergen-chip ${active?'active':''}" data-allergen="${a}">${ALLERGEN_META[a]} 不含${a}</div>`;
+    return `<div class="cat-tab allergen-chip ${active?'active':''}" data-allergen="${a}">${ALLERGEN_META[a].emoji} 不含${a}</div>`;
   }).join('');
   el.querySelectorAll('.allergen-chip').forEach(t=>{
     t.addEventListener('click', ()=>{
@@ -435,19 +443,32 @@ function getFiltered(){
   });
 }
 
-function cardBadges(r){
+const SHARE_LANG_FLAG = {id:'🇮🇩', fil:'🇵🇭'};
+
+function cardBadges(r, langs){
+  langs = langs || [];
   const ci = catInfo(r.category);
   const gi = g6pdInfo(r.g6pd_status);
+  const stageInfo = STAGES.find(s=>s.key===r.stage);
+  const timeUnit = {id:'menit', fil:'minuto'};
+  const chip = (base, cls, transMap)=>{
+    const chips = [`<span class="badge ${cls}">${base}</span>`];
+    langs.forEach(l=>{ if(transMap[l]) chips.push(`<span class="badge ${cls} lang">${SHARE_LANG_FLAG[l]} ${transMap[l]}</span>`); });
+    return chips.join('');
+  };
   let html = `<div class="badge-row">
-      <span class="badge stage">${STAGES.find(s=>s.key===r.stage)?.emoji||'👶'} ${r.stage}</span>
-      <span class="badge cat-${ci?ci.cls:''}">${ci?ci.emoji:''} ${r.category}</span>
+      ${chip(`${stageInfo?.emoji||'👶'} ${r.stage}`, 'stage', stageInfo||{})}
+      ${chip(`${ci?ci.emoji:''} ${r.category}`, `cat-${ci?ci.cls:''}`, ci||{})}
     </div>
     <div class="badge-row">
-      <span class="badge g6pd-${r.g6pd_status}">${gi.emoji} ${gi.zh}</span>
-      <span class="badge meta">⏱️ ${r.prep_time}分鐘</span>
+      ${chip(`${gi.emoji} ${gi.zh}`, `g6pd-${r.g6pd_status}`, gi)}
+      ${chip(`⏱️ ${r.prep_time}分鐘`, 'meta', {id: r.prep_time+' '+timeUnit.id, fil: r.prep_time+' '+timeUnit.fil})}
     </div>`;
   if(r.allergens && r.allergens.length){
-    html += `<div class="badge-row">${r.allergens.map(a=>`<span class="badge allergen">${ALLERGEN_META[a]||''} ${a}</span>`).join('')}</div>`;
+    html += `<div class="badge-row">${r.allergens.map(a=>{
+      const meta = ALLERGEN_META[a] || {};
+      return chip(`${meta.emoji||''} ${a}`, 'allergen', meta);
+    }).join('')}</div>`;
   }
   return html;
 }
@@ -480,8 +501,6 @@ function renderGrid(){
   });
 }
 
-const SHARE_LANG_FLAG = {id:'🇮🇩', fil:'🇵🇭'};
-
 function recipeDetailHTML(r, langs){
   langs = langs || [];
   const ci = catInfo(r.category);
@@ -491,7 +510,7 @@ function recipeDetailHTML(r, langs){
       ${imgBlock(r)}
       <div class="zh-name">${r.title}</div>
       ${langs.map(l=> r['title_'+l] ? `<div class="id-name">${SHARE_LANG_FLAG[l]} ${r['title_'+l]}</div>` : '').join('')}
-      ${cardBadges(r)}
+      ${cardBadges(r, langs)}
     </div>`;
   if(r.g6pd_note){
     const noteParts = [r.g6pd_note, ...langs.map(l=> r['g6pd_note_'+l] ? `${SHARE_LANG_FLAG[l]} ${r['g6pd_note_'+l]}` : '').filter(Boolean)];
@@ -521,7 +540,6 @@ function recipeDetailHTML(r, langs){
     html += `<div class="tips-box">💡 小貼士：${tipsParts.join('<br><br>')}</div>`;
   }
   html += `<div class="share-btn-row">
-    <button class="share-btn" data-id="${r.id}" data-lang="">🔗 WhatsApp 分享連結</button>
     <button class="share-btn" data-id="${r.id}" data-lang="id">🇮🇩 中+印 分享連結</button>
     <button class="share-btn" data-id="${r.id}" data-lang="fil">🇵🇭 中+菲 分享連結</button>
   </div>`;
