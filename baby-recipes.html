@@ -74,8 +74,14 @@
     color:var(--g6pd-caution-deep);font-weight:800;font-size:14px;text-align:center;
     padding:14px 22px;border-radius:999px;text-decoration:none;margin:0 0 22px;
     box-shadow:var(--shadow);transition:transform .2s ease, box-shadow .2s ease;
+    animation:g6pd-pulse 2.6s ease-in-out infinite;
   }
   .g6pd-banner:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover);}
+  .g6pd-banner .cta{text-decoration:underline;text-underline-offset:2px;}
+  @keyframes g6pd-pulse{
+    0%,100%{box-shadow:var(--shadow);}
+    50%{box-shadow:0 8px 22px rgba(140,106,30,.3), 0 0 0 6px rgba(240,217,168,.4);}
+  }
 
   .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 16px;align-items:stretch;}
   .random-btn{
@@ -231,7 +237,7 @@
   }
   #guide:hover{transform:scale(1.08);}
   @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
-  @media (prefers-reduced-motion: reduce){#guide{animation:none;}html{scroll-behavior:auto;}}
+  @media (prefers-reduced-motion: reduce){#guide{animation:none;}.g6pd-banner{animation:none;}html{scroll-behavior:auto;}}
 
   footer{padding:40px 0 8px;text-align:center;}
   .final-cta{background:var(--ink);border-radius:var(--radius);padding:44px 24px;color:#fff;margin:0 0 28px;}
@@ -278,7 +284,7 @@
   </header>
 
   <a class="g6pd-banner" href="g6pd-guide.html" target="_blank" rel="noopener">
-    🫘 蠶豆症(G6PD)寶寶飲食全攻略 <span class="arrow">→</span> 邊啲食物要避免、點樣揀得安心
+    🫘 蠶豆症(G6PD)寶寶飲食要注意？ <span class="cta">撳呢度睇全攻略 →</span>
   </a>
 
   <div class="toolbar">
