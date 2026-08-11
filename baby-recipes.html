@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BB副食品食譜 · 由開始加固到3歲｜蠶豆症安全標示｜Lily Lau 免費資源</title>
+<title>BB副食品食譜 · Resep MPASI · Recipe ng Baby Food｜Lily Lau 免費資源</title>
 <meta name="description" content="BB副食品食譜庫，由開始加固到3歲，按月齡、分類、蠶豆症(G6PD)安全性同過敏原篩選，附材料清單、步驟同列印功能。由 Lily Lau 免費提供俾大家使用。">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-baby-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-baby-192.png">
@@ -82,10 +82,10 @@
     background:var(--ink);color:var(--white);border:none;border-radius:999px;padding:14px 26px;cursor:pointer;
     font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:15px;
     box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;gap:2px;
-    line-height:1.3;transition:transform .2s ease, box-shadow .2s ease;flex:0 0 auto;
+    line-height:1.3;transition:transform .2s ease, box-shadow .2s ease;flex:1 1 260px;min-width:0;max-width:100%;
   }
   .random-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover);}
-  .random-btn span{font-size:11px;font-weight:400;opacity:.85;}
+  .random-btn span{font-size:11px;font-weight:400;opacity:.85;white-space:normal;text-align:center;}
   .random-stage-select{
     border:2px solid #F0EAE0;border-radius:999px;padding:0 18px;font-size:13px;
     font-family:'Noto Sans TC',sans-serif;background:var(--white);color:var(--ink-soft);
@@ -106,6 +106,7 @@
     display:flex;align-items:center;gap:5px;transition:all .15s ease;box-shadow:var(--shadow);
   }
   .cat-tab .count{font-size:11px;opacity:.6;font-weight:600;}
+  .cat-tab .id{font-size:10.5px;opacity:.7;font-weight:500;}
   .cat-tab.active{background:var(--ink);color:var(--white);border-color:var(--ink);}
 
   .cat-tab.g6pd-tab.status-safe{background:var(--g6pd-safe);color:var(--g6pd-safe-deep);border-color:var(--g6pd-safe);}
@@ -266,10 +267,12 @@
 <div class="wrap">
   <header class="top">
     <span class="eyebrow">🎁 免費資源</span>
-    <h1>BB副食品食譜<span class="en">由開始加固到3歲 · 一站式食譜庫</span></h1>
+    <h1>BB副食品食譜<span class="en">由開始加固到3歲 · 一站式食譜庫</span><span class="en">🇮🇩 Resep MPASI Bayi · Dari mulai makan hingga 3 tahun</span><span class="en">🇵🇭 Recipe ng Baby Food · Mula sa simula ng solids hanggang 3 taon</span></h1>
     <p class="tagline">
       按月齡、分類、蠶豆症(G6PD)安全性同過敏原篩選，附材料清單、步驟同小貼士<br>
-      揀一款，今日就試下整俾BB食！
+      揀一款，今日就試下整俾BB食！<br>
+      🇮🇩 Saring berdasarkan usia, kategori, keamanan G6PD, dan alergen, lengkap dengan bahan, langkah, dan tips · Pilih satu, coba masak untuk bayi hari ini!<br>
+      🇵🇭 Salain ayon sa edad, kategorya, kaligtasan sa G6PD, at allergens, kasama ang mga sangkap, hakbang, at tip · Pumili ng isa, subukang lutuin para sa sanggol ngayon!
     </p>
   </header>
 
@@ -278,27 +281,27 @@
   </a>
 
   <div class="toolbar">
-    <button id="randomBtn" class="random-btn">🎲 今日食乜好？<span>幫BB揀返啱佢依家階段嘅食譜</span></button>
+    <button id="randomBtn" class="random-btn">🎲 今日食乜好？<span>幫BB揀返啱佢依家階段嘅食譜 · 🇮🇩 Pilih resep sesuai usia bayi · 🇵🇭 Pumili ng recipe ayon sa edad ng sanggol</span></button>
     <select id="randomStageSelect" class="random-stage-select" title="揀BB而家嘅月齡先隨機">
       <option value="">隨機：跟返以下篩選</option>
     </select>
-    <input id="searchInput" type="text" placeholder="搜尋食譜名稱">
+    <input id="searchInput" type="text" placeholder="搜尋食譜名稱 · 🇮🇩 Cari resep · 🇵🇭 Maghanap ng recipe">
   </div>
 
-  <div class="filter-label">月齡</div>
+  <div class="filter-label">月齡 · 🇮🇩 Usia · 🇵🇭 Edad</div>
   <div class="cat-tabs" id="stageTabs"></div>
 
-  <div class="filter-label">分類</div>
+  <div class="filter-label">分類 · 🇮🇩 Kategori · 🇵🇭 Kategorya</div>
   <div class="cat-tabs" id="catTabs"></div>
 
-  <div class="filter-label">蠶豆症(G6PD)安全性</div>
+  <div class="filter-label">蠶豆症(G6PD)安全性 · 🇮🇩 Keamanan G6PD · 🇵🇭 Kaligtasan sa G6PD</div>
   <div class="cat-tabs" id="g6pdTabs"></div>
   <div class="disclaimer-group">
     <p class="g6pd-disclaimer-inline">⚠️ 以上安全性標示僅供參考，並非醫療建議。如BB已確診蠶豆症或飲食上有疑慮，請務必先諮詢兒科醫生或註冊營養師。</p>
     <p class="g6pd-disclaimer-inline">📷 食譜圖片由AI生成，僅供賣相參考，實際成品會因食材新鮮度、切法、火候而有所不同。</p>
   </div>
 
-  <div class="filter-label">過敏原排除（可揀多項）</div>
+  <div class="filter-label">過敏原排除（可揀多項）· 🇮🇩 Kecualikan Alergen (bisa pilih lebih dari satu) · 🇵🇭 Alisin ang Allergens (puwedeng pumili ng marami)</div>
   <div class="cat-tabs" id="allergenChips"></div>
 
   <div class="grid" id="recipeGrid"></div>
@@ -329,14 +332,14 @@
 <script src="assets/baby-recipes-data.js"></script>
 <script>
 const STAGES = [
-  {key:'all',      zh:'全部階段',  emoji:'👶'},
+  {key:'all',      zh:'全部階段',  emoji:'👶', id:'Semua Usia', fil:'Lahat ng Edad'},
   {key:'6-8個月',  zh:'6-8個月',   emoji:'🍼', id:'6-8 Bulan',  fil:'6-8 Buwan'},
   {key:'9-12個月', zh:'9-12個月',  emoji:'🤏', id:'9-12 Bulan', fil:'9-12 Buwan'},
   {key:'1-3歲',    zh:'1-3歲',     emoji:'🧒', id:'1-3 Tahun',  fil:'1-3 Taon'},
 ];
 
 const CATEGORIES = [
-  {key:'all',      zh:'全部',    emoji:'🍽️', cls:'all'},
+  {key:'all',      zh:'全部',    emoji:'🍽️', cls:'all', id:'Semua', fil:'Lahat'},
   {key:'水果泥',   zh:'水果泥',  emoji:'🍎', cls:'fruit',  id:'Puree Buah',    fil:'Purong Prutas'},
   {key:'蔬菜泥',   zh:'蔬菜泥',  emoji:'🥦', cls:'veg',    id:'Puree Sayur',   fil:'Purong Gulay'},
   {key:'肉類',     zh:'肉類',    emoji:'🍗', cls:'meat',   id:'Daging',        fil:'Karne'},
@@ -347,7 +350,7 @@ const CATEGORIES = [
 ];
 
 const G6PD_STATUS = [
-  {key:'all',     zh:'全部',   emoji:'📋'},
+  {key:'all',     zh:'全部',   emoji:'📋', id:'Semua', fil:'Lahat'},
   {key:'safe',    zh:'安全',   emoji:'✅', id:'Aman',              fil:'Ligtas'},
   {key:'caution', zh:'需注意', emoji:'⚠️', id:'Perlu Perhatian',   fil:'Kailangan ng Pansin'},
   {key:'avoid',   zh:'避免',   emoji:'⛔', id:'Hindari',           fil:'Iwasan'},
@@ -373,11 +376,19 @@ const excludedAllergens = new Set();
 function catInfo(key){ return CATEGORIES.find(c=>c.key===key); }
 function g6pdInfo(key){ return G6PD_STATUS.find(g=>g.key===key); }
 
+function langSpan(entry){
+  if(!entry || (!entry.id && !entry.fil)) return '';
+  const parts = [];
+  if(entry.id) parts.push(`🇮🇩 ${entry.id}`);
+  if(entry.fil) parts.push(`🇵🇭 ${entry.fil}`);
+  return `<span class="id">${parts.join(' · ')}</span>`;
+}
+
 function renderStageTabs(){
   const el = document.getElementById('stageTabs');
   el.innerHTML = STAGES.map(s=>{
     const count = s.key==='all' ? babyRecipes.length : babyRecipes.filter(r=>r.stage===s.key).length;
-    return `<div class="cat-tab ${s.key===currentStage?'active':''}" data-stage="${s.key}">${s.emoji} ${s.zh} <span class="count">(${count})</span></div>`;
+    return `<div class="cat-tab ${s.key===currentStage?'active':''}" data-stage="${s.key}">${s.emoji} ${s.zh} <span class="count">(${count})</span>${langSpan(s)}</div>`;
   }).join('');
   el.querySelectorAll('.cat-tab').forEach(t=>{
     t.addEventListener('click', ()=>{ currentStage = t.dataset.stage; renderStageTabs(); renderGrid(); });
@@ -388,7 +399,7 @@ function renderCatTabs(){
   const el = document.getElementById('catTabs');
   el.innerHTML = CATEGORIES.map(c=>{
     const count = c.key==='all' ? babyRecipes.length : babyRecipes.filter(r=>r.category===c.key).length;
-    return `<div class="cat-tab ${c.key===currentCat?'active':''}" data-cat="${c.key}">${c.emoji} ${c.zh} <span class="count">(${count})</span></div>`;
+    return `<div class="cat-tab ${c.key===currentCat?'active':''}" data-cat="${c.key}">${c.emoji} ${c.zh} <span class="count">(${count})</span>${langSpan(c)}</div>`;
   }).join('');
   el.querySelectorAll('.cat-tab').forEach(t=>{
     t.addEventListener('click', ()=>{ currentCat = t.dataset.cat; renderCatTabs(); renderGrid(); });
@@ -400,18 +411,21 @@ function renderG6pdTabs(){
   el.innerHTML = G6PD_STATUS.map(g=>{
     const count = g.key==='all' ? babyRecipes.length : babyRecipes.filter(r=>r.g6pd_status===g.key).length;
     const statusCls = g.key==='all' ? '' : `status-${g.key}`;
-    return `<div class="cat-tab g6pd-tab ${statusCls} ${g.key===currentG6pd?'active':''}" data-g6pd="${g.key}">${g.emoji} ${g.zh} <span class="count">(${count})</span></div>`;
+    return `<div class="cat-tab g6pd-tab ${statusCls} ${g.key===currentG6pd?'active':''}" data-g6pd="${g.key}">${g.emoji} ${g.zh} <span class="count">(${count})</span>${langSpan(g)}</div>`;
   }).join('');
   el.querySelectorAll('.g6pd-tab').forEach(t=>{
     t.addEventListener('click', ()=>{ currentG6pd = t.dataset.g6pd; renderG6pdTabs(); renderGrid(); });
   });
 }
 
+const EXCLUDE_WORD = {id:'Tanpa', fil:'Walang'};
+
 function renderAllergenChips(){
   const el = document.getElementById('allergenChips');
   el.innerHTML = ALLERGENS.map(a=>{
     const active = excludedAllergens.has(a);
-    return `<div class="cat-tab allergen-chip ${active?'active':''}" data-allergen="${a}">${ALLERGEN_META[a].emoji} 不含${a}</div>`;
+    const meta = ALLERGEN_META[a];
+    return `<div class="cat-tab allergen-chip ${active?'active':''}" data-allergen="${a}">${meta.emoji} 不含${a}${langSpan({id: meta.id ? EXCLUDE_WORD.id+' '+meta.id : '', fil: meta.fil ? EXCLUDE_WORD.fil+' '+meta.fil : ''})}</div>`;
   }).join('');
   el.querySelectorAll('.allergen-chip').forEach(t=>{
     t.addEventListener('click', ()=>{
@@ -485,7 +499,7 @@ function renderGrid(){
   const list = getFiltered();
   const grid = document.getElementById('recipeGrid');
   if(list.length===0){
-    grid.innerHTML = `<div class="empty-msg">冇搵到相關食譜，試吓調整篩選條件</div>`;
+    grid.innerHTML = `<div class="empty-msg">冇搵到相關食譜，試吓調整篩選條件 · 🇮🇩 Resep tidak ditemukan, coba ubah filter · 🇵🇭 Walang nahanap na recipe, subukang baguhin ang filter</div>`;
     return;
   }
   grid.innerHTML = list.map(r=>`
