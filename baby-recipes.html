@@ -250,18 +250,6 @@
   .about-text b{color:var(--ink);}
   .disclaimer{font-size:11.5px;color:var(--ink-soft);max-width:680px;margin:0 auto;padding:0 20px;opacity:.85;}
 
-  #shareArea{position:fixed;left:-9999px;top:0;width:480px;}
-  .share-card{background:var(--white);border-radius:24px;padding:22px;font-family:'Noto Sans TC',sans-serif;}
-  .share-card .modal-head{border-bottom:none;margin-bottom:6px;padding-bottom:0;}
-  .share-card .steps li{padding:8px 0 8px 32px;}
-  .share-card .ing-item{padding:6px 4px;}
-  .share-card .tips-box,.share-card .g6pd-note{padding:12px 14px;margin:10px 0;}
-  .share-footer{
-    margin-top:18px;padding-top:14px;border-top:2px dashed var(--cream);
-    text-align:center;font-size:12px;color:var(--ink-soft);line-height:1.7;
-  }
-  .share-footer b{color:var(--coral-deep);}
-
   @media (max-width:480px){
     header.top h1{font-size:24px;}
     .random-btn{font-size:14px;padding:12px 20px;}
@@ -318,8 +306,6 @@
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal" id="modalContent"></div>
 </div>
-
-<div id="shareArea"></div>
 
 <footer>
   <div class="wrap">
@@ -496,13 +482,13 @@ function renderGrid(){
 
 const SHARE_LANG_FLAG = {id:'🇮🇩', fil:'🇵🇭'};
 
-function recipeDetailHTML(r, plain, langs){
+function recipeDetailHTML(r, langs){
   langs = langs || [];
   const ci = catInfo(r.category);
   const gi = g6pdInfo(r.g6pd_status);
   let html = `
     <div class="modal-head">
-      ${imgBlock(r, plain)}
+      ${imgBlock(r)}
       <div class="zh-name">${r.title}</div>
       ${langs.map(l=> r['title_'+l] ? `<div class="id-name">${SHARE_LANG_FLAG[l]} ${r['title_'+l]}</div>` : '').join('')}
       ${cardBadges(r)}
@@ -534,42 +520,51 @@ function recipeDetailHTML(r, plain, langs){
     const tipsParts = [r.tips, ...langs.map(l=> r['tips_'+l] ? `${SHARE_LANG_FLAG[l]} ${r['tips_'+l]}` : '').filter(Boolean)];
     html += `<div class="tips-box">💡 小貼士：${tipsParts.join('<br><br>')}</div>`;
   }
-  if(!plain){
-    html += `<div class="share-btn-row">
-      <button class="share-btn" data-id="${r.id}" data-langs="">WhatsApp 分享</button>
-      <button class="share-btn" data-id="${r.id}" data-langs="id">🇮🇩 中+印 分享</button>
-      <button class="share-btn" data-id="${r.id}" data-langs="fil">🇵🇭 中+菲 分享</button>
-    </div>`;
-  }
+  html += `<div class="share-btn-row">
+    <button class="share-btn" data-id="${r.id}" data-lang="">🔗 WhatsApp 分享連結</button>
+    <button class="share-btn" data-id="${r.id}" data-lang="id">🇮🇩 中+印 分享連結</button>
+    <button class="share-btn" data-id="${r.id}" data-lang="fil">🇵🇭 中+菲 分享連結</button>
+  </div>`;
   return html;
 }
 
-function shareCardHTML(r, langs){
-  let html = recipeDetailHTML(r, true, langs);
-  html += `
-    <div class="share-footer">
-      🍼 <b>Lily Lau</b> 香港持牌會計師 × 保誠保險顧問 × 媽媽<br>
-      IG @pru_lilylau · BB食譜由Lily整理，免費分享俾有需要嘅家庭
-    </div>`;
-  return html;
+function recipeShareUrl(id, lang){
+  const url = new URL(location.href);
+  url.search = '';
+  url.hash = '';
+  url.searchParams.set('recipe', id);
+  if(lang) url.searchParams.set('lang', lang);
+  return url.toString();
 }
 
-function openModal(id){
+function shareRecipeLink(id, lang){
   const r = babyRecipes.find(x=>x.id===id);
   if(!r) return;
+  const flag = SHARE_LANG_FLAG[lang] || '';
+  const langTitle = lang ? r['title_'+lang] : '';
+  const titleLine = `🍼 ${r.title}${langTitle ? ' / ' + flag + ' ' + langTitle : ''}`;
+  const text = `${titleLine}\n${recipeShareUrl(id, lang)}`;
+  window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank', 'noopener');
+}
+
+function openModal(id, langsOverride){
+  const r = babyRecipes.find(x=>x.id===id);
+  if(!r) return;
+  const langs = langsOverride || ['id','fil'];
   const modal = document.getElementById('modalContent');
-  modal.innerHTML = `<button class="close-btn" id="closeModalBtn">&times;</button>` + recipeDetailHTML(r, false, ['id','fil']);
+  modal.innerHTML = `<button class="close-btn" id="closeModalBtn">&times;</button>` + recipeDetailHTML(r, langs);
   document.getElementById('closeModalBtn').addEventListener('click', closeModal);
   modal.querySelectorAll('.share-btn').forEach(btn=>{
-    const langs = btn.dataset.langs ? btn.dataset.langs.split(',') : [];
-    btn.addEventListener('click', ()=> shareRecipeImage(btn.dataset.id, btn, langs));
+    btn.addEventListener('click', ()=> shareRecipeLink(btn.dataset.id, btn.dataset.lang));
   });
-  loadHtml2Canvas().catch(()=>{});
   document.getElementById('modalOverlay').classList.add('show');
 }
 
 function closeModal(){
   document.getElementById('modalOverlay').classList.remove('show');
+  if(location.search){
+    history.replaceState(null, '', location.pathname);
+  }
 }
 
 document.getElementById('modalOverlay').addEventListener('click', (e)=>{
@@ -578,93 +573,6 @@ document.getElementById('modalOverlay').addEventListener('click', (e)=>{
 document.addEventListener('keydown', (e)=>{
   if(e.key==='Escape') closeModal();
 });
-
-function waitForImages(container){
-  const imgs = Array.from(container.querySelectorAll('img'));
-  return Promise.all(imgs.map(img=>{
-    if(img.complete) return Promise.resolve();
-    return new Promise(resolve=>{
-      img.addEventListener('load', resolve, {once:true});
-      img.addEventListener('error', resolve, {once:true});
-      setTimeout(resolve, 1500);
-    });
-  }));
-}
-
-let html2canvasPromise;
-function loadHtml2Canvas(){
-  if(window.html2canvas) return Promise.resolve();
-  if(html2canvasPromise) return html2canvasPromise;
-  html2canvasPromise = new Promise((resolve, reject)=>{
-    const s = document.createElement('script');
-    s.src = 'assets/html2canvas.min.js';
-    s.onload = ()=> resolve();
-    s.onerror = ()=>{ html2canvasPromise = null; reject(new Error('html2canvas load failed')); };
-    document.head.appendChild(s);
-  });
-  return html2canvasPromise;
-}
-
-function withTimeout(promise, ms, message){
-  return new Promise((resolve, reject)=>{
-    const timer = setTimeout(()=> reject(new Error(message)), ms);
-    promise.then(
-      v=>{ clearTimeout(timer); resolve(v); },
-      e=>{ clearTimeout(timer); reject(e); }
-    );
-  });
-}
-
-async function shareRecipeImage(id, btn, langs){
-  langs = langs || [];
-  const r = babyRecipes.find(x=>x.id===id);
-  if(!r) return;
-  const originalLabel = btn ? btn.textContent : '';
-  if(btn){ btn.disabled = true; btn.textContent = '⏳ 產生緊圖片…'; }
-  const shareArea = document.getElementById('shareArea');
-  // a still-loading cross-origin stylesheet (e.g. Google Fonts, on a slow/blocked connection) can make
-  // html2canvas's style computation stall for a very long time; pull it out of the DOM for the capture
-  // if it hasn't resolved yet, and put it back afterwards so the rest of the page still gets the webfont
-  const pendingFontLinks = Array.from(document.querySelectorAll('link[href*="fonts.googleapis.com"]')).filter(l => !l.sheet);
-  pendingFontLinks.forEach(l => l.remove());
-  try{
-    await withTimeout(loadHtml2Canvas(), 8000, 'html2canvas load timeout');
-    shareArea.innerHTML = `<div class="share-card">${shareCardHTML(r, langs)}</div>`;
-    await waitForImages(shareArea);
-    // strip any image that failed to load so html2canvas doesn't stall trying to re-fetch it
-    shareArea.querySelectorAll('img').forEach(img=>{
-      if(!img.complete || img.naturalWidth === 0) img.remove();
-    });
-    const canvas = await withTimeout(
-      html2canvas(shareArea.firstElementChild, {backgroundColor:'#ffffff', scale:2, useCORS:true, imageTimeout:4000, logging:false}),
-      10000, 'html2canvas render timeout'
-    );
-    shareArea.innerHTML = '';
-    const blob = await new Promise(resolve=> canvas.toBlob(resolve, 'image/png'));
-    if(!blob) throw new Error('canvas.toBlob failed');
-    const langSuffix = langs.length ? '（' + langs.map(l=>l==='id'?'印':'菲').join('') + '）' : '';
-    const filename = r.title.replace(/[\\/:*?"<>|]+/g, '、') + langSuffix + '.png';
-    const file = new File([blob], filename, {type:'image/png'});
-    if(navigator.canShare && navigator.canShare({files:[file]})){
-      await navigator.share({files:[file], title:r.title, text:`${r.title} - BB食譜`});
-    } else {
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url; a.download = filename;
-      document.body.appendChild(a); a.click(); a.remove();
-      URL.revokeObjectURL(url);
-      alert('圖片已經下載，可以去WhatsApp揀返張相分享俾人喇！');
-    }
-  }catch(e){
-    shareArea.innerHTML = '';
-    if(e && e.name !== 'AbortError'){
-      alert('產生圖片失敗，可能係網絡太慢,請再試一次。');
-    }
-  }finally{
-    pendingFontLinks.forEach(l => document.head.appendChild(l));
-    if(btn){ btn.disabled = false; btn.textContent = originalLabel; }
-  }
-}
 
 document.getElementById('searchInput').addEventListener('input', renderGrid);
 
@@ -688,6 +596,14 @@ renderG6pdTabs();
 renderAllergenChips();
 renderRandomStageOptions();
 renderGrid();
+
+(function openFromUrl(){
+  const params = new URLSearchParams(location.search);
+  const id = params.get('recipe');
+  if(!id || !babyRecipes.some(r=>r.id===id)) return;
+  const lang = params.get('lang');
+  openModal(id, lang ? [lang] : ['id','fil']);
+})();
 </script>
 </body>
 </html>
