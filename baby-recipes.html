@@ -186,11 +186,15 @@
   .g6pd-note.avoid{background:var(--g6pd-avoid);color:var(--g6pd-avoid-deep);}
   .tips-box{background:var(--butter);color:var(--butter-deep);border-radius:16px;padding:14px 16px;font-size:13px;margin-top:14px;font-weight:600;}
 
-  .ing-table{width:100%;border-collapse:collapse;font-size:15px;}
-  .ing-table tr{border-bottom:1px solid var(--cream);}
-  .ing-table tr:last-child{border-bottom:none;}
-  .ing-table td{padding:8px 4px;vertical-align:top;}
-  .ing-table td.qty{text-align:right;color:var(--ink-soft);font-size:15px;white-space:nowrap;}
+  .ing-list{width:100%;}
+  .ing-item{border-bottom:1px solid var(--cream);padding:8px 4px;}
+  .ing-item:last-child{border-bottom:none;}
+  .ing-line{display:flex;justify-content:space-between;gap:12px;font-size:15px;}
+  .ing-line + .ing-line{margin-top:2px;}
+  .ing-line .ing-name{flex:1;min-width:0;}
+  .ing-line .ing-qty{color:var(--ink-soft);text-align:right;white-space:normal;}
+  .ing-line.lang{font-size:13px;font-style:italic;color:var(--ink-soft);}
+  .ing-line.lang .ing-qty{color:var(--ink-soft);}
 
   .steps{list-style:none;margin:0;padding:0;counter-reset:step;}
   .steps li{
@@ -246,9 +250,12 @@
   .about-text b{color:var(--ink);}
   .disclaimer{font-size:11.5px;color:var(--ink-soft);max-width:680px;margin:0 auto;padding:0 20px;opacity:.85;}
 
-  #shareArea{position:fixed;left:-9999px;top:0;width:400px;}
+  #shareArea{position:fixed;left:-9999px;top:0;width:480px;}
   .share-card{background:var(--white);border-radius:24px;padding:22px;font-family:'Noto Sans TC',sans-serif;}
   .share-card .modal-head{border-bottom:none;margin-bottom:6px;padding-bottom:0;}
+  .share-card .steps li{padding:8px 0 8px 32px;}
+  .share-card .ing-item{padding:6px 4px;}
+  .share-card .tips-box,.share-card .g6pd-note{padding:12px 14px;margin:10px 0;}
   .share-footer{
     margin-top:18px;padding-top:14px;border-top:2px dashed var(--cream);
     text-align:center;font-size:12px;color:var(--ink-soft);line-height:1.7;
@@ -478,6 +485,8 @@ function renderGrid(){
     <div class="card" data-id="${r.id}">
       ${imgBlock(r)}
       <div class="zh-name">${r.title}</div>
+      ${r.title_id ? `<div class="id-name">🇮🇩 ${r.title_id}</div>` : ''}
+      ${r.title_fil ? `<div class="id-name">🇵🇭 ${r.title_fil}</div>` : ''}
       ${cardBadges(r)}
     </div>`).join('');
   grid.querySelectorAll('.card').forEach(c=>{
@@ -504,13 +513,13 @@ function recipeDetailHTML(r, plain, langs){
   }
   html += `
     <div class="section-title">🧺 材料</div>
-    <table class="ing-table">
+    <div class="ing-list">
       ${r.ingredients.map(i=>{
-        const nameParts = [i.name, ...langs.map(l=> i['name_'+l] ? `${SHARE_LANG_FLAG[l]} ${i['name_'+l]}` : '').filter(Boolean)];
-        const amtParts = [i.amount, ...langs.map(l=> i['amount_'+l] ? `${SHARE_LANG_FLAG[l]} ${i['amount_'+l]}` : '').filter(Boolean)];
-        return `<tr><td class="name">${nameParts.join('<br>')}</td><td class="qty">${amtParts.join('<br>')}</td></tr>`;
+        let lines = `<div class="ing-line"><span class="ing-name">${i.name}</span><span class="ing-qty">${i.amount}</span></div>`;
+        lines += langs.map(l=> (i['name_'+l] && i['amount_'+l]) ? `<div class="ing-line lang"><span class="ing-name">${SHARE_LANG_FLAG[l]} ${i['name_'+l]}</span><span class="ing-qty">${i['amount_'+l]}</span></div>` : '').join('');
+        return `<div class="ing-item">${lines}</div>`;
       }).join('')}
-    </table>
+    </div>
     <div class="section-title">🔥 做法</div>
     <ol class="steps">
       ${r.steps.map((s,idx)=>{
@@ -549,7 +558,7 @@ function openModal(id){
   const r = babyRecipes.find(x=>x.id===id);
   if(!r) return;
   const modal = document.getElementById('modalContent');
-  modal.innerHTML = `<button class="close-btn" id="closeModalBtn">&times;</button>` + recipeDetailHTML(r, false);
+  modal.innerHTML = `<button class="close-btn" id="closeModalBtn">&times;</button>` + recipeDetailHTML(r, false, ['id','fil']);
   document.getElementById('closeModalBtn').addEventListener('click', closeModal);
   modal.querySelectorAll('.share-btn').forEach(btn=>{
     const langs = btn.dataset.langs ? btn.dataset.langs.split(',') : [];
